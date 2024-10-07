@@ -7,7 +7,10 @@ import java.io.IOException;
 import java.io.FileWriter;
 
 public class Lexer{
-    
+
+    public Lexer(String string) {
+        //TODO Auto-generated constructor stub
+    }
 
     public static void guardarEnFichero(String[][] datos, String separadorColumnas, String nombreFichero){
         try {
