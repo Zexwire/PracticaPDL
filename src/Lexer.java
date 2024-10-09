@@ -69,7 +69,7 @@ public class Lexer{
 		Pair<Token, Object> token = null;
 		String str = "";
 		c = reader.read();
-		while(c != "\"".codePointAt(1)) {
+		while(c != "\"".codePointAt(0)) {
 			char[] chars = Character.toChars(c);
 			for(char ch: chars) {
 				str = str + Character.toString(ch);
