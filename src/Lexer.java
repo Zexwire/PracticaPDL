@@ -84,9 +84,15 @@ public class Lexer{
 		return token;
 	}
 	
-	private Pair<Token, Object> otherChars(int c){ //Estado 0 al 10, estado 11 y manejo de caracteres no validos
+	private Pair<Token, Object> otherChars(int c) throws LexerException, IOException{ //Estado 0 al 10, estado 11 y manejo de caracteres no validos
 		Pair<Token, Object> token = null;
-		
+		//Si no se puede con un switch se hace con if seguidos y ya
+		switch(c) {
+		//FIXME: Añadir los casos para la c
+			case 1: break;
+			default: throw new LexerException("Caracter no valido leido en la linea " + linea_fichero_fuente 
+												+ ": caracter no perteneciente al lenguaje");
+		}
 		return token;
 	}
 	
