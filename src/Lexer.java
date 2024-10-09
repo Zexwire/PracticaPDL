@@ -42,7 +42,7 @@ public class Lexer{
 	private void comentario(int c) throws LexerException, IOException{ //Inicio: estado 1 del AFD
 		//Si no viene un * después de un /
 		c = reader.read();
-		if(c == "*".codePointAt(0)) {
+		if(c != "*".codePointAt(0)) {
 			throw new LexerException("Caracter no valido en la linea " + linea_fichero_fuente 
 										+ " se esperaba un *");
 		}
@@ -60,5 +60,34 @@ public class Lexer{
 		}
 	}
 	
+	private Pair<Token, Object> words(int c){ //Estado 4 del AFD
+		Pair<Token, Object> token = null;
+		return token;
+	}
+	
+	private Pair<Token, Object> cteCadena(int c) throws IOException{ //Estado 5 del AFD
+		Pair<Token, Object> token = null;
+		String str = "";
+		c = reader.read();
+		while(c != "\"".codePointAt(1)) {
+			char[] chars = Character.toChars(c);
+			for(char ch: chars) {
+				str = str + Character.toString(ch);
+			}
+		}
+		token = new Pair<Token, Object>(Token.CteCADENA, str);
+		return token;
+	}
+	
+	private Pair<Token, Object> cteEntera(int c){ //Estado 6 del AFD
+		Pair<Token, Object> token = null;
+		return token;
+	}
+	
+	private Pair<Token, Object> otherChars(int c){ //Estado 0 al 10, estado 11 y manejo de caracteres no validos
+		Pair<Token, Object> token = null;
+		
+		return token;
+	}
 	
 }
