@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Main {
@@ -16,8 +17,9 @@ public class Main {
 				tokens.add(token);
 				token = lexer.scan();
 			}
-			//TODO: guardar los tokens en un archivo de texto
-			//TODO: guardar la tabla de símbolos en un archivo de texto
+			//FIXME: comprobar que se guardan correctamente los tokens y la tabla de simbolos
+			tokensToFile(tokens);
+			tsHandler.toFile("tabla_simbolos.txt");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -27,6 +29,17 @@ public class Main {
 		} catch (LexerException e) {
 			tokens.clear();
 			//TODO: mirar como se hacia para printear el mensaje de la excepción
+			e.printStackTrace();
+		}
+	}
+
+	static private void tokensToFile (ArrayList<Pair<Token, Object>> tokens) {
+		try (PrintWriter writer = new PrintWriter("tokens.txt")) {
+			for (Pair<Token, Object> tokenPair : tokens) {
+				//FIXME: comprobar el toString de tokens
+				writer.println("< " + tokenPair.getKey() + ", " + tokenPair.getValue() + " >\n");
+			}
+		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
