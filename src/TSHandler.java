@@ -41,7 +41,7 @@ public class TSHandler {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
 			for (int i = 0; i < tsList.size(); i++) {
 				//FIXME: ver si el formato es válido y comprobar que se imprime correctamente
-				writer.println("CONTENIDOS DE LA TABLA #" + i + ":");
+				writer.println("CONTENIDOS DE LA TABLA #" + i + ":\n");
 				Hashtable<String, Object> table = tsList.get(i);
 				for (String key : table.keySet()) {
 					writer.println(" * LEXEMA : '" + key + "'\n");
