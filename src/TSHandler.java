@@ -45,7 +45,7 @@ public class TSHandler {
 				Hashtable<String, Integer> table = tsList.get(i);
 				for (String key : table.keySet()) {
 					writer.println(" * LEXEMA : '" + key + "'\n");
-					//TODO: una vez implementado el arbol, printear el arbol
+					//TODO: una vez implementado el arbol, printear el arbol, tendrá que ser con BEP
 				}
 				writer.println();
 			}
