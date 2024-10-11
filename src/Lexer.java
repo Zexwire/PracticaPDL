@@ -7,6 +7,7 @@ public class Lexer{
     private BufferedReader reader;
     private TSHandler tsHandler;
     private int linea_fichero_fuente;
+	//FIXME: yo creo que debería ser local de read y simplemente pasar el valor a los métodos que lo necesiten
     private int c;
 
     public Lexer(String fileName, TSHandler tsHandler) throws FileNotFoundException, IOException {
@@ -17,12 +18,12 @@ public class Lexer{
     }
 
 	public Pair<Token, Object> scan() throws LexerException, IOException {
+		//Saltar todos los delimitadores
 		Pair<Token, Object> token = whiteSpaces();
 		if(token != null){
 			return token;
 		}
-		//TODO:Ver si hay una forma más sencilla de comprobar que el caracter es "/"
-		else if(c == "/".codePointAt(0)){ // Paso del estado 0 al 1 del AFD
+		else if(c == '/'){ // Paso del estado 0 al 1 del AFD
 			comentario();
 		}
 		switch(c){
@@ -35,6 +36,7 @@ public class Lexer{
 		return token;
 	}
 	
+	//FIXME: esta parte la dejaría dentro de scan(), es una funcion practicamente superflua
 	private Pair<Token, Object> whiteSpaces() throws IOException { //Estado 0 del AFD y EOF
 		while(c != -1 && Character.isWhitespace(c)){ 
 			c = reader.read();
@@ -48,22 +50,23 @@ public class Lexer{
 	private Pair<Token, Object> comentario() throws LexerException, IOException{ //Inicio: estado 1 del AFD
 		//Si no viene un * después de un /
 		c = reader.read();
-		if(c != "*".codePointAt(0)) {
-			throw new LexerException("Caracter no valido en la linea " + linea_fichero_fuente 
-										+ " se esperaba un *");
+		if(c != '*') {
+			throw new LexerException(
+				"Caracter no valido en la linea " + linea_fichero_fuente + " se esperaba un *");
 		}
+		//FIXME: no es necesario el else, si tira excepción no se ejecuta el resto del código
 		else { //Estado 2 del AFD
-			boolean end = false;
-			while(!end) { //Estado 2 del AFD
+			while(true) { //Estado 2 del AFD
 				c = reader.read();
-				if(c == "*".codePointAt(0)) { //Estado 3 del AFD: Lee hasta el ultimo * que encuentre seguido	
-					while(c == "*".codePointAt(0)) {
+				if(c == '*') { //Estado 3 del AFD: Lee hasta el ultimo * que encuentre seguido	
+					while(c == '*')
 						c = reader.read();
-					}
-					if(c == "/".codePointAt(0)) end = true; //Paso del estado3 al 0:Termina de leer un comentario
+					if(c == '/')
+						break; //Paso del estado3 al 0:Termina de leer un comentario
 				}//Paso del estado 3 al estado 2: Si no ha terminado de leer
 			}
 		}
+		//FIXME: No creo que se deba ejecutar esto aquí, yo haría un bucle de reconocimiento en scan y ya
 		Pair<Token, Object> token = whiteSpaces();
 		if(token != null){
 			return token;
@@ -74,6 +77,7 @@ public class Lexer{
 	private Pair<Token, Object> words(){ //Estado 4 del AFD
 		Pair<Token, Object> token = null;
 		String str = "";
+		//FIXME: creo que estas corrompiendo las cadenas con este método
 		for(char ch: Character.toChars(c)) {
 			str = str + ch;
 		}
@@ -85,7 +89,7 @@ public class Lexer{
 		Pair<Token, Object> token = null;
 		String str = "";
 		c = reader.read();
-		while(c != "\"".codePointAt(0)) {
+		while(c != '/') {
 			char[] chars = Character.toChars(c);
 			for(char ch: chars) {
 				str = str + Character.toString(ch);
@@ -106,8 +110,8 @@ public class Lexer{
 		switch(c) {
 		//FIXME: Añadir los casos para la c
 			case 1: break;
-			default: throw new LexerException("Caracter no valido leido en la linea " + linea_fichero_fuente 
-												+ ": caracter no perteneciente al lenguaje");
+			default: throw new LexerException(
+				"Caracter no valido leido en la linea " + linea_fichero_fuente + ": caracter no perteneciente al lenguaje");
 		}
 		return token;
 	}
