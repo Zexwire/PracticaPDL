@@ -36,6 +36,7 @@ public class Main {
 	static private void tokensToFile (ArrayList<Pair<Token, Object>> tokens) {
 		try (PrintWriter writer = new PrintWriter("tokens.txt")) {
 			for (Pair<Token, Object> tokenPair : tokens) {
+				//FIXME: comprobar el toString de tokens
 				writer.println("< " + tokenPair.getKey() + ", " + tokenPair.getValue() + " >\n");
 			}
 		} catch (FileNotFoundException e) {
