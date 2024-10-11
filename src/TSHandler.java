@@ -40,11 +40,12 @@ public class TSHandler {
 	public void toFile (String fileName) {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
 			for (int i = 0; i < tsList.size(); i++) {
-				//FIXME: cambiar el formato de salida y ver si funciona(lo ha hecho Copilot)
-				writer.println("Scope " + i + ":");
+				//FIXME: ver si el formato es válido y comprobar que se imprime correctamente
+				writer.println("CONTENIDOS DE LA TABLA #" + i + ":");
 				Hashtable<String, Object> table = tsList.get(i);
 				for (String key : table.keySet()) {
-					writer.println("  " + key + " : " + table.get(key));
+					writer.println(" * LEXEMA : '" + key + "'\n");
+					//TODO: una vez implementado el arbol, printear el arbol
 				}
 				writer.println();
 			}
