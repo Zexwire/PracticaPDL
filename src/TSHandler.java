@@ -6,18 +6,19 @@ import java.util.ArrayList;
 //TODO: implementación de arboles
 
 public class TSHandler {
-	//FIXME: Object será un placeholder para esta entrega para los valores de las variables
-	private ArrayList<Hashtable<String, Object>> tsList;
+	//FIXME: Integer por ahora será su "posición" en la tabla, que después se cambiará por el arbol,
+	//donde este valor será el valor de root
+	private ArrayList<Hashtable<String, Integer>> tsList;
 	private int currentTS;
 
 	public TSHandler() {
-		tsList = new ArrayList<Hashtable<String, Object>>();
-		tsList.add(new Hashtable<String, Object>());
+		tsList = new ArrayList<Hashtable<String, Integer>>();
+		tsList.add(new Hashtable<String, Integer>());
 		currentTS = 0;
 	}
 
 	public void openScope() {
-		tsList.add(new Hashtable<String, Object>());
+		tsList.add(new Hashtable<String, Integer>());
 		currentTS++;
 	}
 
@@ -41,7 +42,7 @@ public class TSHandler {
 			for (int i = 0; i < tsList.size(); i++) {
 				//FIXME: ver si el formato es válido y comprobar que se imprime correctamente
 				writer.println("CONTENIDOS DE LA TABLA #" + i + ":\n");
-				Hashtable<String, Object> table = tsList.get(i);
+				Hashtable<String, Integer> table = tsList.get(i);
 				for (String key : table.keySet()) {
 					writer.println(" * LEXEMA : '" + key + "'\n");
 					//TODO: una vez implementado el arbol, printear el arbol
