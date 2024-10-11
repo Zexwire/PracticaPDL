@@ -27,14 +27,13 @@ public class TSHandler {
 		currentTS--;
 	}
 
-	public void insert(String id) {
-		if (id == null) 
-			throw new RuntimeException("Variable name cannot be null");
+	public void insert(String id) throws TSException {
+		//TODO: comprobar que jamas va a entrar un null en esta función
 		//Siempre estaremos añadiendo en la tabla de simbolos actual
 		if (tsList.get(currentTS).containsKey(id))
-			//FIXME: por ahora lo dejo con excepción podría ser devolver valor
-			throw new RuntimeException("Variable " + id + " already declared");
-			tsList.get(currentTS).put(id, null);
+			//FIXME: como conseguir que me pasen la linea en la que ha pasado el error
+			throw new TSException("Variable " + id + " ya declarada");
+		tsList.get(currentTS).put(id, null);
 	}
 
 	public void toFile (String fileName) {
