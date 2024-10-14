@@ -25,6 +25,8 @@ public class Lexer{
 			return words();
 		else if (Character.isDigit(c))
 			return cteEntera();
+		else if (c == '"')
+			return cteCadena();
 		switch (c) {
 			case '+':
 				c = reader.read();
@@ -137,35 +139,49 @@ public class Lexer{
 		}
 	}
 	
-	private Pair<Token, Object> cteCadena() throws IOException{ //Estado 5 del AFD
-		Pair<Token, Object> token = null;
+	private Pair<Token, Object> cteCadena() throws IOException, LexerException{ //Estado 5 del AFD
 		String str = "";
 		c = reader.read();
-		while(c != '/') {
-			char[] chars = Character.toChars(c);
-			for(char ch: chars) {
-				str = str + Character.toString(ch);
+		//FIXME: creo que si estan separadas por \n no son válidas, mirar en documentación
+		while(c != '"' && c != -1) {
+			//FIXME: comprobar secuencias de escape
+			if (c == '\\') {
+				c = reader.read();
+				if (c == 'n')
+					c = '\n';
+				else if (c == 't')
+					c = '\t';
+				else if (c == 'r')
+					c = '\r';
+				else if (c == 'b')
+					c = '\b';
+				else if (c == 'f')
+					c = '\f';
+				else if (c == '"')
+					c = '"';
+				else if (c == '\\')
+					c = '\\';
+				else if (c == '0')
+					c = '\0';
+				else if (c == '\'')
+					c = '\'';
+				//FIXME: comprobar que tiene sentido(lo ha hecho copilot)
+				// y añadir casos que falten 
+				else
+					throw new LexerException(
+						"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
 			}
+			str = str + c;
+			c = reader.read();
 		}
-		token = new Pair<Token, Object>(Token.CteCADENA, str);
-		return token;
+		if (c == -1)
+			throw new LexerException(
+				"Caracter no valido en la linea " + lineCount + ": cadena no cerrada");
+		return new Pair<Token, Object>(Token.CteCADENA, str);
 	}
 	
 	private Pair<Token, Object> cteEntera(){ //Estado 6 del AFD
 		Pair<Token, Object> token = null;
 		return token;
 	}
-	
-	private Pair<Token, Object> otherChars() throws LexerException, IOException{ //Estado 0 al 10, estado 11 y manejo de caracteres no validos
-		Pair<Token, Object> token = null;
-		//Si no se puede con un switch se hace con if seguidos y ya
-		switch(c) {
-		//FIXME: Añadir los casos para la c
-			case 1: break;
-			default: throw new LexerException(
-				"Caracter no valido leido en la linea " + lineCount + ": caracter no perteneciente al lenguaje");
-		}
-		return token;
-	}
-	
 }
