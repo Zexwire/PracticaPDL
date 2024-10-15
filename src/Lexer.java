@@ -18,7 +18,7 @@ public class Lexer{
 
 	public Pair<Token, Object> scan() throws LexerException, IOException {
 		//Saltar todos los delimitadores
-		int c = readSuperflous();
+		c = readSuperflous();
 		if(c == -1)
 			return new Pair<Token, Object>(Token.EOF, null);
 		else if (Character.isLetter(c))
@@ -140,48 +140,60 @@ public class Lexer{
 	}
 	
 	private Pair<Token, Object> cteCadena() throws IOException, LexerException{ //Estado 5 del AFD
-		String str = "";
-		c = reader.read();
-		//FIXME: creo que si estan separadas por \n no son válidas, mirar en documentación
-		while(c != '"' && c != -1) {
-			//FIXME: comprobar secuencias de escape
-			if (c == '\\') {
-				c = reader.read();
-				if (c == 'n')
-					c = '\n';
-				else if (c == 't')
-					c = '\t';
-				else if (c == 'r')
-					c = '\r';
-				else if (c == 'b')
-					c = '\b';
-				else if (c == 'f')
-					c = '\f';
-				else if (c == '"')
-					c = '"';
-				else if (c == '\\')
-					c = '\\';
-				else if (c == '0')
-					c = '\0';
-				else if (c == '\'')
-					c = '\'';
-				//FIXME: comprobar que tiene sentido(lo ha hecho copilot)
-				// y añadir casos que falten 
-				else
-					throw new LexerException(
-						"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
-			}
-			str = str + c;
+			String str = "";
 			c = reader.read();
-		}
-		if (c == -1)
-			throw new LexerException(
-				"Caracter no valido en la linea " + lineCount + ": cadena no cerrada");
-		return new Pair<Token, Object>(Token.CteCADENA, str);
+			//FIXME: creo que si estan separadas por \n no son válidas, mirar en documentación
+			while(c != '"' && c != -1) {
+				char[] chars = Character.toChars(c);
+				//FIXME: comprobar secuencias de escape
+				for(char ch: chars) {
+				if (c == '\\') {
+					str = str + ch;
+					c = reader.read();
+					if (c == 'n')
+						c = '\n';
+					else if (c == 't')
+						c = '\t';
+					else if (c == 'r')
+						c = '\r';
+					else if (c == 'b')
+						c = '\b';
+					else if (c == 'f')
+						c = '\f';
+					else if (c == '"')
+						c = '"';
+					else if (c == '\\')
+						c = '\\';
+					else if (c == '0')
+						c = '\0';
+					else if (c == '\'')
+						c = '\'';
+					//FIXME: comprobar que tiene sentido(lo ha hecho copilot)
+					// y añadir casos que falten 
+					else
+						throw new LexerException(
+							"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
+				}
+				}
+				str = str + c;
+				c = reader.read();
+			}
+			if (c == -1) {
+				throw new LexerException("Caracter no valido en la linea " + lineCount + 
+											": cadena no cerrada");
+			}
+			return new Pair<Token, Object>(Token.CteCADENA, str);
 	}
 	
-	private Pair<Token, Object> cteEntera(){ //Estado 6 del AFD
+	private Pair<Token, Object> cteEntera() throws IOException{ //Estado 6 del AFD
 		Pair<Token, Object> token = null;
+		int n = 0;//Convertir c a su digito
+		c = reader.read();
+		while(Character.isDigit(c)) {
+			n = n*10 + c;//Convertir c a digito
+		}
+		token = new Pair<Token, Object>(Token.CteENTERA, n);
 		return token;
 	}
+	
 }
