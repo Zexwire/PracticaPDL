@@ -8,7 +8,7 @@ public class Lexer{
     private TSHandler tsHandler;
     private int lineCount;
 	private int c;
-
+	
     public Lexer(String fileName, TSHandler tsHandler) throws FileNotFoundException, IOException {
         reader = new BufferedReader(new FileReader(fileName));
         this.tsHandler = tsHandler;
@@ -16,7 +16,7 @@ public class Lexer{
 		c = reader.read();
     }
 
-	public Pair<Token, Object> scan() throws LexerException, IOException {
+	public Pair<Token, Object> scan() throws LexerException, IOException, TSException {
 		//Saltar todos los delimitadores
 		c = readSuperflous();
 		if(c == -1)
@@ -58,10 +58,8 @@ public class Lexer{
 			case '>':
 				return new Pair<Token, Object>(Token.MAYOR, null);
 			//TODO: completar con los otros tokens
-			default:
+			default: throw new LexerException("Caracter no valido en la linea "+ lineCount+": caracter no reconocido");
 		}
-		//FIXME: placeholder para evitar error de compilación
-		return null;
 	}
 
 	private int readSuperflous() throws IOException, LexerException {
@@ -92,7 +90,7 @@ public class Lexer{
 		return c;
 	}
 	
-	private Pair<Token, Object> words() throws IOException{ //Estado 4 del AFD
+	private Pair<Token, Object> words() throws IOException, LexerException, TSException{ //Estado 4 del AFD
 		String str = "";
 		//Podemos poner el '_' de primeras porque ya hemos comprovado que el primero sea una letra
 		while (Character.isLetterOrDigit(c) || c == '_') {
@@ -133,60 +131,64 @@ public class Lexer{
 				return new Pair<Token, Object>(Token.FALSE, null);
 			case "true":
 				return new Pair<Token, Object>(Token.TRUE, null);
-			default:
-			//ºFIXME: Añadir el caso para el ID
-				return null;
+			default:  return tsHandler.insert(str, lineCount);
 		}
 	}
 	
 	private Pair<Token, Object> cteCadena() throws IOException, LexerException{ //Estado 5 del AFD
 			String str = "";
 			c = reader.read();
-			//FIXME: creo que si estan separadas por \n no son válidas, mirar en documentación
 			while(c != '"' && c != -1) {
 				//FIXME: comprobar secuencias de escape
 				if (c == '\\') {
 					c = reader.read();
 					if (c == 'n')
-						c = '\n';
+						str += '\n';
 					else if (c == 't')
-						c = '\t';
+						str += '\t';
 					else if (c == 'r')
-						c = '\r';
+						str += '\r';
 					else if (c == 'b')
-						c = '\b';
+						str += '\b';
 					else if (c == 'f')
-						c = '\f';
+						str += '\f';
 					else if (c == '"')
-						c = '"';
+						str += '"';
 					else if (c == '\\')
-						c = '\\';
+						str += '\\';
 					else if (c == '0')
-						c = '\0';
+						str += '\0';
 					else if (c == '\'')
-						c = '\'';
-					//FIXME: comprobar que tiene sentido(lo ha hecho copilot)
-					// y añadir casos que falten 
+						str += '\'';
 					else
 						throw new LexerException(
 							"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
 				}
+				if(c == '\n') {
+					throw new LexerException("Erorr");
+				}
 				str = str + c;
 				c = reader.read();
 			}
-			if (c == -1) {
-				throw new LexerException("Caracter no valido en la linea " + lineCount + 
-											": cadena no cerrada");
+			if(c==-1) {
+				throw new LexerException("Error en la linea");
+			} else {
+				c = reader.read();
 			}
+			if(str.length() > 64) {
+				throw new LexerException("Error en la linea " + lineCount + ": La cadena ocupa mas de 64 bits");
+			}
+			str += '\0';
 			return new Pair<Token, Object>(Token.CteCADENA, str);
 	}
 	
 	private Pair<Token, Object> cteEntera() throws IOException{ //Estado 6 del AFD
 		Pair<Token, Object> token = null;
-		int n = 0;//Convertir c a su digito
+		int n = c - '0';//Convertir c a su digito
 		c = reader.read();
 		while(Character.isDigit(c)) {
-			n = n*10 + c;//Convertir c a digito
+			c = reader.read();
+			n = n*10 + c - '0';//Convertir c a digito
 		}
 		token = new Pair<Token, Object>(Token.CteENTERA, n);
 		return token;

@@ -20,6 +20,8 @@ public class Main {
 			//FIXME: comprobar que se guardan correctamente los tokens y la tabla de simbolos
 			tokensToFile(tokens);
 			tsHandler.toFile("tabla_simbolos.txt");
+
+			System.out.println("Donete");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -29,6 +31,8 @@ public class Main {
 		} catch (LexerException e) {
 			tokens.clear();
 			//TODO: mirar como se hacia para printear el mensaje de la excepción
+			e.printStackTrace();
+		} catch (TSException e) {
 			e.printStackTrace();
 		}
 	}

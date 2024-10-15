@@ -29,17 +29,18 @@ public class TSHandler {
 	public void closeScope() {
 		//FIXME: como hacer para que se puedan poner en el fichero aun cerrandolas
 		tsList.remove(currentTS);
-		lastPosTS = tsList.getLast().size() - 1;
+		lastPosTS = tsList.get(tsList.size()-1).size() - 1;
 		currentTS--;
 	}
 
-	public void insert(String id, int line) throws TSException {
+	public Pair<Token,Object> insert(String id, int line) throws TSException {
 		//TODO: comprobar que jamas va a entrar un null en esta función
 		//Siempre estaremos añadiendo en la tabla de simbolos actual
 		if (tsList.get(currentTS).contains(id))
 			throw new TSException("Linea " + line + ": variable " + id + " ya declarada");
 		tsList.get(currentTS).put(lastPosTS, id);
 		lastPosTS++;
+		return new Pair<Token, Object>(Token.ID, id);
 	}
 
 	public void toFile (String fileName) {
