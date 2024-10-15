@@ -146,6 +146,7 @@ public class Lexer{
 			while(c != '"' && c != -1) {
 				//FIXME: comprobar secuencias de escape
 				if (c == '\\') {
+					c = reader.read();
 					if (c == 'n')
 						c = '\n';
 					else if (c == 't')
