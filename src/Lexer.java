@@ -144,12 +144,8 @@ public class Lexer{
 			c = reader.read();
 			//FIXME: creo que si estan separadas por \n no son válidas, mirar en documentación
 			while(c != '"' && c != -1) {
-				char[] chars = Character.toChars(c);
 				//FIXME: comprobar secuencias de escape
-				for(char ch: chars) {
 				if (c == '\\') {
-					str = str + ch;
-					c = reader.read();
 					if (c == 'n')
 						c = '\n';
 					else if (c == 't')
@@ -173,7 +169,6 @@ public class Lexer{
 					else
 						throw new LexerException(
 							"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
-				}
 				}
 				str = str + c;
 				c = reader.read();
