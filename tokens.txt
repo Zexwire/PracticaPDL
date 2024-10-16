@@ -1,3 +1,5 @@
+< FUNCTION, - >
+
 < VOID, - >
 
 < ID, 0 >
@@ -36,13 +38,25 @@
 
 < INTEGER, - >
 
+< ID, 1 >
+
 < ParentesisCIERRA, - >
 
 < LlaveABRE, - >
 
+< ID, 0 >
+
+< ParentesisABRE, - >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
 < IF, - >
 
 < ParentesisABRE, - >
+
+< ID, 1 >
 
 < MAYOR, - >
 
@@ -52,9 +66,15 @@
 
 < RETURN, - >
 
+< ID, 1 >
+
 < MULT, - >
 
+< ID, 2 >
+
 < ParentesisABRE, - >
+
+< ID, 1 >
 
 < CteENTERA, 1 >
 
@@ -102,6 +122,8 @@
 
 < ParentesisABRE, - >
 
+< ID, 1 >
+
 < ASIG, - >
 
 < CteENTERA, 1 >
@@ -110,11 +132,21 @@
 
 < ParentesisABRE, - >
 
+< ID, 1 >
+
+< ID, 5 >
+
 < ParentesisCIERRA, - >
+
+< ID, 6 >
 
 < EOS, - >
 
+< ID, 1 >
+
 < ASIG, - >
+
+< ID, 1 >
 
 < AUTOINCREMENTO, - >
 
@@ -124,9 +156,15 @@
 
 < LlaveABRE, - >
 
-< ASIG, - >
+< ID, 4 >
+
+< AUTOINCREMENTO, - >
+
+< ID, 2 >
 
 < ParentesisABRE, - >
+
+< ID, 4 >
 
 < CteENTERA, 1 >
 
@@ -137,6 +175,8 @@
 < LlaveCIERRA, - >
 
 < RETURN, - >
+
+< ID, 4 >
 
 < MAYOR, - >
 
@@ -166,6 +206,8 @@
 
 < ParentesisABRE, - >
 
+< ID, 9 >
+
 < ParentesisCIERRA, - >
 
 < EOS, - >
@@ -178,13 +220,23 @@
 
 < INPUT, - >
 
+< ID, 1 >
+
 < EOS, - >
 
-< ParentesisABRE, - >
+< ID, 8 >
 
 < ParentesisABRE, - >
 
+< ID, 2 >
+
 < ParentesisABRE, - >
+
+< ID, 3 >
+
+< ParentesisABRE, - >
+
+< ID, 1 >
 
 < COMA, - >
 

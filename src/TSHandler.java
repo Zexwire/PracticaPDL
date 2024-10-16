@@ -35,12 +35,12 @@ public class TSHandler {
 	}
 
 	public Pair<Token, Object> insert(String id, int line) throws TSException {
-		// TODO: comprobar que jamas va a entrar un null en esta función
-		// Siempre estaremos añadiendo en la tabla de simbolos actual
-		if (tsList.get(currentTS).contains(id))
-			//FIXME: cambiar esto cuando hagamos el analizador semántico
-			throw new TSException("Linea " + line + ": variable " + id + " ya declarada");
-		tsList.get(currentTS).put(lastPosTS, id);
+		Hashtable<Integer, String> actualTS = tsList.get(currentTS);
+		for (Entry<Integer,String> entry : actualTS.entrySet()) {
+			if (entry.getValue().equals(id))
+				return new Pair<Token, Object>(Token.ID, entry.getKey());
+		}
+		actualTS.put(lastPosTS, id);
 		lastPosTS++;
 		return new Pair<Token, Object>(Token.ID, lastPosTS - 1);
 	}

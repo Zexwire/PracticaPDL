@@ -1,0 +1,32 @@
+function void hola (void)
+{
+   output"Hello!";
+}
+var int x; 
+function int factorial (int x) 
+   /* se define la función recursiva con un parámetro, 
+      que oculta a la variable global de igual nombre */
+{
+  hola();
+  if (x > 1) 
+    return x * factorial (x  1);
+  return 1;
+}
+function boolean Suma (int aux, int fin, boolean b)
+  /* se define la función Suma que recibe 
+     dos enteros y un lógico **/
+  /* usa la variable global x */ 
+{
+    for (x= 1; (x  fin) b; x= x ++ 2)
+    {
+      aux ++ factorial (aux 1);
+    }
+    return aux > 10000;
+}
+function void Imprime (int a)
+{
+    output (a);
+    return;
+}
+input x;
+Imprime (factorial (Suma (x, 3, true)));
