@@ -145,11 +145,14 @@ public class Lexer {
 		}
 	}
 
-	private Pair<Token, Object> cteEntera() throws IOException { // Estado 6 del AFD
+	private Pair<Token, Object> cteEntera() throws IOException, LexerException { // Estado 6 del AFD
 		int n = 0;
 		while (Character.isDigit(c)) {
 			n = n * 10 + (c - (int) '0');
 			c = reader.read();
+		}
+		if (n > 32767) {
+			throw new LexerException("Error en la linea " + lineCount + ": Numero entero fuera de rango");
 		}
 		return new Pair<Token, Object>(Token.CteENTERA, n);
 	}

@@ -11,7 +11,7 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Lexer lexer = new Lexer("PIG54.txt", tsHandler);
+			Lexer lexer = new Lexer("PIdG54.txt", tsHandler);
 			Pair<Token, Object> token = lexer.scan();
 			while (token.getKey() != Token.EOF && token.getKey() != null) {
 				tokens.add(token);
@@ -53,7 +53,7 @@ public class Main {
 						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >\n");
 						break;
 					default:
-						writer.println("< " + tokenPair.getKey() + ", - >\n");
+						writer.println("< " + tokenPair.getKey() + ",  >\n");
 						break;
 				}
 			}

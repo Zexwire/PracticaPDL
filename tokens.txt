@@ -1,258 +1,132 @@
-< FUNCTION, - >
+< VAR,  >
 
-< VOID, - >
-
-< ID, 0 >
-
-< ParentesisABRE, - >
-
-< VOID, - >
-
-< ParentesisCIERRA, - >
-
-< LlaveABRE, - >
-
-< OUTPUT, - >
-
-< CteCADENA, Hello! >
-
-< EOS, - >
-
-< LlaveCIERRA, - >
-
-< VAR, - >
-
-< INTEGER, - >
-
-< ID, 1 >
-
-< EOS, - >
-
-< FUNCTION, - >
-
-< INTEGER, - >
-
-< ID, 2 >
-
-< ParentesisABRE, - >
-
-< INTEGER, - >
-
-< ID, 1 >
-
-< ParentesisCIERRA, - >
-
-< LlaveABRE, - >
+< INTEGER,  >
 
 < ID, 0 >
 
-< ParentesisABRE, - >
+< EOS,  >
 
-< ParentesisCIERRA, - >
+< VAR,  >
 
-< EOS, - >
-
-< IF, - >
-
-< ParentesisABRE, - >
+< INTEGER,  >
 
 < ID, 1 >
 
-< MAYOR, - >
+< EOS,  >
 
-< CteENTERA, 1 >
+< VAR,  >
 
-< ParentesisCIERRA, - >
-
-< RETURN, - >
-
-< ID, 1 >
-
-< MULT, - >
+< INTEGER,  >
 
 < ID, 2 >
 
-< ParentesisABRE, - >
+< EOS,  >
+
+< OUTPUT,  >
+
+< CteCADENA, Introduce el primer operando >
+
+< EOS,  >
+
+< INPUT,  >
+
+< ID, 0 >
+
+< EOS,  >
+
+< OUTPUT,  >
+
+< CteCADENA, Introduce el segundo operando >
+
+< EOS,  >
+
+< INPUT,  >
 
 < ID, 1 >
 
-< CteENTERA, 1 >
+< EOS,  >
 
-< ParentesisCIERRA, - >
+< FUNCTION,  >
 
-< EOS, - >
-
-< RETURN, - >
-
-< CteENTERA, 1 >
-
-< EOS, - >
-
-< LlaveCIERRA, - >
-
-< FUNCTION, - >
-
-< BOOLEAN, - >
+< INTEGER,  >
 
 < ID, 3 >
 
-< ParentesisABRE, - >
+< ParentesisABRE,  >
 
-< INTEGER, - >
+< INTEGER,  >
 
 < ID, 4 >
 
-< COMA, - >
+< COMA,  >
 
-< INTEGER, - >
+< INTEGER,  >
 
 < ID, 5 >
 
-< COMA, - >
+< ParentesisCIERRA,  >
 
-< BOOLEAN, - >
+< LlaveABRE,  >
+
+< VAR,  >
+
+< INTEGER,  >
 
 < ID, 6 >
 
-< ParentesisCIERRA, - >
+< EOS,  >
 
-< LlaveABRE, - >
+< ID, 6 >
 
-< ID, 7 >
-
-< ParentesisABRE, - >
-
-< ID, 1 >
-
-< ASIG, - >
-
-< CteENTERA, 1 >
-
-< EOS, - >
-
-< ParentesisABRE, - >
-
-< ID, 1 >
+< ASIG,  >
 
 < ID, 5 >
 
-< ParentesisCIERRA, - >
+< MULT,  >
+
+< ID, 4 >
+
+< EOS,  >
+
+< RETURN,  >
+
+< ParentesisABRE,  >
+
+< ParentesisABRE,  >
 
 < ID, 6 >
 
-< EOS, - >
+< ParentesisCIERRA,  >
 
-< ID, 1 >
+< ParentesisCIERRA,  >
 
-< ASIG, - >
+< EOS,  >
 
-< ID, 1 >
-
-< AUTOINCREMENTO, - >
-
-< CteENTERA, 2 >
-
-< ParentesisCIERRA, - >
-
-< LlaveABRE, - >
-
-< ID, 4 >
-
-< AUTOINCREMENTO, - >
+< LlaveCIERRA,  >
 
 < ID, 2 >
 
-< ParentesisABRE, - >
+< ASIG,  >
 
-< ID, 4 >
+< CteENTERA, 33333 >
 
-< CteENTERA, 1 >
+< EOS,  >
 
-< ParentesisCIERRA, - >
-
-< EOS, - >
-
-< LlaveCIERRA, - >
-
-< RETURN, - >
-
-< ID, 4 >
-
-< MAYOR, - >
-
-< CteENTERA, 10000 >
-
-< EOS, - >
-
-< LlaveCIERRA, - >
-
-< FUNCTION, - >
-
-< VOID, - >
-
-< ID, 8 >
-
-< ParentesisABRE, - >
-
-< INTEGER, - >
-
-< ID, 9 >
-
-< ParentesisCIERRA, - >
-
-< LlaveABRE, - >
-
-< OUTPUT, - >
-
-< ParentesisABRE, - >
-
-< ID, 9 >
-
-< ParentesisCIERRA, - >
-
-< EOS, - >
-
-< RETURN, - >
-
-< EOS, - >
-
-< LlaveCIERRA, - >
-
-< INPUT, - >
-
-< ID, 1 >
-
-< EOS, - >
-
-< ID, 8 >
-
-< ParentesisABRE, - >
-
-< ID, 2 >
-
-< ParentesisABRE, - >
+< OUTPUT,  >
 
 < ID, 3 >
 
-< ParentesisABRE, - >
+< ParentesisABRE,  >
 
 < ID, 1 >
 
-< COMA, - >
+< COMA,  >
 
-< CteENTERA, 3 >
+< ID, 0 >
 
-< COMA, - >
+< ParentesisCIERRA,  >
 
-< TRUE, - >
+< EOS,  >
 
-< ParentesisCIERRA, - >
-
-< ParentesisCIERRA, - >
-
-< ParentesisCIERRA, - >
-
-< EOS, - >
-
-< EOF, - >
+< EOF,  >
 

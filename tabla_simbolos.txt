@@ -1,13 +1,10 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'a'
-	* LEXEMA : 'Imprime'
-	* LEXEMA : 'for'
+	* LEXEMA : 'res'
+	* LEXEMA : 'num1'
+	* LEXEMA : 'num2'
+	* LEXEMA : 'operacion'
+	* LEXEMA : 'number'
 	* LEXEMA : 'b'
-	* LEXEMA : 'fin'
-	* LEXEMA : 'aux'
-	* LEXEMA : 'Suma'
-	* LEXEMA : 'factorial'
-	* LEXEMA : 'x'
-	* LEXEMA : 'hola'
+	* LEXEMA : 'a'
 
