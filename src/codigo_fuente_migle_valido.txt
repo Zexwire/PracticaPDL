@@ -1,0 +1,30 @@
+var int c;
+function int multiplica (var int a, var int b){
+	return a*b;
+}
+switch (multiplica (3,3)){
+	case 3: c = 1; break;
+	case 6: c = 2; break;
+	case 9: c = 3; break;
+	default: c = 4;
+}
+function int potencia (var int c){
+	return c*c;
+}
+var int n = 0;
+var boolean positivo = false;
+output("Introduce un numero positivo");
+input(n);
+if (!(n>0)) output("El numero introducido no es positivo");
+if (n>0) positivo = true;
+var string algo = "";
+function void escribeAlgo (){
+	algo="Hola que tal";
+}
+
+	
+
+
+
+
+
