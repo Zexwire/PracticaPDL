@@ -38,20 +38,20 @@ public class TSHandler {
 		// TODO: comprobar que jamas va a entrar un null en esta función
 		// Siempre estaremos añadiendo en la tabla de simbolos actual
 		if (tsList.get(currentTS).contains(id))
+			//FIXME: cambiar esto cuando hagamos el analizador semántico
 			throw new TSException("Linea " + line + ": variable " + id + " ya declarada");
 		tsList.get(currentTS).put(lastPosTS, id);
 		lastPosTS++;
-		return new Pair<Token, Object>(Token.ID, id);
+		return new Pair<Token, Object>(Token.ID, lastPosTS - 1);
 	}
 
 	public void toFile(String fileName) {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
 			for (int i = 0; i < tsList.size(); i++) {
-				// FIXME: ver si el formato es válido y comprobar que se imprime correctamente
 				writer.println("CONTENIDOS DE LA TABLA #" + i + ":\n");
 				Hashtable<Integer, String> table = tsList.get(i);
 				for (Entry<Integer, String> entry : table.entrySet()) {
-					writer.println(" * LEXEMA : '" + entry.getValue() + "'\n");
+					writer.println("\t* LEXEMA : '" + entry.getValue() + "'");
 					// TODO: una vez implementado el arbol, printear el arbol, tendrá que ser con
 					// BEP
 				}

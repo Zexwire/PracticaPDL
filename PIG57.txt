@@ -1,0 +1,26 @@
+void hola (void)
+{
+   output"Hello!";
+}
+var int x;
+function int factorial (int )
+{
+  if ( > 1) 
+    return  *  (  1);
+  return 1;
+}
+function boolean Suma (int aux, int fin, boolean b)
+{
+    for (= 1; (  ) ; =  ++ 2)
+    {
+       =  (1);
+    }
+    return  > 10000;
+}
+function void Imprime (int a)
+{
+    output ();
+    return;
+}
+input ;
+( ( (, 3, true))); 

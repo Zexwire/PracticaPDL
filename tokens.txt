@@ -1,0 +1,206 @@
+< VOID, - >
+
+< ID, 0 >
+
+< ParentesisABRE, - >
+
+< VOID, - >
+
+< ParentesisCIERRA, - >
+
+< LlaveABRE, - >
+
+< OUTPUT, - >
+
+< CteCADENA, Hello! >
+
+< EOS, - >
+
+< LlaveCIERRA, - >
+
+< VAR, - >
+
+< INTEGER, - >
+
+< ID, 1 >
+
+< EOS, - >
+
+< FUNCTION, - >
+
+< INTEGER, - >
+
+< ID, 2 >
+
+< ParentesisABRE, - >
+
+< INTEGER, - >
+
+< ParentesisCIERRA, - >
+
+< LlaveABRE, - >
+
+< IF, - >
+
+< ParentesisABRE, - >
+
+< MAYOR, - >
+
+< CteENTERA, 1 >
+
+< ParentesisCIERRA, - >
+
+< RETURN, - >
+
+< MULT, - >
+
+< ParentesisABRE, - >
+
+< CteENTERA, 1 >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
+< RETURN, - >
+
+< CteENTERA, 1 >
+
+< EOS, - >
+
+< LlaveCIERRA, - >
+
+< FUNCTION, - >
+
+< BOOLEAN, - >
+
+< ID, 3 >
+
+< ParentesisABRE, - >
+
+< INTEGER, - >
+
+< ID, 4 >
+
+< COMA, - >
+
+< INTEGER, - >
+
+< ID, 5 >
+
+< COMA, - >
+
+< BOOLEAN, - >
+
+< ID, 6 >
+
+< ParentesisCIERRA, - >
+
+< LlaveABRE, - >
+
+< ID, 7 >
+
+< ParentesisABRE, - >
+
+< ASIG, - >
+
+< CteENTERA, 1 >
+
+< EOS, - >
+
+< ParentesisABRE, - >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
+< ASIG, - >
+
+< AUTOINCREMENTO, - >
+
+< CteENTERA, 2 >
+
+< ParentesisCIERRA, - >
+
+< LlaveABRE, - >
+
+< ASIG, - >
+
+< ParentesisABRE, - >
+
+< CteENTERA, 1 >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
+< LlaveCIERRA, - >
+
+< RETURN, - >
+
+< MAYOR, - >
+
+< CteENTERA, 10000 >
+
+< EOS, - >
+
+< LlaveCIERRA, - >
+
+< FUNCTION, - >
+
+< VOID, - >
+
+< ID, 8 >
+
+< ParentesisABRE, - >
+
+< INTEGER, - >
+
+< ID, 9 >
+
+< ParentesisCIERRA, - >
+
+< LlaveABRE, - >
+
+< OUTPUT, - >
+
+< ParentesisABRE, - >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
+< RETURN, - >
+
+< EOS, - >
+
+< LlaveCIERRA, - >
+
+< INPUT, - >
+
+< EOS, - >
+
+< ParentesisABRE, - >
+
+< ParentesisABRE, - >
+
+< ParentesisABRE, - >
+
+< COMA, - >
+
+< CteENTERA, 3 >
+
+< COMA, - >
+
+< TRUE, - >
+
+< ParentesisCIERRA, - >
+
+< ParentesisCIERRA, - >
+
+< ParentesisCIERRA, - >
+
+< EOS, - >
+
+< EOF, - >
+

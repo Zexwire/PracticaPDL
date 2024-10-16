@@ -17,7 +17,6 @@ public class Lexer {
 	}
 
 	public Pair<Token, Object> scan() throws LexerException, IOException, TSException {
-		// Saltar todos los delimitadores
 		c = readSuperflous();
 		if (c == -1)
 			return new Pair<Token, Object>(Token.EOF, null);
@@ -30,31 +29,43 @@ public class Lexer {
 		switch (c) {
 		case '+':
 			c = reader.read();
-			if (c == '+')
+			if (c == '+') {
+				c = reader.read();
 				return new Pair<Token, Object>(Token.AUTOINCREMENTO, null);
-			else
+			} else
 				throw new LexerException("Caracter no valido en la linea " + lineCount + " se esperaba un +");
 		case '=':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.ASIG, null);
 		case ',':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.COMA, null);
 		case ';':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.EOS, null);
 		case ':':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.DosPUNTOS, null);
 		case '(':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.ParentesisABRE, null);
 		case ')':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.ParentesisCIERRA, null);
 		case '{':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.LlaveABRE, null);
 		case '}':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.LlaveCIERRA, null);
 		case '*':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.MULT, null);
 		case '!':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.NOT, null);
 		case '>':
+			c = reader.read();
 			return new Pair<Token, Object>(Token.MAYOR, null);
 		default:
 			throw new LexerException("Caracter no valido en la linea " + lineCount + ": caracter no reconocido");
@@ -90,10 +101,10 @@ public class Lexer {
 
 	private Pair<Token, Object> words() throws IOException, LexerException, TSException { // Estado 4 del AFD
 		String str = "";
-		// Podemos poner el '_' de primeras porque ya hemos comprovado que el primero
+		// Podemos poner el '_' de primeras porque ya hemos comprobado que el primero
 		// sea una letra
 		while (Character.isLetterOrDigit(c) || c == '_') {
-			str = str + c;
+			str += (char) c;
 			c = reader.read();
 		}
 		switch (str) {
@@ -109,7 +120,7 @@ public class Lexer {
 			return new Pair<Token, Object>(Token.IF, null);
 		case "input":
 			return new Pair<Token, Object>(Token.INPUT, null);
-		case "integer":
+		case "int":
 			return new Pair<Token, Object>(Token.INTEGER, null);
 		case "output":
 			return new Pair<Token, Object>(Token.OUTPUT, null);
@@ -134,10 +145,20 @@ public class Lexer {
 		}
 	}
 
+	private Pair<Token, Object> cteEntera() throws IOException { // Estado 6 del AFD
+		int n = 0;
+		while (Character.isDigit(c)) {
+			n = n * 10 + (c - (int) '0');
+			c = reader.read();
+		}
+		return new Pair<Token, Object>(Token.CteENTERA, n);
+	}
+
 	private Pair<Token, Object> cteCadena() throws IOException, LexerException { // Estado 5 del AFD
 		String str = "";
 		c = reader.read();
-		while (c != '"' && c != -1) {
+		// Mientras no sea el final de la cadena y sea un caracter printable
+		while (c != '"' && ' ' <= c && c <= '~') {
 			if (c == '\\') {
 				c = reader.read();
 				if (c == 'n')
@@ -163,33 +184,21 @@ public class Lexer {
 							"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
 			}
 			if (c == '\n') {
-				throw new LexerException("Erorr");
+				throw new LexerException("Error en la linea " + lineCount + ": Cadena no cerrada");
 			}
-			str = str + c;
+			str += (char) c;
 			c = reader.read();
 		}
-		if (c == -1) {
-			throw new LexerException("Error en la linea");
+		if (c < ' ' || c > '~') {
+			throw new LexerException("Error en la linea " + lineCount + ": Caracter no valido en la cadena");
+		} else if (c == -1) {
+			throw new LexerException("Error en la linea " + lineCount + ": Cadena no cerrada");
+		} else if (str.length() > 64) {
+			throw new LexerException("Error en la linea " + lineCount + ": La cadena ocupa mas de 64 bits");
 		} else {
 			c = reader.read();
 		}
-		if (str.length() > 64) {
-			throw new LexerException("Error en la linea " + lineCount + ": La cadena ocupa mas de 64 bits");
-		}
-		str += '\0';
 		return new Pair<Token, Object>(Token.CteCADENA, str);
-	}
-
-	private Pair<Token, Object> cteEntera() throws IOException { // Estado 6 del AFD
-		Pair<Token, Object> token = null;
-		int n = c - '0';
-		c = reader.read();
-		while (Character.isDigit(c)) {
-			c = reader.read();
-			n = n * 10 + c - '0';
-		}
-		token = new Pair<Token, Object>(Token.CteENTERA, n);
-		return token;
 	}
 
 }

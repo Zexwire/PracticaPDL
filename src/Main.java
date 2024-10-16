@@ -11,18 +11,18 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Lexer lexer = new Lexer("codigo_fuente.txt", tsHandler);
+			Lexer lexer = new Lexer("PIG57.txt", tsHandler);
 			Pair<Token, Object> token = lexer.scan();
 			while (token.getKey() != Token.EOF && token.getKey() != null) {
 				tokens.add(token);
 				token = lexer.scan();
 			}
+			if (token.getKey() == Token.EOF)
+				tokens.add(token);
 			// FIXME: comprobar que se guardan correctamente los tokens y la tabla de
 			// simbolos
 			tokensToFile(tokens);
 			tsHandler.toFile("tabla_simbolos.txt");
-
-			System.out.println("Donete");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -42,7 +42,20 @@ public class Main {
 		try (PrintWriter writer = new PrintWriter("tokens.txt")) {
 			for (Pair<Token, Object> tokenPair : tokens) {
 				// FIXME: comprobar el toString de tokens
-				writer.println("< " + tokenPair.getKey() + ", " + tokenPair.getValue() + " >\n");
+				switch (tokenPair.getKey()) {
+					case CteENTERA:
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >\n");
+						break;
+					case CteCADENA:
+						writer.println("< " + tokenPair.getKey() + ", " + ((String) tokenPair.getValue()) + " >\n");
+						break;
+					case ID:
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >\n");
+						break;
+					default:
+						writer.println("< " + tokenPair.getKey() + ", - >\n");
+						break;
+				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
