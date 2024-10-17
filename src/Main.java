@@ -47,7 +47,7 @@ public class Main {
 						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >\n");
 						break;
 					case CteCADENA:
-						writer.println("< " + tokenPair.getKey() + ", " + ((String) tokenPair.getValue()) + " >\n");
+						writer.println("< " + tokenPair.getKey() + ", \"" + ((String) tokenPair.getValue()) + "\" >\n");
 						break;
 					case ID:
 						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >\n");

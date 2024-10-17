@@ -1,6 +1,6 @@
 < VAR,  >
 
-< INTEGER,  >
+< BOOLEAN,  >
 
 < ID, 0 >
 
@@ -14,9 +14,7 @@
 
 < EOS,  >
 
-< VAR,  >
-
-< INTEGER,  >
+< INPUT,  >
 
 < ID, 2 >
 
@@ -24,107 +22,79 @@
 
 < OUTPUT,  >
 
-< CteCADENA, Introduce el primer operando >
+< ID, 2 >
 
 < EOS,  >
 
-< INPUT,  >
+< ID, 1 >
 
-< ID, 0 >
+< ASIG,  >
+
+< ID, 2 >
 
 < EOS,  >
 
 < OUTPUT,  >
 
-< CteCADENA, Introduce el segundo operando >
-
-< EOS,  >
-
-< INPUT,  >
-
-< ID, 1 >
-
-< EOS,  >
-
-< FUNCTION,  >
-
-< INTEGER,  >
-
-< ID, 3 >
-
-< ParentesisABRE,  >
-
-< INTEGER,  >
-
-< ID, 4 >
-
-< COMA,  >
-
-< INTEGER,  >
-
-< ID, 5 >
-
-< ParentesisCIERRA,  >
-
-< LlaveABRE,  >
-
-< VAR,  >
-
-< INTEGER,  >
-
-< ID, 6 >
-
-< EOS,  >
-
-< ID, 6 >
-
-< ASIG,  >
-
-< ID, 5 >
+< ID, 2 >
 
 < MULT,  >
 
-< ID, 4 >
+< CteENTERA, 1 >
 
 < EOS,  >
 
-< RETURN,  >
+< ID, 0 >
 
-< ParentesisABRE,  >
+< ASIG,  >
 
-< ParentesisABRE,  >
+< NOT,  >
 
-< ID, 6 >
-
-< ParentesisCIERRA,  >
-
-< ParentesisCIERRA,  >
+< ID, 0 >
 
 < EOS,  >
 
-< LlaveCIERRA,  >
+< IF,  >
+
+< ParentesisABRE,  >
+
+< ID, 0 >
+
+< ParentesisCIERRA,  >
 
 < ID, 2 >
 
 < ASIG,  >
 
-< CteENTERA, 33333 >
+< ID, 1 >
 
-< EOS,  >
+< MULT,  >
 
-< OUTPUT,  >
+< CteENTERA, 7 >
 
-< ID, 3 >
+< MULT,  >
+
+< ID, 2 >
+
+< MULT,  >
 
 < ParentesisABRE,  >
 
-< ID, 1 >
+< CteENTERA, 1 >
 
-< COMA,  >
+< MULT,  >
 
-< ID, 0 >
+< CteENTERA, 2 >
+
+< MULT,  >
+
+< ID, 3 >
 
 < ParentesisCIERRA,  >
+
+< MULT,  >
+
+< CteENTERA, 3 >
 
 < EOS,  >
 

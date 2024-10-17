@@ -1,10 +1,7 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'res'
-	* LEXEMA : 'num1'
-	* LEXEMA : 'num2'
-	* LEXEMA : 'operacion'
-	* LEXEMA : 'number'
+	* LEXEMA : 'y'
+	* LEXEMA : 'z'
+	* LEXEMA : 'x'
 	* LEXEMA : 'b'
-	* LEXEMA : 'a'
 
