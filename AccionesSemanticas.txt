@@ -1,0 +1,34 @@
+-	Leer L car := leer()	 //en todas menos 4:7, 6:9
+
+-	Concatenar  C lex := car	//0:4
+C’ lex := lex + car //4:4
+C* lex := “ //0:7
+
+-	Número  N num := valor (car)
+        N’ num := num * 10 + valor
+
+
+-	Generar tokens  Gen_token (LlaveABRE,-)		|
+Gen_token (LlaveCIERRA,-)	|
+Gen_token (ParentesisABRE,-)	|
+Gen_token (ParentesisCIERRA,-)	| //Transición 0:12
+
+Gen_token (AUTOINCREMENTO,-)	//Transición 10:11
+
+Gen_token (EOF,-) 		//Transición 0:13
+
+Gen_token (NOT,-)		|
+Gen_token (MULT,-)		|
+Gen_token (ASIG,-)		|
+Gen_token (MAYOR,-)		| //Transición 0:14
+
+Gen_token (EOS,-)		|
+Gen_token (COMA,-)		|
+Gen_token (DosPUNTOS,-)		| //Transición 0:15
+
+Gen_token (CteENTERA,num)	//Transición 6:9
+
+Gen_token (CteCADENA, lex)	//Transición 5:8
+
+
+
