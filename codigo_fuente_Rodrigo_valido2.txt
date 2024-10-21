@@ -21,9 +21,8 @@ t = 12;
 ++t;
 
 
-function int sumaQuad(int n, int m){ /*devuelve n+4*m */
-	return n+ 4     *  			m;
-	
+function int quadN(int n){ /*devuelve 4*n */
+	return n*  4;
 	
 	
 	
