@@ -30,6 +30,6 @@ function int quadN(int n){ /*devuelve 4*n */
 	
 	
 	
-t = sumaQuad(t, t);
+t = quadN(t);
 
 output(t);

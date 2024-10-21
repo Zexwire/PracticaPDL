@@ -30,10 +30,8 @@
 < LlaveCIERRA,  >
 < ID, 0 >
 < ASIG,  >
-< ID, 3 >
+< ID, 1 >
 < ParentesisABRE,  >
-< ID, 0 >
-< COMA,  >
 < ID, 0 >
 < ParentesisCIERRA,  >
 < EOS,  >
