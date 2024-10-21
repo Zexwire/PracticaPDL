@@ -86,9 +86,15 @@ public class Lexer {
 					} else if (c == '*') { // Estado 3 del AFD: Lee hasta el ultimo * que encuentre seguido
 						while (c == '*')
 							c = reader.read();
-						if (c == '/')
+						if(c == -1) {
+							throw new LexerException("Error en la linea " + lineCount + ": Comentario no cerrado");
+						}
+						else if (c == '/')
 							break; // Paso del estado3 al 0:Termina de leer un comentario
 					} // Paso del estado 3 al estado 2: Si no ha terminado de leer
+				}
+				if(c == -1) {
+					throw new LexerException("Error en la linea " + lineCount + ": Comentario no cerrado");
 				}
 			} else if (c == '\n')
 				++lineCount;
@@ -192,10 +198,10 @@ public class Lexer {
 			str += (char) c;
 			c = reader.read();
 		}
-		if (c < ' ' || c > '~') {
-			throw new LexerException("Error en la linea " + lineCount + ": Caracter no valido en la cadena");
-		} else if (c == -1) {
+		if (c == -1) {
 			throw new LexerException("Error en la linea " + lineCount + ": Cadena no cerrada");
+		} else if (c < ' ' || c > '~') {
+			throw new LexerException("Error en la linea " + lineCount + ": Caracter no valido en la cadena");
 		} else if (str.length() > 64) {
 			throw new LexerException("Error en la linea " + lineCount + ": La cadena ocupa mas de 64 bits");
 		} else {
