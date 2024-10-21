@@ -1,0 +1,166 @@
+< VAR,  >
+< INTEGER,  >
+< ID, 0 >
+< ASIG,  >
+< CteENTERA, 32767 >
+< EOS,  >
+< VAR,  >
+< STRING,  >
+< ID, 1 >
+< ASIG,  >
+< CteCADENA, "Hola, esto es cadena que va tener el maximo numero de caracteres" >
+< EOS,  >
+< VAR,  >
+< STRING,  >
+< ID, 2 >
+< ASIG,  >
+< CteCADENA, "" >
+< EOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Introduce tu pais de nacimiento" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< INPUT,  >
+< ParentesisABRE,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 3 >
+< ASIG,  >
+< CteENTERA, 0 >
+< EOS,  >
+< FUNCTION,  >
+< INTEGER,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Introduce 0 o 1 para hacer 7*4 o 3*9" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< INPUT,  >
+< ParentesisABRE,  >
+< ID, 3 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< SWITCH,  >
+< ParentesisABRE,  >
+< ID, 3 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< CASE,  >
+< CteENTERA, 0 >
+< DosPUNTOS,  >
+< RETURN,  >
+< CteENTERA, 7 >
+< MULT,  >
+< CteENTERA, 4 >
+< EOS,  >
+< CASE,  >
+< CteENTERA, 1 >
+< DosPUNTOS,  >
+< RETURN,  >
+< CteENTERA, 3 >
+< MULT,  >
+< CteENTERA, 9 >
+< EOS,  >
+< DEFAULT,  >
+< DosPUNTOS,  >
+< RETURN,  >
+< CteENTERA, 0 >
+< EOS,  >
+< LlaveCIERRA,  >
+< LlaveCIERRA,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< ParentesisCIERRA,  >
+< MAYOR,  >
+< CteENTERA, 28 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "yeah" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 5 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 6 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 6 >
+< MAYOR,  >
+< CteENTERA, 0 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Positivo" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< NOT,  >
+< ParentesisABRE,  >
+< ID, 6 >
+< MAYOR,  >
+< CteENTERA, 0 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Negativo" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< LlaveCIERRA,  >
+< VAR,  >
+< BOOLEAN,  >
+< ID, 7 >
+< ASIG,  >
+< FALSE,  >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 8 >
+< ASIG,  >
+< CteENTERA, 10 >
+< EOS,  >
+< AUTOINCREMENTO,  >
+< ID, 6 >
+< EOS,  >
+< ID, 7 >
+< ASIG,  >
+< ID, 6 >
+< MAYOR,  >
+< CteENTERA, 10 >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 7 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Preincremento" >
+< ParentesisCIERRA,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 9 >
+< ASIG,  >
+< CteENTERA, 1 >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 10 >
+< ASIG,  >
+< CteENTERA, 0 >
+< EOS,  >
+< EOF,  >

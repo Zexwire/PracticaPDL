@@ -1,0 +1,7 @@
+CONTENIDOS DE LA TABLA #0:
+
+	* LEXEMA : 'sumaQuad'
+	* LEXEMA : 'n'
+	* LEXEMA : 'quadN'
+	* LEXEMA : 't'
+

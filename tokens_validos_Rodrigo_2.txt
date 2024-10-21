@@ -1,0 +1,45 @@
+< VAR,  >
+< INTEGER,  >
+< ID, 0 >
+< EOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Hola" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< CteENTERA, 12 >
+< EOS,  >
+< AUTOINCREMENTO,  >
+< ID, 0 >
+< EOS,  >
+< FUNCTION,  >
+< INTEGER,  >
+< ID, 1 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< RETURN,  >
+< ID, 2 >
+< MULT,  >
+< CteENTERA, 4 >
+< EOS,  >
+< LlaveCIERRA,  >
+< ID, 0 >
+< ASIG,  >
+< ID, 3 >
+< ParentesisABRE,  >
+< ID, 0 >
+< COMA,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< EOF,  >

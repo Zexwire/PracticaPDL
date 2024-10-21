@@ -1,0 +1,8 @@
+var int x;
+var int y   ;
+x = 3;
+y     = 2;
+/* Aqui va a ir un caracter que no vamos a reconocer: */
+
+
+=> %

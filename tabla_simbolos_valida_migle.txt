@@ -1,0 +1,12 @@
+CONTENIDOS DE LA TABLA #0:
+
+	* LEXEMA : 'escribeAlgo'
+	* LEXEMA : 'algo'
+	* LEXEMA : 'positivo'
+	* LEXEMA : 'n'
+	* LEXEMA : 'potencia'
+	* LEXEMA : 'b'
+	* LEXEMA : 'a'
+	* LEXEMA : 'multiplica'
+	* LEXEMA : 'c'
+
