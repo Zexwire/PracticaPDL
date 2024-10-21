@@ -11,7 +11,7 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Lexer lexer = new Lexer("PIdG54.txt", tsHandler);
+			Lexer lexer = new Lexer("codigo_fuente_Rodrigo_valido.txt", tsHandler);
 			Pair<Token, Object> token = lexer.scan();
 			while (token.getKey() != Token.EOF && token.getKey() != null) {
 				tokens.add(token);
@@ -44,16 +44,16 @@ public class Main {
 				// FIXME: comprobar el toString de tokens
 				switch (tokenPair.getKey()) {
 					case CteENTERA:
-						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >\n");
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >");
 						break;
 					case CteCADENA:
-						writer.println("< " + tokenPair.getKey() + ", \"" + ((String) tokenPair.getValue()) + "\" >\n");
+						writer.println("< " + tokenPair.getKey() + ", \"" + ((String) tokenPair.getValue()) + "\" >");
 						break;
 					case ID:
-						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >\n");
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >");
 						break;
 					default:
-						writer.println("< " + tokenPair.getKey() + ",  >\n");
+						writer.println("< " + tokenPair.getKey() + ",  >");
 						break;
 				}
 			}
