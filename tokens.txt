@@ -1,6 +1,6 @@
 < VAR,  >
 
-< BOOLEAN,  >
+< INTEGER,  >
 
 < ID, 0 >
 
@@ -14,33 +14,11 @@
 
 < EOS,  >
 
-< INPUT,  >
+< VAR,  >
+
+< BOOLEAN,  >
 
 < ID, 2 >
-
-< EOS,  >
-
-< OUTPUT,  >
-
-< ID, 2 >
-
-< EOS,  >
-
-< ID, 1 >
-
-< ASIG,  >
-
-< ID, 2 >
-
-< EOS,  >
-
-< OUTPUT,  >
-
-< ID, 2 >
-
-< MULT,  >
-
-< CteENTERA, 1 >
 
 < EOS,  >
 
@@ -48,7 +26,13 @@
 
 < ASIG,  >
 
-< NOT,  >
+< CteENTERA, 3 >
+
+< EOS,  >
+
+< ID, 1 >
+
+< ASIG,  >
 
 < ID, 0 >
 
@@ -60,41 +44,81 @@
 
 < ID, 0 >
 
-< ParentesisCIERRA,  >
-
-< ID, 2 >
-
-< ASIG,  >
+< MAYOR,  >
 
 < ID, 1 >
 
-< MULT,  >
+< ParentesisCIERRA,  >
 
-< CteENTERA, 7 >
+< ID, 1 >
 
-< MULT,  >
-
-< ID, 2 >
-
-< MULT,  >
-
-< ParentesisABRE,  >
+< ASIG,  >
 
 < CteENTERA, 1 >
 
-< MULT,  >
+< EOS,  >
 
-< CteENTERA, 2 >
+< IF,  >
 
-< MULT,  >
+< ParentesisABRE,  >
 
-< ID, 3 >
+< ID, 1 >
+
+< MAYOR,  >
+
+< ID, 0 >
 
 < ParentesisCIERRA,  >
 
+< ID, 1 >
+
+< ASIG,  >
+
+< CteENTERA, 8888 >
+
+< EOS,  >
+
+< OUTPUT,  >
+
+< CteENTERA, 10 >
+
+< EOS,  >
+
+< INPUT,  >
+
+< ID, 3 >
+
+< EOS,  >
+
+< OUTPUT,  >
+
+< AUTOINCREMENTO,  >
+
+< ID, 4 >
+
+< EOS,  >
+
+< ID, 0 >
+
+< ASIG,  >
+
+< ID, 0 >
+
 < MULT,  >
 
-< CteENTERA, 3 >
+< ID, 1 >
+
+< EOS,  >
+
+< OUTPUT,  >
+
+< ID, 0 >
+
+< EOS,  >
+
+< OUTPUT,  >
+
+< ID, 1 >
 
 < EOS,  >
 

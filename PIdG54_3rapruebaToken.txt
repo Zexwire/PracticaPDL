@@ -1,8 +1,0 @@
-var int x  = "";var int num  ;
-continue
-put(num,n1);input{num};function string hola (hola){}
-var aaaaa99999 integer
-if k_bb_ then 
-aaaaa99999 = aaaaa999999*9876;
-var uu int;
-call hola();

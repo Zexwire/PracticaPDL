@@ -1,14 +1,14 @@
+var int a ;
+var  int   b  ;
+var boolean bbb ;
+a = 3;
+b=a					    		 	 	 	 	 	 	 	 	 	 	 	 	 	 	 													;
+if (a > b) b = 01;
+if (b > a) b = 8888;
 
-
-	var	 boolean	b;var int x ;
-input z;
-output z;
-x=z;
-output z*1;
-b=!b;if (b) z =
-  x * 7
-    * z
-    * (1
-    * 2
-    * y)
-    * 3;
+output 010;
+input esto_es_un_nombre_de_variable_global_de_tipo_entero_que_tiene_que_aparecer_en_la_TS_global;
+output ++x__x;
+a = a * b;
+output a ;
+output b;

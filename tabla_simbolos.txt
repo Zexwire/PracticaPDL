@@ -1,7 +1,8 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'y'
-	* LEXEMA : 'z'
-	* LEXEMA : 'x'
+	* LEXEMA : 'x__x'
+	* LEXEMA : 'esto_es_un_nombre_de_variable_global_de_tipo_entero_que_tiene_que_aparecer_en_la_TS_global'
+	* LEXEMA : 'bbb'
 	* LEXEMA : 'b'
+	* LEXEMA : 'a'
 
