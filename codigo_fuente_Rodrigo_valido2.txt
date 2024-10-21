@@ -1,0 +1,36 @@
+   var 			int t /*hola*/;
+output("Hola");
+
+
+
+/*
+
+***************
+
+
+***
+*/
+
+
+
+t = 12;
+
+
+
+
+++t;
+
+
+function int sumaQuad(int n, int m){ /*devuelve n+4*m */
+	return n+ 4     *  			m;
+	
+	
+	
+	
+	}
+	
+	
+	
+t = sumaQuad(t, t);
+
+output(t);
