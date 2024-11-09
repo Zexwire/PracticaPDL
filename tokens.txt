@@ -1,126 +1,100 @@
-< VAR,  >
-
-< INTEGER,  >
-
-< ID, 0 >
-
-< EOS,  >
-
-< VAR,  >
-
-< INTEGER,  >
-
-< ID, 1 >
-
-< EOS,  >
-
-< VAR,  >
-
-< BOOLEAN,  >
-
-< ID, 2 >
-
-< EOS,  >
-
-< ID, 0 >
-
-< ASIG,  >
-
-< CteENTERA, 3 >
-
-< EOS,  >
-
-< ID, 1 >
-
-< ASIG,  >
-
-< ID, 0 >
-
-< EOS,  >
-
-< IF,  >
-
+< OUTPUT,  >
 < ParentesisABRE,  >
-
-< ID, 0 >
-
-< MAYOR,  >
-
-< ID, 1 >
-
-< ParentesisCIERRA,  >
-
-< ID, 1 >
-
-< ASIG,  >
-
 < CteENTERA, 1 >
-
-< EOS,  >
-
-< IF,  >
-
-< ParentesisABRE,  >
-
-< ID, 1 >
-
-< MAYOR,  >
-
-< ID, 0 >
-
 < ParentesisCIERRA,  >
-
+< EOS,  >
+< VAR,  >
+< STRING,  >
+< ID, 0 >
+< EOS,  >
+< VAR,  >
+< BOOLEAN,  >
 < ID, 1 >
-
-< ASIG,  >
-
-< CteENTERA, 8888 >
-
 < EOS,  >
-
-< OUTPUT,  >
-
-< CteENTERA, 10 >
-
+< VAR,  >
+< INTEGER,  >
+< ID, 2 >
 < EOS,  >
-
-< INPUT,  >
-
+< VAR,  >
+< BOOLEAN,  >
 < ID, 3 >
-
 < EOS,  >
-
-< OUTPUT,  >
-
-< AUTOINCREMENTO,  >
-
-< ID, 4 >
-
-< EOS,  >
-
-< ID, 0 >
-
+< ID, 3 >
 < ASIG,  >
-
-< ID, 0 >
-
+< FALSE,  >
+< EOS,  >
+< FUNCTION,  >
+< STRING,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 2 >
+< COMA,  >
+< STRING,  >
+< ID, 5 >
+< COMA,  >
+< BOOLEAN,  >
+< ID, 6 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< ID, 2 >
+< ASIG,  >
+< CteENTERA, 91 >
 < MULT,  >
-
-< ID, 1 >
-
+< ID, 7 >
 < EOS,  >
-
-< OUTPUT,  >
-
+< IF,  >
+< ParentesisABRE,  >
+< ID, 6 >
+< ParentesisCIERRA,  >
+< ID, 5 >
+< ASIG,  >
 < ID, 0 >
-
 < EOS,  >
-
-< OUTPUT,  >
-
+< ID, 3 >
+< ASIG,  >
+< NOT,  >
+< TRUE,  >
+< EOS,  >
+< RETURN,  >
+< ID, 5 >
+< EOS,  >
+< LlaveCIERRA,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 8 >
+< ParentesisABRE,  >
+< VOID,  >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< LlaveCIERRA,  >
+< IF,  >
+< ParentesisABRE,  >
 < ID, 1 >
-
+< ParentesisCIERRA,  >
+< ID, 8 >
+< ParentesisABRE,  >
+< ParentesisCIERRA,  >
 < EOS,  >
-
+< OUTPUT,  >
+< ParentesisABRE,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< CteENTERA, 123 >
+< COMA,  >
+< CteCADENA, "'" >
+< COMA,  >
+< ID, 1 >
+< ParentesisCIERRA,  >
+< ParentesisCIERRA,  >
+< EOS,  >
+< ID, 3 >
+< ASIG,  >
+< ID, 1 >
+< EOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< ID, 7 >
+< ParentesisCIERRA,  >
+< EOS,  >
 < EOF,  >
-

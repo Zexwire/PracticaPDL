@@ -1,6 +1,0 @@
-CONTENIDOS DE LA TABLA #0:
-
-	* LEXEMA : 'n'
-	* LEXEMA : 'quadN'
-	* LEXEMA : 't'
-

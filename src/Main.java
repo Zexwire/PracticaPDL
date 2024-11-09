@@ -11,7 +11,7 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Lexer lexer = new Lexer("codigo_fuente_Rodrigo_valido.txt", tsHandler);
+			Lexer lexer = new Lexer("PIdG54.txt", tsHandler);
 			Pair<Token, Object> token = lexer.scan();
 			while (token.getKey() != Token.EOF && token.getKey() != null) {
 				tokens.add(token);
