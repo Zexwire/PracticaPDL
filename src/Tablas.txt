@@ -1,0 +1,15 @@
+public class Tabla {
+	private Hashtable<Estado, Hashtable<Token, Accion>> accion;
+	private Hashtable<Estado, Hashtable<Elem, Estado>> goTo;
+
+	
+}
+
+//Puede ser un pair
+public class Accion {
+	private Tipo tipo;
+	private int valor;
+	// Las reducciones devolveran un int que se pasará por parser
+	// en el cual habrá un switch que se encargará de hacer la reducción
+	// eliminando los estados pertinentes y añadiendo el nuevo estado y no terminal
+}
