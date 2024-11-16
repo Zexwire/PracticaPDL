@@ -5,8 +5,7 @@ import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
-		// Para la primera entrega pediremos desde aquí los tokens
-		// al lexer y los pasaremos a un archivo de texto
+		//FIXME: arrreglar este desastre para funcionar con el parser
 		ArrayList<Pair<Token, Object>> tokens = new ArrayList<Pair<Token, Object>>();
 		TSHandler tsHandler = new TSHandler();
 

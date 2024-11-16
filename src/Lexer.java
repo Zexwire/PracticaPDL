@@ -210,4 +210,7 @@ public class Lexer {
 		return new Pair<Token, Object>(Token.CteCADENA, str);
 	}
 
+	public int getLineCount() {
+		return lineCount;
+	}
 }
