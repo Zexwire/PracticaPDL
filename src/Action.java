@@ -1,4 +1,5 @@
 public enum Action {
+	ACEPTAR,
 	DESPLAZAR,
 	REDUCIR_2,
 	REDUCIR_3,
@@ -52,6 +53,5 @@ public enum Action {
 	REDUCIR_51,
 	REDUCIR_52,
 	REDUCIR_53,
-	REDUCIR_54,
-	ACEPTAR
+	REDUCIR_54
 }
