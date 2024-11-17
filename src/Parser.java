@@ -34,7 +34,7 @@ public class Parser {
 					break;
 				default:
 					reduce(state, action);
-					parse.add(action.getValue());
+					parse.add(action.ordinal());
 			}
 		}
 	}
