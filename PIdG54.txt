@@ -1,25 +1,18 @@
+	switch(n){
+		case 0: return 7*4;
+		case 1: return 3*9;
+		default: return 0;
+	}
+}
+if(mult() > 28) output("yeah");
+function void signo(int a){
+	if(a>0) output("Positivo");
+	if(!(a>0)) output("Negativo");
+}
+var boolean b = false;
+var int c;
 
-output(1);
-var  string string_ ;
-var  boolean boolean_ ;
-var  int int_  ;var  boolean b;
-
-b=
-	false;
-function string function_ (int int_, string string_2, boolean boolean_1){
-	int_ = 
-	091*i;
-	if (boolean_1) 
-	string_2=string_;
-	b = ! true;
-	return string_2
-;}
-
-
-function void vacia 
-(void){}
-if (boolean_) vacia();
-output (function_(123,"'",boolean_))
-;
-b=boolean_	;
-output (  i);
+b = a > 10;
+if(b) output("Preincremento");
+var int prueba /*Aquí cabe un comentario*/;
+var int prueba3;

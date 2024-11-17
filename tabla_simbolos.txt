@@ -1,12 +1,6 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'vacia'
-	* LEXEMA : 'i'
-	* LEXEMA : 'boolean_1'
-	* LEXEMA : 'string_2'
-	* LEXEMA : 'function_'
-	* LEXEMA : 'b'
-	* LEXEMA : 'int_'
-	* LEXEMA : 'boolean_'
-	* LEXEMA : 'string_'
+	* LEXEMA : 'pais'
+	* LEXEMA : 'cadMaxLen'
+	* LEXEMA : 'maxInteger'
 
