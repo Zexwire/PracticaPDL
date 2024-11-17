@@ -7,7 +7,6 @@ NoTerminales = { P1 P F F1 F2 F3 A K C B B1 T W S S1 L Q X E R U V V1 }
 Axioma = P1
 
 Producciones = {
-	P1 -> P
 	P  -> B P
 	P  -> F P
 	P  -> eof
@@ -26,10 +25,10 @@ Producciones = {
 	C  -> B C
 	C  -> lambda
 	
-	B  -> if B1 S
-	B  -> var T id ;
-	B  -> S
 	B  -> switch B1 { W }
+	B  -> var T id ;
+	B  -> if B1 S
+	B  -> S
 	B1 -> ( E )
 	
 	T  -> int
@@ -40,13 +39,13 @@ Producciones = {
 	W  -> default : C
 	W  -> lambda
 	
-	S  -> id S1
 	S  -> output E ;
-	S  -> break ;
 	S  -> input id ;
 	S  -> return X ;
-	S1 -> = E ;
+	S  -> break ;
+	S  -> id S1
 	S1 -> ( L ) ;
+	S1 -> = E ;
 	
 	L  -> E Q
 	L  -> lambda
@@ -63,12 +62,14 @@ Producciones = {
 	U  -> ! U
 	U  -> ++ U
 	U  -> V
-	V  -> id V1
 	V  -> ( E )
+	V  -> id V1
 	V  -> ent
 	V  -> cad
 	V  -> true
 	V  -> false
 	V1 -> ( L )
 	V1 -> lambda
+
+	P1 -> P
 }

@@ -52,7 +52,6 @@ public enum Action {
 	REDUCIR_51(51),
 	REDUCIR_52(52),
 	REDUCIR_53(53),
-	REDUCIR_54(54),
 	DESPLAZAR(0),
 	ACEPTAR(0);
 	

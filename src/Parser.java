@@ -39,8 +39,7 @@ public class Parser {
 		}
 	}
 
-	private void reduce(Integer state, Action action) {
-		//TODO: Implementar las reducciones, recordar meterlas en la lista del parse
+	private void reduce(Integer state, Action action) throws ParserException {
 		switch (action) {
 			case REDUCIR_1: // P -> BP
 			case REDUCIR_2: // P -> FP
@@ -94,92 +93,143 @@ public class Parser {
 				stack.push(tables.getGoTo(state, Token.K));
 				break;
 			case REDUCIR_13: // C -> B C
-				break;
+				for (int i = 0; i < 4; i++)
+					stack.pop();
 			case REDUCIR_14: // C -> lambda
+				stack.push(Token.C);
+				stack.push(tables.getGoTo(state, Token.C));
 				break;
-			case REDUCIR_15: // B -> if B1 S
-				break;
+			case REDUCIR_15: // B -> switch B1 { W }
+				stack.pop();
+				stack.pop();
 			case REDUCIR_16: // B -> var T id ;
-				break;
-			case REDUCIR_17: // B -> S
-				break;
-			case REDUCIR_18: // B -> switch B1 { W }
-				break;
+				stack.pop();
+				stack.pop();
+			case REDUCIR_17: // B -> if B1 S
+				for (int i = 0; i < 4; i++)
+					stack.pop();
+			case REDUCIR_18: // B -> S
+				stack.pop();
+				stack.pop();
+				stack.push(Token.B);
+				stack.push(tables.getGoTo(state, Token.B));
 			case REDUCIR_19: // B1 -> ( E )
-				break;
+				for (int i = 0; i < 6; i++)
+					stack.pop();
+				stack.push(Token.B1);
+				stack.push(tables.getGoTo(state, Token.B1));
 			case REDUCIR_20: // T -> int
-				break;
 			case REDUCIR_21: // T -> boolean
-				break;
 			case REDUCIR_22: // T -> string
+				stack.pop();
+				stack.pop();
+				stack.push(Token.T);
+				stack.push(tables.getGoTo(state, Token.T));
 				break;
 			case REDUCIR_23: // W -> case ent : C W
-				break;
+				for (int i = 0; i < 4; i++)
+					stack.pop();
 			case REDUCIR_24: // W -> default : C
-				break;
+				for (int i = 0; i < 6; i++)
+					stack.pop();
 			case REDUCIR_25: // W -> lambda
+				stack.push(Token.W);
+				stack.push(tables.getGoTo(state, Token.W));
 				break;
-			case REDUCIR_26: // S -> id S1
+			case REDUCIR_26: // S -> output E ;
+			case REDUCIR_27: // S -> input id ;
+			case REDUCIR_28: // S -> return X ;
+				stack.pop();
+				stack.pop();
+			case REDUCIR_29: // S -> break ;
+			case REDUCIR_30: // S -> id S1
+				for (int i = 0; i < 4; i++)
+					stack.pop();
+				stack.push(Token.S);
+				stack.push(tables.getGoTo(state, Token.S));
 				break;
-			case REDUCIR_27: // S -> output E ;
-				break;
-			case REDUCIR_28: // S -> break ;
-				break;
-			case REDUCIR_29: // S -> input id ;
-				break;
-			case REDUCIR_30: // S -> return X ;
-				break;
-			case REDUCIR_31: // S -> = E ;
-				break;
-			case REDUCIR_32: // S -> ( L ) ;
+			case REDUCIR_31: // S1 -> ( L ) ;
+				stack.pop();
+				stack.pop();
+			case REDUCIR_32: // S1 -> = E ;
+				for (int i = 0; i < 6; i++)
+					stack.pop();
+				stack.push(Token.S1);
+				stack.push(tables.getGoTo(state, Token.S1));
 				break;
 			case REDUCIR_33: // L -> E Q
-				break;
+				for (int i = 0; i < 4; i++)
+					stack.pop();
 			case REDUCIR_34: // L -> lambda
+				stack.push(Token.L);
+				stack.push(tables.getGoTo(state, Token.L));
 				break;
 			case REDUCIR_35: // Q -> , E Q
-				break;
+				for (int i = 0; i < 6; i++)
+					stack.pop();
 			case REDUCIR_36: // Q -> lambda
+				stack.push(Token.Q);
+				stack.push(tables.getGoTo(state, Token.Q));
 				break;
 			case REDUCIR_37: // X -> E
-				break;
+				stack.pop();
+				stack.pop();
 			case REDUCIR_38: // X -> lambda
+				stack.push(Token.X);
+				stack.push(tables.getGoTo(state, Token.X));
 				break;
 			case REDUCIR_39: // E -> E > R
-				break;
+				for (int i = 0; i < 4; i++)
+					stack.pop();
 			case REDUCIR_40: // E -> R
+				stack.pop();
+				stack.pop();
+				stack.push(Token.E);
+				stack.push(tables.getGoTo(state, Token.E));
 				break;
 			case REDUCIR_41: // R -> R * U
-				break;
+				for (int i = 0; i < 4; i++)
+					stack.pop();
 			case REDUCIR_42: // R -> U
+				stack.pop();
+				stack.pop();
+				stack.push(Token.R);
+				stack.push(tables.getGoTo(state, Token.R));
 				break;
 			case REDUCIR_43: // U -> ! U
-				break;
 			case REDUCIR_44: // U -> ++ U
-				break;
+				stack.pop();
+				stack.pop();
 			case REDUCIR_45: // U -> V
+				stack.pop();
+				stack.pop();
+				stack.push(Token.U);
+				stack.push(tables.getGoTo(state, Token.U));
 				break;
-			case REDUCIR_46: // V -> id V1
-				break;
-			case REDUCIR_47: // V -> ( E )
-				break;
+			case REDUCIR_46: // V -> ( E )
+				stack.pop();
+				stack.pop();
+			case REDUCIR_47: // V -> id V1
+				stack.pop();
+				stack.pop();
 			case REDUCIR_48: // V -> ent
-				break;
 			case REDUCIR_49: // V -> cad
-				break;
 			case REDUCIR_50: // V -> true
-				break;
 			case REDUCIR_51: // V -> false
+				stack.pop();
+				stack.pop();
+				stack.push(Token.V);
+				stack.push(tables.getGoTo(state, Token.V));
 				break;
 			case REDUCIR_52: // V1 -> ( L )
-				break;
-			case REDUCIR_53: // V1 -> lambda	
-				break;
-			case REDUCIR_54: // FIXME: me falta una producción
+				for (int i = 0; i < 6; i++)
+					stack.pop();
+			case REDUCIR_53: // V1 -> lambda
+				stack.push(Token.V1);
+				stack.push(tables.getGoTo(state, Token.V1));	
 				break;
 			default:
-				break;
-				
+				throw new ParserException("Error en la linea " + lexer.getLineCount() + " se esperaba " + action);
 		}
 	}
 }
