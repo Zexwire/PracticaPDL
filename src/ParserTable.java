@@ -38,18 +38,16 @@ public class ParserTable {
 				for (int i = 1; i < actions.length; i++) {
 					if (actions[i].equals(""))
 						continue;
-					if (actions[i].equals("Aceptar")) {
+					if (actions[i].equals("Aceptar"))
 						accion.get(state).put(tokens[i - 1], Action.ACEPTAR);
-						continue;
-					}
-					if (actions[i].startsWith("d")) {
+					else if (actions[i].startsWith("d")) {
 						accion.get(state).put(tokens[i - 1], Action.DESPLAZAR);
 						goTo.get(state).put(tokens[i - 1], Integer.parseInt(actions[i].substring(1)));
-					} else if (actions[i].startsWith("r")) {
+					} else if (actions[i].startsWith("r"))
 						accion.get(state).put(tokens[i - 1], Action.valueOf("REDUCIR_" + actions[i].substring(1)));
-					} else if (actions[i].matches("\\d+")) {
+					else if (actions[i].matches("\\d+"))
 						goTo.get(state).put(tokens[i - 1], Integer.parseInt(actions[i]));
-					} else
+					else
 						throw new RuntimeException("Invalid action: " + actions[i]);
 				}
 			}
@@ -58,6 +56,3 @@ public class ParserTable {
 		}
 	}
 }
-	// Las reducciones devolveran un int que se pasará por parser
-	// en el cual habrá un switch que se encargará de hacer la reducción
-	// eliminando los estados pertinentes y añadiendo el nuevo estado y no terminal
