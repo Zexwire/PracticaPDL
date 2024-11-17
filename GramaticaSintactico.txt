@@ -1,0 +1,74 @@
+//// Descripción de la gramática del analizador sintáctico grupo 54
+Terminales = { boolean break case function if input int output return string switch
+	var void ent cad ++ id = , ; : ( ) { } * ! > default true false eof lambda }
+
+NoTerminales = { P1 P F F1 F2 F3 A K C B B1 T W S S1 L Q X E R U V V1 }
+
+Axioma = P1
+
+Producciones = {
+	P1 -> P
+	P  -> B P
+	P  -> F P
+	P  -> eof
+
+	F  -> function F1 F2 F3 { C }
+	F1 -> T
+	F1 -> void
+	F2 -> id
+	F3 -> ( A )
+	
+	A  -> T id K
+	A  -> void
+	K  -> , T id K
+	K  -> lambda
+	
+	C  -> B C
+	C  -> lambda
+	
+	B  -> if B1 S
+	B  -> var T id ;
+	B  -> S
+	B  -> switch B1 { W }
+	B1 -> ( E )
+	
+	T  -> int
+	T  -> boolean
+	T  -> string
+	
+	W  -> case ent : C W
+	W  -> default : C
+	W  -> lambda
+	
+	S  -> id S1
+	S  -> output E ;
+	S  -> break ;
+	S  -> input id ;
+	S  -> return X ;
+	S1 -> = E ;
+	S1 -> ( L ) ;
+	
+	L  -> E Q
+	L  -> lambda
+	Q  -> , E Q
+	Q  -> lambda
+	
+	X  -> E
+	X  -> lambda
+	
+	E  -> E > R
+	E  -> R
+	R  -> R * U
+	R  -> U
+	U  -> ! U
+	U  -> ++ U
+	U  -> V
+	V  -> id V1
+	V  -> ( E )
+	V  -> ent
+	V  -> cad
+	V  -> true
+	V  -> false
+	V1 -> ( L )
+	V1 -> lambda
+}
