@@ -2,7 +2,7 @@
 **  *		*/
 var int maxInteger; /* Esta variable sirve para el Entero más grande que debe caber */
 var string cadMaxLen; /*64*/
-var string pais;
+
 output("Introduce tu pais de nacimiento");
 input pais;
 var int n;
@@ -10,20 +10,28 @@ function int mult(void){
 	output("Introduce 0 o 1 para hacer 7*4 o 3*9");
 	input n;
 	switch(n){
-		case 0: return 7*4;
-		case 1: return 3*9;
+		case 0: input n;
+		case 1: return 3*9; break;
 		default: return 0;
 	}
 }
 if(mult() > 28) output("yeah");
-function void signo(int a){
+function void signo(int a, boolean b, string c){
 	if(a>0) output("Positivo");
 	if(!(a>0)) output("Negativo");
 }
-var boolean b = false;
+var boolean b;
 var int c;
 
+signo(c, e, 7 * 54);
+
+switch (a) {}
+
+function void nada(void) {}
+
 b = a > 10;
+
+c = !c * ++b > (mult() * true);
 if(b) output("Preincremento");
 var int prueba /*Aquí cabe un comentario*/;
 var int prueba3;

@@ -1,5 +1,15 @@
 CONTENIDOS DE LA TABLA #0:
 
+	* LEXEMA : 'prueba3'
+	* LEXEMA : 'prueba'
+	* LEXEMA : 'nada'
+	* LEXEMA : 'e'
+	* LEXEMA : 'c'
+	* LEXEMA : 'b'
+	* LEXEMA : 'a'
+	* LEXEMA : 'signo'
+	* LEXEMA : 'mult'
+	* LEXEMA : 'n'
 	* LEXEMA : 'pais'
 	* LEXEMA : 'cadMaxLen'
 	* LEXEMA : 'maxInteger'
