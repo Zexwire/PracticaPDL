@@ -1,0 +1,10 @@
+function void signo(int a, boolean b, string c){
+	if(a>0) output("Positivo");
+	if(!(a>0)) output("Negativo");
+}
+
+var int c;
+
+signo(c, e, 7 * 54);
+
+switch (a) {}

@@ -1,0 +1,10 @@
+var int n;
+function int mult(void){
+	output("Introduce 0 o 1 para hacer 7*4 o 3*9");
+	input n;
+	switch(n){
+		case 0: input n;
+		case 1: return 3*9; break;
+		default: return 0;
+	}
+}

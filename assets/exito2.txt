@@ -1,0 +1,6 @@
+function void nada(void) {}
+
+b = a > 10;
+
+c = !c * ++b > (mult() * true);
+var int prueba /*Aquí cabe un comentario*/;

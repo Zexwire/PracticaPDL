@@ -37,7 +37,9 @@ public class Parser {
 					break;
 				default:
 					reduce(action);
-					parse.add(action.ordinal());
+					//FIXME: parche para que el parser de los numeros correctos hasta cambiar
+					//toda la tabla
+					parse.add(action.ordinal() - 1);
 			}
 		}
 	}
@@ -46,6 +48,8 @@ public class Parser {
 		Integer state;
 
 		switch (action) {
+			//FIXME: Hay que reducir en 1 todas las reglas ya que no se cuenta el
+			//axioma inducido como regla
 			case REDUCIR_2: // P -> BP
 			case REDUCIR_3: // P -> FP
 				stack.pop();

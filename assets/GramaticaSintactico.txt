@@ -1,14 +1,12 @@
 //// Descripción de la gramática del analizador sintáctico grupo 54
 Terminales = { boolean break case function if input int output return string switch
-	var void ent cad ++ id = , ; : ( ) { } * ! > default true false eof lambda }
+	var void ent cad ++ id = , ; : ( ) { } * ! > default true false eof }
 
-NoTerminales = { P1 P F F1 F2 F3 A K C B B1 T W S S1 L Q X E R U V V1 }
+NoTerminales = { P F F1 F2 F3 A K C B B1 T W S S1 L Q X E R U V V1 }
 
-Axioma = P1
+Axioma = P
 
 Producciones = {
-	P1 -> P
-	
 	P  -> B P
 	P  -> F P
 	P  -> eof
