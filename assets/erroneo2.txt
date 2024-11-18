@@ -1,0 +1,12 @@
+b = a > 10;
+
+c = !c * ++b > (mult()  true);
+if(b) output("Preincremento");
+var int prueba /*Aquí cabe un comentario*/;
+var int prueba3;
+
+/////////////////////////////////////////////////////
+
+ParserException: Error en la linea 3 no se esperaba TRUE
+        at Parser.parse(Parser.java:28)
+        at Main.main(Main.java:10)

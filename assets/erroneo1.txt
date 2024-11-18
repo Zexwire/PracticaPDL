@@ -1,0 +1,12 @@
+var boolean b;
+var int c = 3;
+
+signo(c, e, 7 * 54);
+
+switch (a) {}
+
+/////////////////////////////////////////////////////
+
+ParserException: Error en la linea 2 no se esperaba ASIG
+        at Parser.parse(Parser.java:28)
+        at Main.main(Main.java:10)

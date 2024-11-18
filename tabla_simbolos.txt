@@ -1,5 +1,9 @@
 CONTENIDOS DE LA TABLA #0:
 
+	* LEXEMA : 'prueba3'
+	* LEXEMA : 'prueba'
 	* LEXEMA : 'mult'
-	* LEXEMA : 'n'
+	* LEXEMA : 'c'
+	* LEXEMA : 'a'
+	* LEXEMA : 'b'
 
