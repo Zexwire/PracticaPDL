@@ -3,7 +3,7 @@
 		case 1: return 3*9;
 		default: return 0;
 	}
-}
+	
 if(mult() > 28) output("yeah");
 function void signo(int a){
 	if(a>0) output("Positivo");
