@@ -1,5 +1,21 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'mult'
+	* LEXEMA : 'log'
+	* LEXEMA : 'cadena'
+	* LEXEMA : 'msg'
+	* LEXEMA : 'print'
+	* LEXEMA : 'While'
+	* LEXEMA : 'functional'
+	* LEXEMA : 'For'
 	* LEXEMA : 'n'
+	* LEXEMA : 'Factorial'
+	* LEXEMA : 'pp_f'
+	* LEXEMA : 'fff'
+	* LEXEMA : 'get'
+	* LEXEMA : 'num'
+	* LEXEMA : 'bool'
+	* LEXEMA : 's'
+	* LEXEMA : 'booleano'
+	* LEXEMA : 'UNO'
+	* LEXEMA : 'uno'
 

@@ -1,10 +1,45 @@
-var int n;
-function int mult(void){
-	output("Introduce 0 o 1 para hacer 7*4 o 3*9");
-	input n;
-	switch(n){
-		case 0: input n;
-		case 1: return 3*9; break;
-		default: return 0;
-	}
+var int    uno;
+var int    UNO;
+var 
+boolean 
+booleano
+;var string s;	
+s = "Introduce un entero.";	
+
+output "Factorial !";
+output s;
+var boolean bool;
+input num;
+
+ num=bool;
+
+function void get(boolean fff){output pp_f;}
+function int Factorial (int n)	
+{
+	if (n > 0)	return n;
+	return n * Factorial (n*2);	
 }
+var int  For;
+var int  functional;
+var int  While;	
+
+function void print (string s, string msg, int print)	
+{
+	output (s); output msg; output(print);
+	return;	
+}
+function string cadena (boolean log)
+{
+switch (UNO)
+  {
+	case 0:	if (uno > UNO)
+	return s;
+	case 8888: return ("entero");
+	case 3333: uno=100; break;
+	case 7777: print (s, "Bye", 321); uno=2;
+
+  }
+}
+uno=1;UNO=uno;
+if (num > 0)		output ("Factorial inexistente!");
+print (cadena (true), "recursivo es: ", Factorial (num));

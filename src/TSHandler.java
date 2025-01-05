@@ -7,42 +7,42 @@ import java.util.ArrayList;
 //TODO: implementación de arboles
 
 public class TSHandler {
-	// FIXME: Integer por ahora será su "posición" en la tabla, que después se
-	// cambiará por el arbol,
-	// donde este valor será el valor de root
+	//FIXME: Cambiar string por tree
+	private Pair<Hashtable<Integer, String>,Hashtable<Integer, String>> activeTS;
 	private ArrayList<Hashtable<Integer, String>> tsList;
-	private Integer lastPosTS;
 	private int currentTS;
+	private boolean declarationZone;
 
 	public TSHandler() {
+		Hashtable<Integer, String> globalTS = new Hashtable<Integer, String>();
+
+		activeTS = new Pair<Hashtable<Integer, String>,Hashtable<Integer, String>>(globalTS, null);
 		tsList = new ArrayList<Hashtable<Integer, String>>();
-		tsList.add(new Hashtable<Integer, String>());
-		lastPosTS = 0;
+		tsList.add(globalTS);
 		currentTS = 0;
+		declarationZone = false;
 	}
 
 	public void openScope() {
-		tsList.add(new Hashtable<Integer, String>());
-		lastPosTS = 0;
+		Hashtable<Integer, String> localTS = new Hashtable<Integer, String>();
+
+		activeTS.setValue(localTS);
+		tsList.add(localTS);
 		currentTS++;
 	}
 
 	public void closeScope() {
-		// FIXME: como hacer para que se puedan poner en el fichero aun cerrandolas
-		tsList.remove(currentTS);
-		lastPosTS = tsList.get(tsList.size() - 1).size() - 1;
+		activeTS.setValue(null);
 		currentTS--;
 	}
 
+	public void setDeclarationZone(boolean declarationZone) {
+		this.declarationZone = declarationZone;
+	}
+
 	public Pair<Token, Object> insert(String id, int line) throws TSException {
-		Hashtable<Integer, String> actualTS = tsList.get(currentTS);
-		for (Entry<Integer,String> entry : actualTS.entrySet()) {
-			if (entry.getValue().equals(id))
-				return new Pair<Token, Object>(Token.ID, entry.getKey());
-		}
-		actualTS.put(lastPosTS, id);
-		lastPosTS++;
-		return new Pair<Token, Object>(Token.ID, lastPosTS - 1);
+		//TODO:
+		return null;
 	}
 
 	public void toFile(String fileName) {

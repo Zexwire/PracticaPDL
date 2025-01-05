@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Parser {
 	Lexer lexer;
 	ParserTable tables;
+	//FIXME: añadir segunda parte, con un pair, para los atributos, diría una lista de cosas o un struct
 	ArrayDeque<Object> stack;
 	ArrayList<Integer> parse;
 
@@ -227,7 +228,7 @@ public class Parser {
 				stack.push(tables.getGoTo(state, Token.R));
 				break;
 			case REDUCIR_44: // U -> ! U
-			case REDUCIR_45: // U -> ++ U
+			case REDUCIR_45: // U -> ++ id
 				stack.pop();
 				stack.pop();
 			case REDUCIR_46: // U -> V

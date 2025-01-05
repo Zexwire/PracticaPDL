@@ -60,7 +60,7 @@ Producciones = {
 	R  -> R * U
 	R  -> U
 	U  -> ! U
-	U  -> ++ U
+	U  -> ++ id
 	U  -> V
 	V  -> ( E )
 	V  -> id V1
