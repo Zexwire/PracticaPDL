@@ -4,56 +4,94 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-//TODO: implementación de arboles
 
 public class TSHandler {
-	//FIXME: Cambiar string por tree
-	private Pair<Hashtable<Integer, String>,Hashtable<Integer, String>> activeTS;
-	private ArrayList<Hashtable<Integer, String>> tsList;
-	private int currentTS;
+	private Pair<Hashtable<Integer, ArrayList<Object>>,Hashtable<Integer, ArrayList<Object>>> activeTS;
+	private Pair<Integer, Integer> displacement;
+	private Pair<Integer, Integer> lastPosTS;
+	private ArrayList<Hashtable<Integer, ArrayList<Object>>> tsList;
 	private boolean declarationZone;
 
 	public TSHandler() {
-		Hashtable<Integer, String> globalTS = new Hashtable<Integer, String>();
-
-		activeTS = new Pair<Hashtable<Integer, String>,Hashtable<Integer, String>>(globalTS, null);
-		tsList = new ArrayList<Hashtable<Integer, String>>();
+		Hashtable<Integer, ArrayList<Object>> globalTS = new Hashtable<Integer, ArrayList<Object>>();
+		activeTS = new Pair<Hashtable<Integer, ArrayList<Object>>,Hashtable<Integer, ArrayList<Object>>>(globalTS, null);
+		displacement = new Pair<Integer, Integer>(0, 0);
+		lastPosTS = new Pair<Integer, Integer>(0, 0);
+		tsList = new ArrayList<Hashtable<Integer, ArrayList<Object>>>();
 		tsList.add(globalTS);
-		currentTS = 0;
 		declarationZone = false;
 	}
 
 	public void openScope() {
-		Hashtable<Integer, String> localTS = new Hashtable<Integer, String>();
-
+		Hashtable<Integer, ArrayList<Object>> localTS = new Hashtable<Integer, ArrayList<Object>>();
 		activeTS.setValue(localTS);
 		tsList.add(localTS);
-		currentTS++;
 	}
 
 	public void closeScope() {
 		activeTS.setValue(null);
-		currentTS--;
+		displacement.setValue(0);
+		lastPosTS.setValue(0);
 	}
 
 	public void setDeclarationZone(boolean declarationZone) {
 		this.declarationZone = declarationZone;
 	}
 
-	public Pair<Token, Object> insert(String id, int line) throws TSException {
-		//TODO:
-		return null;
+	public Pair<Token, Object> insert(String id, int line) throws TSException{
+		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
+		Hashtable<Integer, ArrayList<Object>> localTS = activeTS.getValue();
+		ArrayList<Object> atributes = new ArrayList<Object>();
+
+		atributes.add(id);
+		if (declarationZone) {
+			if (localTS != null) {
+				for (Entry<Integer, ArrayList<Object>> entry : localTS.entrySet()) {
+					if (entry.getValue().get(0).equals(id))
+						throw new TSException("Error en la linea " + line + " el identificador '" + id + "' ya ha sido declarado en la función");
+				}
+				localTS.put(lastPosTS.getValue(), atributes);
+				lastPosTS.setValue(lastPosTS.getValue() + 1);
+				return new Pair<Token, Object>(Token.ID, lastPosTS.getValue() - 1);
+			}
+			for (Entry<Integer, ArrayList<Object>> entry : globalTS.entrySet()) {
+				if (entry.getValue().get(0).equals(id))
+					throw new TSException("Error en la linea " + line + " el identificador '" + id + "' ya ha sido declarado globalmente");
+			}
+			globalTS.put(lastPosTS.getKey(), atributes);
+			lastPosTS.setKey(lastPosTS.getKey() + 1);
+			return new Pair<Token, Object>(Token.ID, lastPosTS.getKey() - 1);
+		} else {
+			if (localTS != null) {
+				for (Entry<Integer, ArrayList<Object>> entry : localTS.entrySet()) {
+					if (entry.getValue().get(0).equals(id))
+						return new Pair<Token, Object>(Token.ID, entry.getKey());
+				}
+			}
+			for (Entry<Integer, ArrayList<Object>> entry : globalTS.entrySet()) {
+				if (entry.getValue().get(0).equals(id))
+					return new Pair<Token, Object>(Token.ID, entry.getKey());
+			}
+			atributes.add(Atribute.ENT);
+			atributes.add(displacement.getKey());
+			displacement.setKey(displacement.getKey() + 2);//2 bytes por entero
+			globalTS.put(lastPosTS.getKey(), atributes);
+			lastPosTS.setKey(lastPosTS.getKey() + 1);
+			return new Pair<Token, Object>(Token.ID, lastPosTS.getKey() - 1);
+		}
 	}
+
+	//TODO: meter los atributos y demás
 
 	public void toFile(String fileName) {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
 			for (int i = 0; i < tsList.size(); i++) {
 				writer.println("CONTENIDOS DE LA TABLA #" + i + ":\n");
-				Hashtable<Integer, String> table = tsList.get(i);
-				for (Entry<Integer, String> entry : table.entrySet()) {
-					writer.println("\t* LEXEMA : '" + entry.getValue() + "'");
-					// TODO: una vez implementado el arbol, printear el arbol, tendrá que ser con
-					// BEP
+				Hashtable<Integer, ArrayList<Object>> table = tsList.get(i);
+				for (Entry<Integer, ArrayList<Object>> entry : table.entrySet()) {
+					ArrayList<Object> atributes = entry.getValue();
+					writer.println("\t* LEXEMA : '" + (String) atributes.get(0) + "'");
+					// TODO: separar según formato
 				}
 				writer.println();
 			}
