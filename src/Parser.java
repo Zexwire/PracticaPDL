@@ -58,37 +58,37 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.P);
-				stack.push(tables.getGoTo(state, Token.P));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.P,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.P), null));
 				break;
 			case REDUCIR_5: //  F  -> function F1 F2 F3 { C }
 				for (int i = 0; i < 14; i++)
 					stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.F);
-				stack.push(tables.getGoTo(state, Token.F));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.F,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F), null));
 				break;
 			case REDUCIR_6: // F1 -> T
 			case REDUCIR_7: // F1 -> void
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.F1);
-				stack.push(tables.getGoTo(state, Token.F1));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.F1));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F1), null));
 				break;
 			case REDUCIR_8: // F2 -> id
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.F2);
-				stack.push(tables.getGoTo(state, Token.F2));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.F2));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F2), null));
 				break;
 			case REDUCIR_9: // F3 -> ( A )
 				for (int i = 0; i < 6; i++)
 					stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.F3);
-				stack.push(tables.getGoTo(state, Token.F3));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.F3));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F3), null));
 				break;
 			case REDUCIR_10: // A -> T id K
 				for (int i = 0; i < 4; i++)
@@ -97,24 +97,24 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.A);
-				stack.push(tables.getGoTo(state, Token.A));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.A,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.A), null));
 				break;
 			case REDUCIR_12: // K -> , T id K
 				for (int i = 0; i < 8; i++)
 					stack.pop();
 			case REDUCIR_13: // K -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.K);
-				stack.push(tables.getGoTo(state, Token.K));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.K,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.K), null));
 				break;
 			case REDUCIR_14: // C -> B C
 				for (int i = 0; i < 4; i++)
 					stack.pop();
 			case REDUCIR_15: // C -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.C);
-				stack.push(tables.getGoTo(state, Token.C));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.C,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.C), null));
 				break;
 			case REDUCIR_16: // B -> switch B1 { W }
 				stack.pop();
@@ -129,15 +129,15 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.B);
-				stack.push(tables.getGoTo(state, Token.B));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.B,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.B), null));
 				break;
 			case REDUCIR_20: // B1 -> ( E )
 				for (int i = 0; i < 6; i++)
 					stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.B1);
-				stack.push(tables.getGoTo(state, Token.B1));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.B1));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.B1), null));
 				break;
 			case REDUCIR_21: // T -> int
 			case REDUCIR_22: // T -> boolean
@@ -145,8 +145,8 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.T);
-				stack.push(tables.getGoTo(state, Token.T));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.T,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.T), null));
 				break;
 			case REDUCIR_24: // W -> case ent : C W
 				for (int i = 0; i < 4; i++)
@@ -156,8 +156,8 @@ public class Parser {
 					stack.pop();
 			case REDUCIR_26: // W -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.W);
-				stack.push(tables.getGoTo(state, Token.W));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.W,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.W), null));
 				break;
 			case REDUCIR_27: // S -> output E ;
 			case REDUCIR_28: // S -> input id ;
@@ -169,8 +169,8 @@ public class Parser {
 				for (int i = 0; i < 4; i++)
 					stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.S);
-				stack.push(tables.getGoTo(state, Token.S));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.S,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.S), null));
 				break;
 			case REDUCIR_32: // S1 -> ( L ) ;
 				stack.pop();
@@ -179,32 +179,32 @@ public class Parser {
 				for (int i = 0; i < 6; i++)
 					stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.S1);
-				stack.push(tables.getGoTo(state, Token.S1));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.S1));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.S1), null));
 				break;
 			case REDUCIR_34: // L -> E Q
 				for (int i = 0; i < 4; i++)
 					stack.pop();
 			case REDUCIR_35: // L -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.L);
-				stack.push(tables.getGoTo(state, Token.L));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.L,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.L), null));
 				break;
 			case REDUCIR_36: // Q -> , E Q
 				for (int i = 0; i < 6; i++)
 					stack.pop();
 			case REDUCIR_37: // Q -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.Q);
-				stack.push(tables.getGoTo(state, Token.Q));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.Q,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.Q), null));
 				break;
 			case REDUCIR_38: // X -> E
 				stack.pop();
 				stack.pop();
 			case REDUCIR_39: // X -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.X);
-				stack.push(tables.getGoTo(state, Token.X));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.X,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.X), null));
 				break;
 			case REDUCIR_40: // E -> E > R
 				for (int i = 0; i < 4; i++)
@@ -213,8 +213,8 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.E);
-				stack.push(tables.getGoTo(state, Token.E));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.E,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.E), null));
 				break;
 			case REDUCIR_42: // R -> R * U
 				for (int i = 0; i < 4; i++)
@@ -223,8 +223,8 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.R);
-				stack.push(tables.getGoTo(state, Token.R));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.R,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.R), null));
 				break;
 			case REDUCIR_44: // U -> ! U
 			case REDUCIR_45: // U -> ++ id
@@ -234,8 +234,8 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.U);
-				stack.push(tables.getGoTo(state, Token.U));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.U,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.U), null));
 				break;
 			case REDUCIR_47: // V -> ( E )
 				stack.pop();
@@ -250,16 +250,16 @@ public class Parser {
 				stack.pop();
 				stack.pop();
 				state = (Integer) stack.peek().getKey();
-				stack.push(Token.V);
-				stack.push(tables.getGoTo(state, Token.V));
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.V,);
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
 				break;
 			case REDUCIR_53: // V1 -> ( L )
 				for (int i = 0; i < 6; i++)
 					stack.pop();
 			case REDUCIR_54: // V1 -> lambda
 				state = (Integer) stack.peek().getKey();	
-				stack.push(Token.V1);
-				stack.push(tables.getGoTo(state, Token.V1));	
+				stack.push(new Pair<Object,ArrayList<Object>>(Token.V1));
+				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V1), null));	
 				break;
 			default:
 				throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se esperaba " + action);
