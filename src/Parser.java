@@ -82,7 +82,7 @@ public class Parser {
 				break;
 			case REDUCIR_8: // F2 -> id
 				stack.pop();
-				stack.pop();
+				aux.add(stack.pop().getValue().get(0));
 				state = (Integer) stack.peek().getKey();
 				stack.push(new Pair<Object,ArrayList<Object>>(Token.F2, aux));
 				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F2), null));
