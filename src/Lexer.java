@@ -6,6 +6,7 @@ import java.io.IOException;
 public class Lexer {
 	private BufferedReader reader;
 	private TSHandler tsHandler;
+	//FIXME: podemos añadir un contador de columna
 	private int lineCount;
 	private int c;
 
@@ -77,17 +78,16 @@ public class Lexer {
 			if (c == '/') {// Estado 1 del AFD
 				c = reader.read();
 				if (c != '*')
-					throw new LexerException("Caracter no valido en la linea " + lineCount + " se esperaba un *");
+					throw new LexerException("Caracter no valido en la linea " + lineCount + " se esperaba un * para abrir un comentario");
 				while (c != -1) { // Estado 2 del AFD
 					c = reader.read();
 					if (c == '\n') {
 						++lineCount;
-						continue;
 					} else if (c == '*') { // Estado 3 del AFD: Lee hasta el ultimo * que encuentre seguido
 						while (c == '*')
 							c = reader.read();
 						if(c == -1) {
-							throw new LexerException("Error en la linea " + lineCount + ": Comentario no cerrado");
+							throw new LexerException("Error en la linea " + lineCount + ": Comentario no cerrado por falta de /");
 						}
 						else if (c == '/')
 							break; // Paso del estado3 al 0:Termina de leer un comentario
@@ -158,7 +158,7 @@ public class Lexer {
 			c = reader.read();
 		}
 		if (n > 32767) {
-			throw new LexerException("Error en la linea " + lineCount + ": Numero entero fuera de rango");
+			throw new LexerException("Error en la linea " + lineCount + ": El numero entero " + n + " es mayor que el entero maximo, 32767");
 		}
 		return new Pair<Token, Object>(Token.CteENTERA, n);
 	}
@@ -190,20 +190,20 @@ public class Lexer {
 					str += '\'';
 				else
 					throw new LexerException(
-							"Caracter no valido en la linea " + lineCount + ": secuencia de escape no valida");
+							"Caracter no valido en la linea " + lineCount + ": La cadena " + str + " contiene una secuencia de escape no valida");
 			}
 			if (c == '\n') {
-				throw new LexerException("Error en la linea " + lineCount + ": Cadena no cerrada");
+				throw new LexerException("Error en la linea " + lineCount + ": La cadena " + str + " no ha sido cerrada");
 			}
 			str += (char) c;
 			c = reader.read();
 		}
 		if (c == -1) {
-			throw new LexerException("Error en la linea " + lineCount + ": Cadena no cerrada");
+			throw new LexerException("Error en la linea " + lineCount + ": La cadena " + str + " no ha sido cerrada");
 		} else if (c < ' ' || c > '~') {
-			throw new LexerException("Error en la linea " + lineCount + ": Caracter no valido en la cadena");
+			throw new LexerException("Error en la linea " + lineCount + ": La cadena " + str + " contiene un caracter no valido");
 		} else if (str.length() > 64) {
-			throw new LexerException("Error en la linea " + lineCount + ": La cadena ocupa mas de 64 bits");
+			throw new LexerException("Error en la linea " + lineCount + ": La cadena " + str + "  ocupa mas de 64 bits");
 		} else {
 			c = reader.read();
 		}
@@ -213,4 +213,6 @@ public class Lexer {
 	public int getLineCount() {
 		return lineCount;
 	}
+
+	//TODO: toFile de los tokens, posiblemente habra que crear una lista interna
 }

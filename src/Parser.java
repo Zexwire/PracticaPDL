@@ -32,7 +32,10 @@ public class Parser {
 					toFile("parse.txt");
 					return;
 				case DESPLAZAR:
-					stack.push(new Pair<Object,ArrayList<Object>>(token.getKey(), null));
+				//FIXME: comprobar que no explota, es para los casos de id
+					ArrayList<Object> aux = new ArrayList<Object>();
+					aux.add(token.getValue());
+					stack.push(new Pair<Object,ArrayList<Object>>(token.getKey(), (token.getKey() == Token.ID) ? aux : null));
 					stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, token.getKey()), null));
 					token = lexer.scan();
 					break;
