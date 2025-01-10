@@ -75,7 +75,7 @@ public class Parser {
 			case REDUCIR_6: // F1 -> T
 			case REDUCIR_7: // F1 -> void
 				stack.pop();
-				stack.pop();
+				aux.add(stack.pop().getValue().get(0));
 				state = (Integer) stack.peek().getKey();
 				stack.push(new Pair<Object,ArrayList<Object>>(Token.F1, aux));
 				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F1), null));
@@ -147,7 +147,7 @@ public class Parser {
 			case REDUCIR_22: // T -> boolean
 			case REDUCIR_23: // T -> string
 				stack.pop();
-				stack.pop();
+				aux.add(stack.pop().getValue().get(0));
 				state = (Integer) stack.peek().getKey();
 				stack.push(new Pair<Object,ArrayList<Object>>(Token.T, aux));
 				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.T), null));
@@ -252,7 +252,7 @@ public class Parser {
 			case REDUCIR_51: // V -> true
 			case REDUCIR_52: // V -> false
 				stack.pop();
-				stack.pop();
+				aux.add(stack.pop().getValue().get(0));
 				state = (Integer) stack.peek().getKey();
 				stack.push(new Pair<Object,ArrayList<Object>>(Token.V, aux));
 				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
