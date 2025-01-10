@@ -83,7 +83,7 @@ public class TSHandler {
 
 	//TODO: meter los atributos y demás
 
-	public void toFile(String fileName) {
+	public void toFile(String fileName) throws TSException {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
 			for (int i = 0; i < tsList.size(); i++) {
 				writer.println("CONTENIDOS DE LA TABLA #" + i + ":\n");
@@ -92,6 +92,25 @@ public class TSHandler {
 					ArrayList<Object> atributes = entry.getValue();
 					writer.println("\t* LEXEMA : '" + (String) atributes.get(0) + "'");
 					// TODO: separar según formato
+					if (!atributes.get(1).getClass().equals(Atribute.class))
+						throw new TSException(
+							"Atributo invalido para el identificador " + ((String) atributes.get(0)) + ": " + atributes.get(1));
+					switch ((Atribute) atributes.get(1)) {
+						case ENT:
+							writer.println("\t\t* tipo : 'entero'");
+							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							break;
+						case CAD:
+							writer.println("\t\t* tipo : 'cadena'");
+							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							break;
+						case LOG:
+							writer.println("\t\t* tipo : 'logico'");
+							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							break;
+						default:
+							throw new TSException(" de atributo no reconocido: " + atributes.get(1));
+					}
 				}
 				writer.println();
 			}
