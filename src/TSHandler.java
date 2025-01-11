@@ -82,8 +82,18 @@ public class TSHandler {
 	}
 
 	//TODO: meter los atributos y demás
-	public void insertAtributes(Integer pos, ArrayList<Object> atributes) {
-		
+	public void insertAtributes(Integer pos, ArrayList<Object> atributes) throws TSException {
+		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
+		Hashtable<Integer, ArrayList<Object>> localTS = activeTS.getValue();
+		ArrayList<Object> idAtributes;
+
+		if (!declarationZone)
+			throw new TSException("Error: No se puede insertar atributos fuera de la zona de declaraciones");
+		if (localTS != null) {
+			idAtributes = localTS.get(pos);
+		} else {
+			idAtributes = globalTS.get(pos);
+		}
 	}
 
 	public void toFile(String fileName) throws TSException {

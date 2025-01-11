@@ -2,11 +2,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Lexer {
+	//FIXME: guardar los tokens pasados en esta lista para poder hacer el toFile
+	private ArrayList<Integer> tokens;
 	private BufferedReader reader;
 	private TSHandler tsHandler;
-	//FIXME: podemos añadir un contador de columna
 	private int lineCount;
 	private int c;
 

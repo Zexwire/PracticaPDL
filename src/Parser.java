@@ -6,16 +6,18 @@ import java.util.LinkedList;
 import java.util.ArrayList;
 
 public class Parser {
-	Lexer lexer;
-	ParserTable tables;
-	LinkedList<Pair<Object, ArrayList<Object>>> stack;
-	ArrayList<Integer> parse;
+	private LinkedList<Pair<Object, ArrayList<Object>>> stack;
+	private ArrayList<Integer> parse;
+	private ParserTable tables;
+	private TSHandler tsHandler;
+	private Lexer lexer;
 
 	public Parser(String filename, TSHandler tsHandler) throws FileNotFoundException, IOException {
-		lexer = new Lexer(filename, tsHandler);
-		tables = new ParserTable();
 		stack = new LinkedList<Pair<Object, ArrayList<Object>>>();
 		parse = new ArrayList<Integer>();
+		tables = new ParserTable();
+		this.tsHandler = tsHandler;
+		lexer = new Lexer(filename, tsHandler);
 		stack.push(new Pair<Object, ArrayList<Object>>(0, null));
 	}
 
@@ -26,6 +28,8 @@ public class Parser {
 			Action action = tables.getAction(state, token.getKey());
 			if (action == null)
 				parserError(lexer.getLineCount(), token.getKey(), state);
+			if (token.getKey() == Token.VAR || token.getKey() == Token.FUNCTION)
+				tsHandler.setDeclarationZone(true);
 			switch (action) {
 				case ACEPTAR:
 					toFile("parse.txt");
@@ -46,359 +50,411 @@ public class Parser {
 		}
 	}
 
-	private void reduce(Action action) throws ParserException {
-		ArrayList<Object> aux = new ArrayList<Object>();
-		Integer state;
+	private void reduce(Action action) throws ParserException, TSException {
+		ArrayList<Object> atributes = new ArrayList<Object>();
+		ArrayList<Object> aux;
 
 		switch (action) {
-			//FIXME: Hay que reducir en 1 todas las reglas ya que no se cuenta el
-			//axioma inducido como regla
 			case REDUCIR_2: // P -> BP
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				atributes = stack.pop().getValue();
+				if (atributes.get(1) != Atribute.EMPTY)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un return fuera de una función");
+				else if ((Boolean) atributes.get(2))
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un break fuera de un switch");
+				insertNonTerminal(Token.P, atributes);
+				break;
 			case REDUCIR_3: // P -> FP
 				stack.pop();
 				stack.pop();
 			case REDUCIR_4: // P -> eof
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.P, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.P), null));
+				insertNonTerminal(Token.P, atributes);
 				break;
 			case REDUCIR_5: //  F  -> function F1 F2 F3 { C }
 				for (int i = 0; i < 14; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.F, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F), null));
+				insertNonTerminal(Token.F, atributes);
+				tsHandler.closeScope();
 				break;
 			case REDUCIR_6: // F1 -> T
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.F1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F1), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.F1, atributes);
 				break;
 			case REDUCIR_7: // F1 -> void
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.NONE);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.F1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F1), null));
+				atributes.add(Atribute.NONE);
+				insertNonTerminal(Token.F1, atributes);
 				break;
 			case REDUCIR_8: // F2 -> id
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.F2, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F2), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.F2, atributes);
+				tsHandler.openScope();
 				break;
 			case REDUCIR_9: // F3 -> ( A )
 				for (int i = 0; i < 3; i++)
 					stack.pop();
-				aux = stack.pop().getValue();
+				atributes = stack.pop().getValue();
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.F3, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.F3), null));
+				// Aquí esta justo F2 en segunda posición del stack y F1 en cuarta, con la pos del id de la función y su tipo de retorno
+				atributes.add(stack.get(3).getValue().get(0));
+				tsHandler.insertAtributes((Integer) stack.get(1).getValue().get(0), atributes);
+				insertNonTerminal(Token.F3, atributes);
+				tsHandler.setDeclarationZone(false);
 				break;
 			case REDUCIR_10: // A -> T id K
+				//TODO:
 				for (int i = 0; i < 4; i++)
 					stack.pop();
 			case REDUCIR_11: // A -> void
-				aux.add(Atribute.EMPTY);
-				aux.add(0);
+				atributes.add(Atribute.EMPTY);
+				atributes.add(0);
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.A, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.A), null));
+				insertNonTerminal(Token.A, atributes);
 				break;
 			case REDUCIR_12: // K -> , T id K
+				//TODO:
 				for (int i = 0; i < 8; i++)
 					stack.pop();
 			case REDUCIR_13: // K -> lambda
-				aux.add(Atribute.EMPTY);
-				aux.add(0);
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.K, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.K), null));
+				atributes.add(Atribute.EMPTY);
+				atributes.add(0);
+				insertNonTerminal(Token.K, atributes);
 				break;
 			case REDUCIR_14: // C -> B C
-				for (int i = 0; i < 4; i++)
-					stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.C, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.C), null));
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				aux = stack.pop().getValue();
+				if (aux.get(0) != Atribute.TYPE_OK)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un error en la sentencia");
+				else if (!((Atribute) atributes.get(1)).equals((Atribute) aux.get(1)))
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay dos returns de distinto tipo en este cuerpo");
+				atributes.set(2, (Boolean) atributes.get(2) || (Boolean) aux.get(2));
+				insertNonTerminal(Token.C, atributes);
 				break;
 			case REDUCIR_15: // C -> lambda
-				aux.add(Atribute.TYPE_OK);
-				aux.add(Atribute.EMPTY);
-				aux.add(false);
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.C, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.C), null));
+				atributes.add(Atribute.TYPE_OK);
+				atributes.add(Atribute.EMPTY);
+				atributes.add(false);
+				insertNonTerminal(Token.C, atributes);
 				break;
 			case REDUCIR_16: // B -> switch B1 { W }
-				stack.pop();
-				stack.pop();
-			case REDUCIR_17: // B -> var T id ;
-				stack.pop();
-				stack.pop();
-			case REDUCIR_18: // B -> if B1 S
-				for (int i = 0; i < 4; i++)
+				for (int i = 0; i < 3; i++)
 					stack.pop();
+				atributes = stack.pop().getValue();
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				aux = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				if (aux.get(0) != Atribute.ENT)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " la condición del switch no es de tipo entero");
+				else if (atributes.get(0) != Atribute.TYPE_OK)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un error en el cuerpo del switch");
+				atributes.set(2, false);
+				insertNonTerminal(Token.B, atributes);
+				break;
+			case REDUCIR_17: // B -> var T id ;
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				aux = stack.pop().getValue();
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				tsHandler.insertAtributes((Integer) aux.get(0), atributes);
+				tsHandler.setDeclarationZone(false);
+				atributes.set(0, Atribute.TYPE_OK);
+				atributes.add(Atribute.EMPTY);
+				atributes.add(false);
+				insertNonTerminal(Token.B, atributes);
+				break;
+			case REDUCIR_18: // B -> if B1 S
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				aux = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				if (aux.get(0) != Atribute.LOG)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " la condición del if no es de tipo lógico");
+				insertNonTerminal(Token.B, atributes);
+				break;
 			case REDUCIR_19: // B -> S
 				stack.pop();
-				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.B, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.B), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.B, atributes);
 				break;
 			case REDUCIR_20: // B1 -> ( E )
-				for (int i = 0; i < 6; i++)
+				for (int i = 0; i < 3; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.B1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.B1), null));
+				atributes = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				insertNonTerminal(Token.B1, atributes);
 				break;
 			case REDUCIR_21: // T -> int
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.ENT);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.T, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.ENT);
+				insertNonTerminal(Token.T, atributes);
 				break;
 			case REDUCIR_22: // T -> boolean
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.LOG);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.T, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.LOG);
+				insertNonTerminal(Token.T, atributes);
 				break;
 			case REDUCIR_23: // T -> string
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.CAD);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.T, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.CAD);
+				insertNonTerminal(Token.T, atributes);
 				break;
 			case REDUCIR_24: // W -> case ent : C W
-				for (int i = 0; i < 4; i++)
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				aux = stack.pop().getValue();
+				for (int i = 0; i < 6; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.W, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.W), null));
+				if (aux.get(0) != Atribute.TYPE_OK)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un error en el cuerpo del case");
+				else if (!((Atribute) atributes.get(1)).equals((Atribute) aux.get(1)))
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay dos returns de distinto tipo en el switch");
+				atributes.set(2, (Boolean) atributes.get(2) || (Boolean) aux.get(2));
+				insertNonTerminal(Token.W, atributes);
 				break;
 			case REDUCIR_25: // W -> default : C
 				stack.pop();
-				aux = stack.pop().getValue();
+				atributes = stack.pop().getValue();
 				for (int i = 0; i < 4; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.W, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.W), null));
+				insertNonTerminal(Token.W, atributes);
 				break;
 			case REDUCIR_26: // W -> lambda
-				aux.add(Atribute.TYPE_OK);
-				aux.add(Atribute.EMPTY);
-				aux.add(false);
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.W, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.W), null));
+				atributes.add(Atribute.TYPE_OK);
+				atributes.add(Atribute.EMPTY);
+				atributes.add(false);
+				insertNonTerminal(Token.W, atributes);
 				break;
 			case REDUCIR_27: // S -> output E ;
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				atributes.add(stack.pop().getValue().get(0));
+				atributes.add(Atribute.EMPTY);
+				atributes.add(false);
+				stack.pop();
+				stack.pop();
+				if (atributes.get(0) != Atribute.ENT && atributes.get(0) != Atribute.CAD)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede aplicar output a un " + ((Atribute) atributes.get(0)).toString());
+				insertNonTerminal(Token.S, atributes);
+				break;
 			case REDUCIR_28: // S -> input id ;
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				atributes.add(stack.pop().getValue().get(0));
+				atributes.add(Atribute.EMPTY);
+				atributes.add(false);
+				stack.pop();
+				stack.pop();
+				//FIXME: aqui solo tenemos la posicion del id en la TS, no el tipo
+				if (atributes.get(0) != Atribute.ENT && atributes.get(0) != Atribute.CAD)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede aplicar input a un " + ((Atribute) atributes.get(0)).toString());
+				insertNonTerminal(Token.S, atributes);
+				break;
 			case REDUCIR_29: // S -> return X ;
+				for (int i = 0; i < 3; i++)
+					stack.pop();
+				atributes.add(Atribute.TYPE_OK);
+				atributes.add(stack.pop().getValue().get(0));
+				atributes.add(false);
 				stack.pop();
 				stack.pop();
+				insertNonTerminal(Token.S, atributes);
+				break;
 			case REDUCIR_30: // S -> break ;
-			case REDUCIR_31: // S -> id S1
 				for (int i = 0; i < 4; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.S, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.S), null));
+				atributes.add(Atribute.TYPE_OK);
+				atributes.add(Atribute.EMPTY);
+				atributes.add(true);
+				insertNonTerminal(Token.S, atributes);
+				break;
+			case REDUCIR_31: // S -> id S1
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				//TODO: comprobaciones
+				insertNonTerminal(Token.S, atributes);
 				break;
 			case REDUCIR_32: // S1 -> ( L ) ;
 				for (int i = 0; i < 5; i++)
 					stack.pop();
-				aux = stack.pop().getValue();
+				atributes = stack.pop().getValue();
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.S1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.S1), null));
+				insertNonTerminal(Token.S1, atributes);
 				break;
 			case REDUCIR_33: // S1 -> = E ;
 				for (int i = 0; i < 3; i++)
 					stack.pop();
-				aux = stack.pop().getValue();
-				aux.add(-1);
+				atributes = stack.pop().getValue();
+				atributes.add(-1);
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.S1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.S1), null));
+				insertNonTerminal(Token.S1, atributes);
 				break;
 			case REDUCIR_34: // L -> E Q
-				for (int i = 0; i < 4; i++)
-					stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.L, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.L), null));
+				//TODO:
+				insertNonTerminal(Token.L, atributes);
 				break;
 			case REDUCIR_35: // L -> lambda
-				aux.add(Atribute.EMPTY);
-				aux.add(0);
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.L, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.L), null));
+				atributes.add(Atribute.EMPTY);
+				atributes.add(0);
+				insertNonTerminal(Token.L, atributes);
 				break;
 			case REDUCIR_36: // Q -> , E Q
-				for (int i = 0; i < 6; i++)
-					stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.Q, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.Q), null));
+				//TODO:
+				insertNonTerminal(Token.Q, atributes);
 				break;
 			case REDUCIR_37: // Q -> lambda
-				aux.add(Atribute.EMPTY);
-				aux.add(0);
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.Q, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.Q), null));
+				atributes.add(Atribute.EMPTY);
+				atributes.add(0);
+				insertNonTerminal(Token.Q, atributes);
 				break;
 			case REDUCIR_38: // X -> E
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.X, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.X), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.X, atributes);
 				break;
 			case REDUCIR_39: // X -> lambda
-				aux.add(Atribute.NONE); 
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.X, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.X), null));
+				atributes.add(Atribute.NONE); 
+				insertNonTerminal(Token.X, atributes);
 				break;
 			case REDUCIR_40: // E -> E > R
-				for (int i = 0; i < 4; i++)
+				stack.pop();
+				atributes.add(stack.pop().getValue().get(0));
+				for (int i = 0; i < 3; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.E, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.E), null));
+				atributes.add(stack.pop().getValue().get(0));
+				if (atributes.get(0) != Atribute.ENT || atributes.get(1) != Atribute.ENT)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede comparar un " + ((Atribute) atributes.get(0)).toString() + " con un " + ((Atribute) atributes.get(1)).toString());
+				insertNonTerminal(Token.E, atributes);
 				break;
 			case REDUCIR_41: // E -> R
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.E, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.E), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.E, atributes);
 				break;
 			case REDUCIR_42: // R -> R * U
-				for (int i = 0; i < 4; i++)
+				stack.pop();
+				atributes.add(stack.pop().getValue().get(0));
+				for (int i = 0; i < 3; i++)
 					stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.R, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.R), null));
+				atributes.add(stack.pop().getValue().get(0));
+				if (atributes.get(0) != Atribute.ENT || atributes.get(1) != Atribute.ENT)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede multiplicar un " + ((Atribute) atributes.get(0)).toString() + " con un " + ((Atribute) atributes.get(1)).toString());
+				insertNonTerminal(Token.R, atributes);
 				break;
 			case REDUCIR_43: // R -> U
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.R, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.R), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.R, atributes);
 				break;
 			case REDUCIR_44: // U -> ! U
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.U, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.U), null));
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				if (atributes.get(0) != Atribute.LOG)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede negar un " + ((Atribute) atributes.get(0)).toString());
+				insertNonTerminal(Token.U, atributes);
 				break;
 			case REDUCIR_45: // U -> ++ id
 				stack.pop();
+				atributes = stack.pop().getValue();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.U, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.U), null));
+				stack.pop();
+				if (atributes.get(0) != Atribute.ENT)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede incrementar un " + ((Atribute) atributes.get(0)).toString());
+				insertNonTerminal(Token.U, atributes);
 				break;
 			case REDUCIR_46: // U -> V
 				stack.pop();
-				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.U, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.U), null));
+				atributes = stack.pop().getValue();
+				insertNonTerminal(Token.U, atributes);
 				break;
 			case REDUCIR_47: // V -> ( E )
 				for (int i = 0; i < 3; i++)
 					stack.pop();
-				aux = stack.pop().getValue();
+				atributes = stack.pop().getValue();
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V1), null));	
+				insertNonTerminal(Token.V, atributes);	
 				break;
 			case REDUCIR_48: // V -> id V1
 				stack.pop();
-				stack.pop();
-				stack.pop();
 				aux = stack.pop().getValue();
-				state = (Integer) stack.peek().getKey();
-				//TODO: comprobaciones	
+				stack.pop();
+				atributes = stack.pop().getValue();
+				if ((Integer) aux.get(0) < 0)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " el identificador '" + aux.get(1) + "' no ha sido declarado");
+				insertNonTerminal(Token.V, atributes);
 				break;
 			case REDUCIR_49: // V -> ent
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.ENT);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.ENT);
+				insertNonTerminal(Token.V, atributes);
 				break;
 			case REDUCIR_50: // V -> cad
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.CAD);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.CAD);
+				insertNonTerminal(Token.V, atributes);
 				break;
 			case REDUCIR_51: // V -> true
 			case REDUCIR_52: // V -> false
 				stack.pop();
 				stack.pop();
-				aux.add(Atribute.LOG);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V), null));
+				atributes.add(Atribute.LOG);
+				insertNonTerminal(Token.V, atributes);
 				break;
 			case REDUCIR_53: // V1 -> ( L )
 				for (int i = 0; i < 3; i++)
 					stack.pop();
-				aux = stack.pop().getValue();
+				atributes = stack.pop().getValue();
 				stack.pop();
 				stack.pop();
-				state = (Integer) stack.peek().getKey();	
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V1), null));	
+				insertNonTerminal(Token.V1, atributes);	
 				break;
 			case REDUCIR_54: // V1 -> lambda
-				aux.add(Atribute.EMPTY);
-				aux.add(-1);
-				state = (Integer) stack.peek().getKey();
-				stack.push(new Pair<Object,ArrayList<Object>>(Token.V1, aux));
-				stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, Token.V1), null));	
+				atributes.add(-1);
+				atributes.add(Atribute.EMPTY);
+				insertNonTerminal(Token.V1, atributes);	
 				break;
 			default:
 				throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se esperaba " + action);
 		}
 	}
 
-	public void parserError(int lineCount, Token token, Integer state) throws ParserException {
+	private void insertNonTerminal(Token token, ArrayList<Object> atributes) {
+		Integer state = (Integer) stack.peek().getKey();
+		stack.push(new Pair<Object,ArrayList<Object>>(token, atributes));
+		stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, token), null));
+	}
+
+	private void parserError(int lineCount, Token token, Integer state) throws ParserException {
 		switch (state) {
 			case 0:
 			case 2:
