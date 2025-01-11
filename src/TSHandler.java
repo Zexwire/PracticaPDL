@@ -82,6 +82,7 @@ public class TSHandler {
 	}
 
 	//TODO: meter los atributos y demás
+	public void insertAtributes(Integer pos, 
 
 	public void toFile(String fileName) throws TSException {
 		try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
