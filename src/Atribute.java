@@ -4,5 +4,7 @@ public enum Atribute {
 	LOG,
 	FUN,
 	NONE,
-	EMPTY
+	EMPTY,
+	TYPE_OK,
+	TYPE_ERR
 }
