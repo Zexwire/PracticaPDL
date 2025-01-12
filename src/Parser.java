@@ -33,6 +33,7 @@ public class Parser {
 			switch (action) {
 				case ACEPTAR:
 					toFile("parse.txt");
+					lexer.toFile();
 					return;
 				case DESPLAZAR:
 				//FIXME: comprobar que no explota, es para los casos de id
@@ -74,9 +75,19 @@ public class Parser {
 				insertNonTerminal(Token.P, atributes);
 				break;
 			case REDUCIR_5: //  F  -> function F1 F2 F3 { C }
-				for (int i = 0; i < 14; i++)
+				for (int i = 0; i < 3; i++)
 					stack.pop();
-				insertNonTerminal(Token.F, atributes);
+				atributes = stack.pop().getValue();
+				for (int i = 0; i < 7; i++)
+					stack.pop();
+				aux = stack.pop().getValue();
+				stack.pop();
+				stack.pop();
+				if (atributes.get(1) != Atribute.EMPTY && atributes.get(1) != aux.get(1))
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " el return de la función no es del tipo correcto");
+				else if ((Boolean) atributes.get(2) == true)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un break fuera de un switch");
+				insertNonTerminal(Token.F, null);
 				tsHandler.closeScope();
 				break;
 			case REDUCIR_6: // F1 -> T
@@ -104,28 +115,38 @@ public class Parser {
 				stack.pop();
 				// Aquí esta justo F2 en segunda posición del stack y F1 en cuarta, con la pos del id de la función y su tipo de retorno
 				atributes.add(stack.get(3).getValue().get(0));
-				tsHandler.insertAtributes((Integer) stack.get(1).getValue().get(0), atributes);
+				tsHandler.insertFunction((Integer) stack.get(1).getValue().get(0), atributes);
 				insertNonTerminal(Token.F3, atributes);
 				tsHandler.setDeclarationZone(false);
 				break;
 			case REDUCIR_10: // A -> T id K
-				//TODO:
-				for (int i = 0; i < 4; i++)
-					stack.pop();
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
+				insertNonTerminal(Token.A, atributes);
+				break;
 			case REDUCIR_11: // A -> void
 				atributes.add(Atribute.EMPTY);
-				atributes.add(0);
 				stack.pop();
 				stack.pop();
 				insertNonTerminal(Token.A, atributes);
 				break;
 			case REDUCIR_12: // K -> , T id K
-				//TODO:
-				for (int i = 0; i < 8; i++)
-					stack.pop();
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
+				stack.pop();
+				stack.pop();
+				insertNonTerminal(Token.K, atributes);
+				break;
 			case REDUCIR_13: // K -> lambda
 				atributes.add(Atribute.EMPTY);
-				atributes.add(0);
 				insertNonTerminal(Token.K, atributes);
 				break;
 			case REDUCIR_14: // C -> B C
@@ -170,7 +191,7 @@ public class Parser {
 				atributes = stack.pop().getValue();
 				stack.pop();
 				stack.pop();
-				tsHandler.insertAtributes((Integer) aux.get(0), atributes);
+				tsHandler.insertVariable((Integer) aux.get(0), (Atribute) atributes.get(0));
 				tsHandler.setDeclarationZone(false);
 				atributes.set(0, Atribute.TYPE_OK);
 				atributes.add(Atribute.EMPTY);
@@ -266,9 +287,9 @@ public class Parser {
 				atributes.add(false);
 				stack.pop();
 				stack.pop();
-				//FIXME: aqui solo tenemos la posicion del id en la TS, no el tipo
-				if (atributes.get(0) != Atribute.ENT && atributes.get(0) != Atribute.CAD)
-					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede aplicar input a un " + ((Atribute) atributes.get(0)).toString());
+				Atribute type = tsHandler.getAtribute((Integer) atributes.get(0));
+				if (type != Atribute.ENT && type != Atribute.CAD)
+					throw new ParserException("Error en la linea " + lexer.getLineCount() + " no se puede aplicar input a un " + type.toString());
 				insertNonTerminal(Token.S, atributes);
 				break;
 			case REDUCIR_29: // S -> return X ;
@@ -308,14 +329,17 @@ public class Parser {
 			case REDUCIR_33: // S1 -> = E ;
 				for (int i = 0; i < 3; i++)
 					stack.pop();
-				atributes = stack.pop().getValue();
 				atributes.add(-1);
+				atributes.add(stack.pop().getValue().get(0));
 				stack.pop();
 				stack.pop();
 				insertNonTerminal(Token.S1, atributes);
 				break;
 			case REDUCIR_34: // L -> E Q
-				//TODO:
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
 				insertNonTerminal(Token.L, atributes);
 				break;
 			case REDUCIR_35: // L -> lambda
@@ -324,12 +348,16 @@ public class Parser {
 				insertNonTerminal(Token.L, atributes);
 				break;
 			case REDUCIR_36: // Q -> , E Q
-				//TODO:
+				stack.pop();
+				atributes = stack.pop().getValue();
+				stack.pop();
+				atributes.add(0, stack.pop().getValue().get(0));
+				stack.pop();
+				stack.pop();
 				insertNonTerminal(Token.Q, atributes);
 				break;
 			case REDUCIR_37: // Q -> lambda
 				atributes.add(Atribute.EMPTY);
-				atributes.add(0);
 				insertNonTerminal(Token.Q, atributes);
 				break;
 			case REDUCIR_38: // X -> E
@@ -407,7 +435,8 @@ public class Parser {
 				aux = stack.pop().getValue();
 				stack.pop();
 				atributes = stack.pop().getValue();
-				if ((Integer) aux.get(0) < 0)
+				//FIXME: comprobaciones
+				if (((Atribute) aux.get(0)).equals(Atribute.NONE))
 					throw new ParserException("Error en la linea " + lexer.getLineCount() + " el identificador '" + aux.get(1) + "' no ha sido declarado");
 				insertNonTerminal(Token.V, atributes);
 				break;
@@ -440,7 +469,7 @@ public class Parser {
 				break;
 			case REDUCIR_54: // V1 -> lambda
 				atributes.add(-1);
-				atributes.add(Atribute.EMPTY);
+				atributes.add(Atribute.NONE);
 				insertNonTerminal(Token.V1, atributes);	
 				break;
 			default:

@@ -2,11 +2,12 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Lexer {
 	//FIXME: guardar los tokens pasados en esta lista para poder hacer el toFile
-	private ArrayList<Integer> tokens;
+	private ArrayList<Pair<Token, Object>> tokens;
 	private BufferedReader reader;
 	private TSHandler tsHandler;
 	private int lineCount;
@@ -20,59 +21,78 @@ public class Lexer {
 	}
 
 	public Pair<Token, Object> scan() throws LexerException, IOException, TSException {
+		Pair<Token, Object> tokenPair;
+		
 		c = readSuperflous();
-		if (c == -1)
-			return new Pair<Token, Object>(Token.EOF, null);
-		else if (Character.isLetter(c))
-			return words();
-		else if (Character.isDigit(c))
-			return cteEntera();
-		else if (c == '"')
-			return cteCadena();
-		switch (c) {
-		case '+':
-			c = reader.read();
-			if (c == '+') {
-				c = reader.read();
-				return new Pair<Token, Object>(Token.AUTOINCREMENTO, null);
-			} else
-				throw new LexerException("Caracter no valido en la linea " + lineCount + " se esperaba un +");
-		case '=':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.ASIG, null);
-		case ',':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.COMA, null);
-		case ';':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.EOS, null);
-		case ':':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.DosPUNTOS, null);
-		case '(':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.ParentesisABRE, null);
-		case ')':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.ParentesisCIERRA, null);
-		case '{':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.LlaveABRE, null);
-		case '}':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.LlaveCIERRA, null);
-		case '*':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.MULT, null);
-		case '!':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.NOT, null);
-		case '>':
-			c = reader.read();
-			return new Pair<Token, Object>(Token.MAYOR, null);
-		default:
-			throw new LexerException("Caracter no valido en la linea " + lineCount + ": caracter no reconocido");
+		if (c == -1) {
+			tokenPair = new Pair<Token, Object>(Token.EOF, null);
+		} else if (Character.isLetter(c)) {
+			tokenPair = words();
+		} else if (Character.isDigit(c)) {
+			tokenPair = cteEntera();
+		} else if (c == '"') {
+			tokenPair = cteCadena();
+		} else {
+			switch (c) {
+				case '+':
+					c = reader.read();
+					if (c == '+') {
+						c = reader.read();
+						tokenPair = new Pair<Token, Object>(Token.AUTOINCREMENTO, null);
+					} else {
+						throw new LexerException("Caracter no valido en la linea " + lineCount + " se esperaba un +");
+					}
+					break;
+				case '=':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.ASIG, null);
+					break;
+				case ',':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.COMA, null);
+					break;
+				case ';':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.EOS, null);
+					break;
+				case ':':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.DosPUNTOS, null);
+					break;
+				case '(':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.ParentesisABRE, null);
+					break;
+				case ')':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.ParentesisCIERRA, null);
+					break;
+				case '{':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.LlaveABRE, null);
+					break;
+				case '}':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.LlaveCIERRA, null);
+					break;
+				case '*':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.MULT, null);
+					break;
+				case '!':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.NOT, null);
+					break;
+				case '>':
+					c = reader.read();
+					tokenPair = new Pair<Token, Object>(Token.MAYOR, null);
+					break;
+				default:
+					throw new LexerException("Caracter no valido en la linea " + lineCount + ": caracter no reconocido");
+			}
 		}
+		tokens.add(tokenPair);
+		return tokenPair;
 	}
 
 	private int readSuperflous() throws IOException, LexerException {
@@ -216,5 +236,26 @@ public class Lexer {
 		return lineCount;
 	}
 
-	//TODO: toFile de los tokens, posiblemente habra que crear una lista interna
+	public void toFile() {
+		try (PrintWriter writer = new PrintWriter("tokens.txt")) {
+			for (Pair<Token, Object> tokenPair : tokens) {
+				switch (tokenPair.getKey()) {
+					case CteENTERA:
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >");
+						break;
+					case CteCADENA:
+						writer.println("< " + tokenPair.getKey() + ", \"" + ((String) tokenPair.getValue()) + "\" >");
+						break;
+					case ID:
+						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >");
+						break;
+					default:
+						writer.println("< " + tokenPair.getKey() + ",  >");
+						break;
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

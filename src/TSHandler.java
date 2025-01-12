@@ -81,19 +81,72 @@ public class TSHandler {
 		}
 	}
 
-	//TODO: meter los atributos y demás
-	public void insertAtributes(Integer pos, ArrayList<Object> atributes) throws TSException {
+	public void insertVariable(Integer pos, Atribute type) throws TSException {
 		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
 		Hashtable<Integer, ArrayList<Object>> localTS = activeTS.getValue();
-		ArrayList<Object> idAtributes;
+		ArrayList<Object> atributes;
 
-		if (!declarationZone)
-			throw new TSException("Error: No se puede insertar atributos fuera de la zona de declaraciones");
 		if (localTS != null) {
-			idAtributes = localTS.get(pos);
+			atributes = localTS.get(pos);
+			if (atributes.size() > 1)
+				throw new TSException("Error: El identificador '" + atributes.get(0) + "' ya tiene atributos");
+			atributes.add(type);
+			atributes.add(displacement.getValue());
+			switch (type) {
+				case ENT:
+					displacement.setValue(displacement.getValue() + 2);//16 bits por entero
+					break;
+				case CAD:
+					displacement.setValue(displacement.getValue() + 128);//128 bytes por cadena
+					break;
+				case LOG:
+					displacement.setValue(displacement.getValue() + 2);//16 bits por logico
+					break;
+				default:
+					throw new TSException("Error: Tipo de atributo no reconocido");
+			}
 		} else {
-			idAtributes = globalTS.get(pos);
+			atributes = globalTS.get(pos);
+			if (atributes.size() > 1)
+				throw new TSException("Error: El identificador '" + atributes.get(0) + "' ya tiene atributos");
+			atributes.add(type);
+			atributes.add(displacement.getKey());
+			switch (type) {
+				case ENT:
+					displacement.setKey(displacement.getKey() + 2);//16 bits por entero
+					break;
+				case CAD:
+					displacement.setKey(displacement.getKey() + 128);//128 bytes por cadena
+					break;
+				case LOG:
+					displacement.setKey(displacement.getKey() + 2);//16 bits por logico
+					break;
+				default:
+					throw new TSException("Error: Tipo de atributo no reconocido");
+			}
 		}
+	}
+
+	public void insertFunction(Integer pos, ArrayList<Object> parameters) throws TSException {
+		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
+		Hashtable<Integer, ArrayList<Object>> localTS = activeTS.getValue();
+		ArrayList<Object> atributes = globalTS.get(pos);
+		int i = 0;
+		
+		atributes.add(Atribute.FUN);
+		// Hay que quitar 2 elementos del contador, el EMPTY del final y el tipo de retorno
+		atributes.add((parameters.size() - 2) / 2);
+		while (parameters.get(i) != Atribute.EMPTY) {
+			atributes.add(parameters.get(i));
+			insertVariable((Integer) parameters.get(i), (Atribute) parameters.get(i + 1));
+			i += 2;
+		}
+		atributes.add(parameters.get(parameters.size() - 1));
+		atributes.add("Et" + atributes.get(0) + pos);
+	}
+
+	public Atribute getAtribute(Integer pos) {
+		return (Atribute) ((activeTS.getValue() != null) ? activeTS.getValue().get(pos).get(1) : activeTS.getKey().get(pos).get(1));
 	}
 
 	public void toFile(String fileName) throws TSException {
@@ -110,16 +163,24 @@ public class TSHandler {
 							"Atributo invalido para el identificador " + ((String) atributes.get(0)) + ": " + atributes.get(1));
 					switch ((Atribute) atributes.get(1)) {
 						case ENT:
-							writer.println("\t\t* tipo : 'entero'");
-							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ tipo : 'entero'");
+							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
 							break;
 						case CAD:
-							writer.println("\t\t* tipo : 'cadena'");
-							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ tipo : 'cadena'");
+							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
 							break;
 						case LOG:
-							writer.println("\t\t* tipo : 'logico'");
-							writer.println("\t\t* desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ tipo : 'logico'");
+							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
+							break;
+						case FUN:
+							writer.println("\t\t+ tipo : 'funcion'");
+							writer.println("\t\t+ numParam : " + (Integer) atributes.get(2));
+							for (int j = 3; j < atributes.size() - 2; j++)
+								writer.println("\t\t\t+ tipoParam" + (j - 2) + " : '" + ((Atribute) atributes.get(j)).toString() + "'");
+							writer.println("\t\t+ tipoRetorno : '" + ((Atribute) atributes.get(atributes.size() - 2)).toString() + "'");
+							writer.println("\t\t+ etiqFuncion : '" + (String) atributes.get(atributes.size() - 1) + "'");
 							break;
 						default:
 							throw new TSException(" de atributo no reconocido: " + atributes.get(1));
