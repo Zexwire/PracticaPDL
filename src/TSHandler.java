@@ -138,7 +138,7 @@ public class TSHandler {
 		atributes.add((parameters.size() - 2) / 2);
 		while (parameters.get(i) != Atribute.EMPTY) {
 			atributes.add(parameters.get(i));
-			insertVariable((Integer) parameters.get(i), (Atribute) parameters.get(i + 1));
+			insertVariable((Integer) parameters.get(i + 1), (Atribute) parameters.get(i));
 			i += 2;
 		}
 		atributes.add(parameters.get(parameters.size() - 1));
@@ -146,7 +146,21 @@ public class TSHandler {
 	}
 
 	public Atribute getAtribute(Integer pos) {
-		return (Atribute) ((activeTS.getValue() != null) ? activeTS.getValue().get(pos).get(1) : activeTS.getKey().get(pos).get(1));
+		ArrayList<Object> atributes = (activeTS.getValue() != null) ? activeTS.getValue().get(pos) : activeTS.getKey().get(pos);
+		
+		if (atributes == null)
+			atributes = activeTS.getKey().get(pos);
+		return (Atribute) atributes.get(1);
+	}
+	public String getLex(Integer pos) {
+		return (String) ((activeTS.getValue() != null) ? activeTS.getValue().get(pos).get(0) : activeTS.getKey().get(pos).get(0));
+	}
+
+	//FIXME: queremos comprobar los parametros con los que se llama a la funcion
+	public Atribute getReturnType(Integer integer) {
+		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
+		ArrayList<Object> atributes = globalTS.get(integer);
+		return (Atribute) atributes.get(atributes.size() - 2);
 	}
 
 	public void toFile(String fileName) throws TSException {
@@ -157,22 +171,21 @@ public class TSHandler {
 				for (Entry<Integer, ArrayList<Object>> entry : table.entrySet()) {
 					ArrayList<Object> atributes = entry.getValue();
 					writer.println("\t* LEXEMA : '" + (String) atributes.get(0) + "'");
-					// TODO: separar según formato
 					if (!atributes.get(1).getClass().equals(Atribute.class))
 						throw new TSException(
 							"Atributo invalido para el identificador " + ((String) atributes.get(0)) + ": " + atributes.get(1));
 					switch ((Atribute) atributes.get(1)) {
 						case ENT:
 							writer.println("\t\t+ tipo : 'entero'");
-							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ despl : " + (Integer) atributes.get(2));
 							break;
 						case CAD:
 							writer.println("\t\t+ tipo : 'cadena'");
-							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ despl : " + (Integer) atributes.get(2));
 							break;
 						case LOG:
 							writer.println("\t\t+ tipo : 'logico'");
-							writer.println("\t\t+ desp : " + (Integer) atributes.get(2));
+							writer.println("\t\t+ despl : " + (Integer) atributes.get(2));
 							break;
 						case FUN:
 							writer.println("\t\t+ tipo : 'funcion'");

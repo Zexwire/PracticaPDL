@@ -1,45 +1,53 @@
+var string s ;	/** variable global cadena **/
 var int    uno;
 var int    UNO;
 var 
 boolean 
 booleano
-;var string s;	
-s = "Introduce un entero.";	
-
-output "Factorial !";
-output s;
-var boolean bool;
-input num;
-
- num=bool;
-
-function void get(boolean fff){output pp_f;}
-function int Factorial (int n)	
+;function int Factorial  (int n)	
 {
-	if (n > 0)	return n;
-	return n * Factorial (n*2);	
+	switch (n)
+	{
+		case 0: return 1; break;
+		case 1: if (n > 0) return uno;
+	}
+	return n * Factorial (n *2);	
 }
-var int  For;
+
+/* 2 funciones raras */
+
+function int fF  (int Ff)
+{
+	output Ff*2;
+}
+
+function int Ff  (int FF)
+{
+	var boolean  pp_A4A;
+	if (pp_A4A)
+	return (fF(Ff(FF)));
+}
+
+output Ff(fF(fF(Ff(0))));var int  For;
 var int  functional;
 var int  While;	
 
-function void print (string s, string msg, int print)	
+function void print (string s, string msg, int f_f_)	
 {
-	output (s); output msg; output(print);
+	output (s); output msg; output(f_f_);
 	return;	
 }
-function string cadena (boolean log)
+function string cadena  (boolean log)
 {
 switch (UNO)
   {
-	case 0:	if (uno > UNO)
-	return s;
-	case 8888: return ("entero");
-	case 3333: uno=100; break;
-	case 7777: print (s, "Bye", 321); uno=2;
+	case 99:	if (uno > UNO)	return s;
+	case 88: return ("entero");
+	case 33: uno=100; break;
+	case 0:  print (s, "Bye", UNO); uno=2;
 
   }
 }
 uno=1;UNO=uno;
-if (num > 0)		output ("Factorial inexistente!");
-print (cadena (true), "recursivo es: ", Factorial (num));
+if (num > 0)		output ("No existe el factorial de un negativo!");
+print (cadena (booleano), "recursivo es: ", Factorial (num));

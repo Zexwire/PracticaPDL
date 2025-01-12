@@ -89,7 +89,7 @@ public enum Token {
 			case DEFAULT: return "default";
 			case TRUE: return "true";
 			case FALSE: return "false";
-			case EOF: return "end of file";
+			case EOF: return "EOF";
 			default: throw new IllegalArgumentException("Unexpected value: " + this);
 		}
 	}

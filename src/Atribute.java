@@ -20,7 +20,7 @@ public enum Atribute {
 			case FUN:
 				return "función";
 			case NONE:
-				return "vacío";
+				return "vacio";
 			case EMPTY:
 				return "-";
 			case TYPE_OK:

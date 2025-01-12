@@ -14,6 +14,7 @@ public class Lexer {
 	private int c;
 
 	public Lexer(String fileName, TSHandler tsHandler) throws FileNotFoundException, IOException {
+		tokens = new ArrayList<Pair<Token, Object>>();
 		reader = new BufferedReader(new FileReader(fileName));
 		this.tsHandler = tsHandler;
 		lineCount = 1;

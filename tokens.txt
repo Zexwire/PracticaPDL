@@ -1,100 +1,256 @@
-< OUTPUT,  >
-< ParentesisABRE,  >
-< CteENTERA, 1 >
-< ParentesisCIERRA,  >
-< EOS,  >
-< VAR,  >
-< STRING,  >
-< ID, 0 >
-< EOS,  >
-< VAR,  >
-< BOOLEAN,  >
-< ID, 1 >
-< EOS,  >
-< VAR,  >
-< INTEGER,  >
-< ID, 2 >
-< EOS,  >
-< VAR,  >
-< BOOLEAN,  >
-< ID, 3 >
-< EOS,  >
-< ID, 3 >
-< ASIG,  >
-< FALSE,  >
-< EOS,  >
-< FUNCTION,  >
-< STRING,  >
-< ID, 4 >
-< ParentesisABRE,  >
-< INTEGER,  >
-< ID, 2 >
-< COMA,  >
-< STRING,  >
-< ID, 5 >
-< COMA,  >
-< BOOLEAN,  >
-< ID, 6 >
-< ParentesisCIERRA,  >
-< LlaveABRE,  >
-< ID, 2 >
-< ASIG,  >
-< CteENTERA, 91 >
-< MULT,  >
-< ID, 7 >
-< EOS,  >
-< IF,  >
-< ParentesisABRE,  >
-< ID, 6 >
-< ParentesisCIERRA,  >
-< ID, 5 >
-< ASIG,  >
-< ID, 0 >
-< EOS,  >
-< ID, 3 >
-< ASIG,  >
-< NOT,  >
-< TRUE,  >
-< EOS,  >
-< RETURN,  >
-< ID, 5 >
-< EOS,  >
-< LlaveCIERRA,  >
-< FUNCTION,  >
-< VOID,  >
-< ID, 8 >
-< ParentesisABRE,  >
-< VOID,  >
-< ParentesisCIERRA,  >
-< LlaveABRE,  >
-< LlaveCIERRA,  >
-< IF,  >
-< ParentesisABRE,  >
-< ID, 1 >
-< ParentesisCIERRA,  >
-< ID, 8 >
-< ParentesisABRE,  >
-< ParentesisCIERRA,  >
-< EOS,  >
-< OUTPUT,  >
-< ParentesisABRE,  >
-< ID, 4 >
-< ParentesisABRE,  >
-< CteENTERA, 123 >
-< COMA,  >
-< CteCADENA, "'" >
-< COMA,  >
-< ID, 1 >
-< ParentesisCIERRA,  >
-< ParentesisCIERRA,  >
-< EOS,  >
-< ID, 3 >
-< ASIG,  >
-< ID, 1 >
-< EOS,  >
-< OUTPUT,  >
-< ParentesisABRE,  >
-< ID, 7 >
-< ParentesisCIERRA,  >
-< EOS,  >
+< var,  >
+< string,  >
+< identificador, 0 >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 1 >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 2 >
+< ;,  >
+< var,  >
+< boolean,  >
+< identificador, 3 >
+< ;,  >
+< function,  >
+< integer,  >
+< identificador, 4 >
+< (,  >
+< integer,  >
+< identificador, 0 >
+< ),  >
+< {,  >
+< switch,  >
+< (,  >
+< identificador, 0 >
+< ),  >
+< {,  >
+< case,  >
+< entero, 0 >
+< :,  >
+< return,  >
+< entero, 1 >
+< ;,  >
+< break,  >
+< ;,  >
+< case,  >
+< entero, 1 >
+< :,  >
+< if,  >
+< (,  >
+< identificador, 0 >
+< >,  >
+< entero, 0 >
+< ),  >
+< return,  >
+< identificador, 1 >
+< ;,  >
+< },  >
+< return,  >
+< identificador, 0 >
+< *,  >
+< identificador, 4 >
+< (,  >
+< identificador, 0 >
+< *,  >
+< entero, 2 >
+< ),  >
+< ;,  >
+< },  >
+< function,  >
+< integer,  >
+< identificador, 5 >
+< (,  >
+< integer,  >
+< identificador, 0 >
+< ),  >
+< {,  >
+< output,  >
+< identificador, 0 >
+< *,  >
+< entero, 2 >
+< ;,  >
+< },  >
+< function,  >
+< integer,  >
+< identificador, 6 >
+< (,  >
+< integer,  >
+< identificador, 0 >
+< ),  >
+< {,  >
+< var,  >
+< boolean,  >
+< identificador, 1 >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 1 >
+< ),  >
+< return,  >
+< (,  >
+< identificador, 5 >
+< (,  >
+< identificador, 6 >
+< (,  >
+< identificador, 0 >
+< ),  >
+< ),  >
+< ),  >
+< ;,  >
+< },  >
+< output,  >
+< identificador, 6 >
+< (,  >
+< identificador, 5 >
+< (,  >
+< identificador, 5 >
+< (,  >
+< identificador, 6 >
+< (,  >
+< entero, 0 >
+< ),  >
+< ),  >
+< ),  >
+< ),  >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 7 >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 8 >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 9 >
+< ;,  >
+< function,  >
+< void,  >
+< identificador, 10 >
+< (,  >
+< string,  >
+< identificador, 0 >
+< ,,  >
+< string,  >
+< identificador, 1 >
+< ,,  >
+< integer,  >
+< identificador, 2 >
+< ),  >
+< {,  >
+< output,  >
+< (,  >
+< identificador, 0 >
+< ),  >
+< ;,  >
+< output,  >
+< identificador, 1 >
+< ;,  >
+< output,  >
+< (,  >
+< identificador, 2 >
+< ),  >
+< ;,  >
+< return,  >
+< ;,  >
+< },  >
+< function,  >
+< string,  >
+< identificador, 11 >
+< (,  >
+< boolean,  >
+< identificador, 0 >
+< ),  >
+< {,  >
+< switch,  >
+< (,  >
+< identificador, 2 >
+< ),  >
+< {,  >
+< case,  >
+< entero, 99 >
+< :,  >
+< if,  >
+< (,  >
+< identificador, 1 >
+< >,  >
+< identificador, 2 >
+< ),  >
+< return,  >
+< identificador, 0 >
+< ;,  >
+< case,  >
+< entero, 88 >
+< :,  >
+< return,  >
+< (,  >
+< cadena, "entero" >
+< ),  >
+< ;,  >
+< case,  >
+< entero, 33 >
+< :,  >
+< identificador, 1 >
+< =,  >
+< entero, 100 >
+< ;,  >
+< break,  >
+< ;,  >
+< case,  >
+< entero, 0 >
+< :,  >
+< identificador, 10 >
+< (,  >
+< identificador, 0 >
+< ,,  >
+< cadena, "Bye" >
+< ,,  >
+< identificador, 2 >
+< ),  >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< entero, 2 >
+< ;,  >
+< },  >
+< },  >
+< identificador, 1 >
+< =,  >
+< entero, 1 >
+< ;,  >
+< identificador, 2 >
+< =,  >
+< identificador, 1 >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 12 >
+< >,  >
+< entero, 0 >
+< ),  >
+< output,  >
+< (,  >
+< cadena, "No existe el factorial de un negativo!" >
+< ),  >
+< ;,  >
+< identificador, 10 >
+< (,  >
+< identificador, 11 >
+< (,  >
+< identificador, 3 >
+< ),  >
+< ,,  >
+< cadena, "recursivo es: " >
+< ,,  >
+< identificador, 4 >
+< (,  >
+< identificador, 12 >
+< ),  >
+< ),  >
+< ;,  >
+< EOF,  >
 < EOF,  >
