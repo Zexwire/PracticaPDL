@@ -1,95 +1,110 @@
-< function,  >
-< void,  >
-< identificador, 0 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ,,  >
+< var,  >
 < boolean,  >
+< identificador, 0 >
+< ;,  >
+< identificador, 0 >
+< =,  >
+< true,  >
+< ;,  >
+< var,  >
+< integer,  >
 < identificador, 1 >
-< ,,  >
-< string,  >
-< identificador, 2 >
-< ),  >
-< {,  >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< entero, 0 >
+< ;,  >
 < if,  >
 < (,  >
 < identificador, 0 >
+< ),  >
+< identificador, 1 >
+< =,  >
+< entero, 10 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< ++,  >
+< identificador, 1 >
+< *,  >
+< entero, 17 >
+< ;,  >
+< identificador, 0 >
+< =,  >
+< !,  >
+< (,  >
+< identificador, 1 >
 < >,  >
-< entero, 0 >
+< entero, 169 >
+< ),  >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 0 >
 < ),  >
 < output,  >
-< (,  >
-< cadena, "Positivo" >
-< ),  >
+< cadena, "Error" >
 < ;,  >
 < if,  >
 < (,  >
 < !,  >
-< (,  >
 < identificador, 0 >
-< >,  >
-< entero, 0 >
-< ),  >
 < ),  >
 < output,  >
-< (,  >
-< cadena, "Negativo" >
-< ),  >
-< ;,  >
-< },  >
-< var,  >
-< boolean,  >
-< identificador, 1 >
+< cadena, "Guachi" >
 < ;,  >
 < var,  >
 < integer,  >
 < identificador, 2 >
 < ;,  >
-< var,  >
-< string,  >
-< identificador, 3 >
-< ;,  >
-< identificador, 0 >
-< (,  >
-< identificador, 2 >
-< ,,  >
-< identificador, 1 >
-< ,,  >
-< identificador, 3 >
-< ),  >
-< ;,  >
-< switch,  >
-< (,  >
-< identificador, 2 >
-< ),  >
-< {,  >
-< },  >
 < function,  >
 < void,  >
-< identificador, 4 >
+< identificador, 3 >
 < (,  >
-< void,  >
+< integer,  >
+< identificador, 0 >
 < ),  >
 < {,  >
-< },  >
+< var,  >
+< integer,  >
+< identificador, 1 >
+< ;,  >
 < identificador, 1 >
 < =,  >
-< identificador, 2 >
+< entero, 14 >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 1 >
 < >,  >
-< entero, 10 >
+< identificador, 0 >
+< ),  >
+< input,  >
+< identificador, 1 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< identificador, 1 >
+< *,  >
+< identificador, 0 >
+< ;,  >
+< output,  >
+< identificador, 1 >
+< ;,  >
+< },  >
+< identificador, 3 >
+< (,  >
+< entero, 15 >
+< ),  >
+< ;,  >
+< identificador, 2 >
+< =,  >
+< entero, 12 >
 < ;,  >
 < identificador, 3 >
-< =,  >
-< cadena, "Prueba de texto" >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 5 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 6 >
+< (,  >
+< identificador, 2 >
+< ),  >
 < ;,  >
 < EOF,  >
 < EOF,  >

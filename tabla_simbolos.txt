@@ -1,18 +1,13 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'prueba3'
-		+ tipo : 'entero'
-		+ despl : 134
-	* LEXEMA : 'prueba'
-		+ tipo : 'entero'
-		+ despl : 132
-	* LEXEMA : 'nada'
+	* LEXEMA : 'test'
 		+ tipo : 'funcion'
-		+ numParam : 0
+		+ numParam : 1
+			+ tipoParam1 : 'entero'
 		+ tipoRetorno : 'vacio'
-		+ etiqFuncion : 'Etnada4'
-	* LEXEMA : 'c'
-		+ tipo : 'cadena'
+		+ etiqFuncion : 'Ettest3'
+	* LEXEMA : 'f'
+		+ tipo : 'entero'
 		+ despl : 4
 	* LEXEMA : 'a'
 		+ tipo : 'entero'
@@ -20,27 +15,13 @@ CONTENIDOS DE LA TABLA #0:
 	* LEXEMA : 'b'
 		+ tipo : 'logico'
 		+ despl : 0
-	* LEXEMA : 'signo'
-		+ tipo : 'funcion'
-		+ numParam : 3
-			+ tipoParam1 : 'entero'
-			+ tipoParam2 : 'logico'
-			+ tipoParam3 : 'cadena'
-		+ tipoRetorno : 'vacio'
-		+ etiqFuncion : 'Etsigno0'
 
 CONTENIDOS DE LA TABLA #1:
 
-	* LEXEMA : 'c'
-		+ tipo : 'cadena'
-		+ despl : 4
-	* LEXEMA : 'b'
-		+ tipo : 'logico'
+	* LEXEMA : 'n'
+		+ tipo : 'entero'
 		+ despl : 2
-	* LEXEMA : 'a'
+	* LEXEMA : 'f'
 		+ tipo : 'entero'
 		+ despl : 0
-
-CONTENIDOS DE LA TABLA #2:
-
 
