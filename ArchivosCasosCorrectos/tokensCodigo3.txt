@@ -1,81 +1,81 @@
-< var,  >
-< integer,  >
-< identificador, 0 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< entero, 9 >
-< ;,  >
-< function,  >
-< integer,  >
-< identificador, 1 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< identificador, 0 >
-< =,  >
-< ++,  >
-< identificador, 0 >
-< ;,  >
-< return,  >
-< identificador, 0 >
-< ;,  >
-< },  >
-< var,  >
-< boolean,  >
-< identificador, 2 >
-< ;,  >
-< identificador, 2 >
-< =,  >
-< false,  >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< identificador, 0 >
-< *,  >
-< entero, 10 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< ++,  >
-< identificador, 0 >
-< ;,  >
-< identificador, 2 >
-< =,  >
-< identificador, 0 >
-< >,  >
-< entero, 100 >
-< ;,  >
-< if,  >
-< (,  >
-< !,  >
-< identificador, 2 >
-< ),  >
-< identificador, 0 >
-< =,  >
-< entero, 0 >
-< ;,  >
-< function,  >
-< string,  >
-< identificador, 3 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< >,  >
-< entero, 0 >
-< ),  >
-< return,  >
-< cadena, "Correcto" >
-< ;,  >
-< return,  >
-< cadena, "Error" >
-< ;,  >
-< },  >
+< VAR,  >
+< INTEGER,  >
+< ID, 0 >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< CteENTERA, 9 >
+< EOS,  >
+< FUNCTION,  >
+< INTEGER,  >
+< ID, 1 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< ID, 0 >
+< ASIG,  >
+< AUTOINCREMENTO,  >
+< ID, 0 >
+< EOS,  >
+< RETURN,  >
+< ID, 0 >
+< EOS,  >
+< LlaveCIERRA,  >
+< VAR,  >
+< BOOLEAN,  >
+< ID, 2 >
+< EOS,  >
+< ID, 2 >
+< ASIG,  >
+< FALSE,  >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< ID, 0 >
+< MULT,  >
+< CteENTERA, 10 >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< AUTOINCREMENTO,  >
+< ID, 0 >
+< EOS,  >
+< ID, 2 >
+< ASIG,  >
+< ID, 0 >
+< MAYOR,  >
+< CteENTERA, 100 >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< NOT,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< ID, 0 >
+< ASIG,  >
+< CteENTERA, 0 >
+< EOS,  >
+< FUNCTION,  >
+< STRING,  >
+< ID, 3 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< MAYOR,  >
+< CteENTERA, 0 >
+< ParentesisCIERRA,  >
+< RETURN,  >
+< CteCADENA, "Correcto" >
+< EOS,  >
+< RETURN,  >
+< CteCADENA, "Error" >
+< EOS,  >
+< LlaveCIERRA,  >
 < EOF,  >

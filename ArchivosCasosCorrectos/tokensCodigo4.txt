@@ -1,94 +1,94 @@
-< function,  >
-< void,  >
-< identificador, 0 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ,,  >
-< boolean,  >
-< identificador, 1 >
-< ,,  >
-< string,  >
-< identificador, 2 >
-< ),  >
-< {,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< >,  >
-< entero, 0 >
-< ),  >
-< output,  >
-< (,  >
-< cadena, "Positivo" >
-< ),  >
-< ;,  >
-< if,  >
-< (,  >
-< !,  >
-< (,  >
-< identificador, 0 >
-< >,  >
-< entero, 0 >
-< ),  >
-< ),  >
-< output,  >
-< (,  >
-< cadena, "Negativo" >
-< ),  >
-< ;,  >
-< },  >
-< var,  >
-< boolean,  >
-< identificador, 1 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 2 >
-< ;,  >
-< var,  >
-< string,  >
-< identificador, 3 >
-< ;,  >
-< identificador, 0 >
-< (,  >
-< identificador, 2 >
-< ,,  >
-< identificador, 1 >
-< ,,  >
-< identificador, 3 >
-< ),  >
-< ;,  >
-< switch,  >
-< (,  >
-< identificador, 2 >
-< ),  >
-< {,  >
-< },  >
-< function,  >
-< void,  >
-< identificador, 4 >
-< (,  >
-< void,  >
-< ),  >
-< {,  >
-< },  >
-< identificador, 1 >
-< =,  >
-< identificador, 2 >
-< >,  >
-< entero, 10 >
-< ;,  >
-< identificador, 3 >
-< =,  >
-< cadena, "Prueba de texto" >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 5 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 6 >
-< ;,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 0 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 0 >
+< COMA,  >
+< BOOLEAN,  >
+< ID, 1 >
+< COMA,  >
+< STRING,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< MAYOR,  >
+< CteENTERA, 0 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Positivo" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< NOT,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< MAYOR,  >
+< CteENTERA, 0 >
+< ParentesisCIERRA,  >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Negativo" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< LlaveCIERRA,  >
+< VAR,  >
+< BOOLEAN,  >
+< ID, 1 >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 2 >
+< EOS,  >
+< VAR,  >
+< STRING,  >
+< ID, 3 >
+< EOS,  >
+< ID, 0 >
+< ParentesisABRE,  >
+< ID, 2 >
+< COMA,  >
+< ID, 1 >
+< COMA,  >
+< ID, 3 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< SWITCH,  >
+< ParentesisABRE,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< LlaveCIERRA,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< VOID,  >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< LlaveCIERRA,  >
+< ID, 1 >
+< ASIG,  >
+< ID, 2 >
+< MAYOR,  >
+< CteENTERA, 10 >
+< EOS,  >
+< ID, 3 >
+< ASIG,  >
+< CteCADENA, "Prueba de texto" >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 5 >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 6 >
+< EOS,  >
 < EOF,  >

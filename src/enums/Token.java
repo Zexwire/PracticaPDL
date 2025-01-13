@@ -95,4 +95,42 @@ public enum Token {
 			default: throw new IllegalArgumentException("Unexpected value: " + this);
 		}
 	}
+
+	public String getCode() {
+		switch (this) {
+			case BOOLEAN: return "BOOLEAN";
+			case BREAK: return "BREAK";
+			case CASE: return "CASE";
+			case FUNCTION: return "FUNCTION";
+			case IF: return "IF";
+			case INPUT: return "INPUT";
+			case INTEGER: return "INTEGER";
+			case OUTPUT: return "OUTPUT";
+			case RETURN: return "RETURN";
+			case STRING: return "STRING";
+			case SWITCH: return "SWITCH";
+			case VAR: return "VAR";
+			case VOID: return "VOID";
+			case AUTOINCREMENTO: return "AUTOINCREMENTO";
+			case CteENTERA: return "CteENTERA";
+			case CteCADENA: return "CteCADENA";
+			case ID: return "ID";
+			case ASIG: return "ASIG";
+			case COMA: return "COMA";
+			case EOS: return "EOS";
+			case DosPUNTOS: return "DosPUNTOS";
+			case ParentesisABRE: return "ParentesisABRE";
+			case ParentesisCIERRA: return "ParentesisCIERRA";
+			case LlaveABRE: return "LlaveABRE";
+			case LlaveCIERRA: return "LlaveCIERRA";
+			case MULT: return "MULT";
+			case NOT: return "NOT";
+			case MAYOR: return "MAYOR";
+			case DEFAULT: return "DEFAULT";
+			case TRUE: return "TRUE";
+			case FALSE: return "FALSE";
+			case EOF: return "EOF";
+			default: throw new IllegalArgumentException("Unexpected value: " + this);
+		}
+	}
 }

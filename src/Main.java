@@ -11,7 +11,7 @@ public class Main {
 
 		try {
 			// TODO: Cambiar el nombre del archivo a leer aquí
-			Parser parser = new Parser("PIdG54.txt", tsHandler);
+			Parser parser = new Parser("CodigoCorrecto5.txt", tsHandler);
 			parser.parse();
 			tsHandler.toFile("tabla_simbolos.txt");
 		} catch (FileNotFoundException e ) {

@@ -1,61 +1,61 @@
-< var,  >
-< integer,  >
-< identificador, 0 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< entero, 15 >
-< ;,  >
-< function,  >
-< void,  >
-< identificador, 1 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< switch,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< case,  >
-< entero, 1 >
-< :,  >
-< output,  >
-< (,  >
-< cadena, "Hola " >
-< ),  >
-< ;,  >
-< case,  >
-< entero, 2 >
-< :,  >
-< output,  >
-< (,  >
-< cadena, "Mundo" >
-< ),  >
-< ;,  >
-< break,  >
-< ;,  >
-< default,  >
-< :,  >
-< output,  >
-< (,  >
-< cadena, "Adios" >
-< ),  >
-< ;,  >
-< break,  >
-< ;,  >
-< },  >
-< },  >
-< identificador, 1 >
-< (,  >
-< identificador, 0 >
-< ),  >
-< ;,  >
-< identificador, 1 >
-< (,  >
-< entero, 1 >
-< ),  >
-< ;,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 0 >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< CteENTERA, 15 >
+< EOS,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 1 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< SWITCH,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< CASE,  >
+< CteENTERA, 1 >
+< DosPUNTOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Hola " >
+< ParentesisCIERRA,  >
+< EOS,  >
+< CASE,  >
+< CteENTERA, 2 >
+< DosPUNTOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Mundo" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< BREAK,  >
+< EOS,  >
+< DEFAULT,  >
+< DosPUNTOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Adios" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< BREAK,  >
+< EOS,  >
+< LlaveCIERRA,  >
+< LlaveCIERRA,  >
+< ID, 1 >
+< ParentesisABRE,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< ID, 1 >
+< ParentesisABRE,  >
+< CteENTERA, 1 >
+< ParentesisCIERRA,  >
+< EOS,  >
 < EOF,  >

@@ -1,109 +1,109 @@
-< var,  >
-< boolean,  >
-< identificador, 0 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< true,  >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 1 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< entero, 0 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< identificador, 1 >
-< =,  >
-< entero, 10 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< ++,  >
-< identificador, 1 >
-< *,  >
-< entero, 17 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< !,  >
-< (,  >
-< identificador, 1 >
-< >,  >
-< entero, 169 >
-< ),  >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< output,  >
-< cadena, "Error" >
-< ;,  >
-< if,  >
-< (,  >
-< !,  >
-< identificador, 0 >
-< ),  >
-< output,  >
-< cadena, "Guachi" >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 2 >
-< ;,  >
-< function,  >
-< void,  >
-< identificador, 3 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< var,  >
-< integer,  >
-< identificador, 1 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< entero, 14 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 1 >
-< >,  >
-< identificador, 0 >
-< ),  >
-< input,  >
-< identificador, 1 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< identificador, 1 >
-< *,  >
-< identificador, 0 >
-< ;,  >
-< output,  >
-< identificador, 1 >
-< ;,  >
-< },  >
-< identificador, 3 >
-< (,  >
-< entero, 15 >
-< ),  >
-< ;,  >
-< identificador, 2 >
-< =,  >
-< entero, 12 >
-< ;,  >
-< identificador, 3 >
-< (,  >
-< identificador, 2 >
-< ),  >
-< ;,  >
+< VAR,  >
+< BOOLEAN,  >
+< ID, 0 >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< TRUE,  >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 1 >
+< EOS,  >
+< ID, 1 >
+< ASIG,  >
+< CteENTERA, 0 >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< ID, 1 >
+< ASIG,  >
+< CteENTERA, 10 >
+< EOS,  >
+< ID, 1 >
+< ASIG,  >
+< AUTOINCREMENTO,  >
+< ID, 1 >
+< MULT,  >
+< CteENTERA, 17 >
+< EOS,  >
+< ID, 0 >
+< ASIG,  >
+< NOT,  >
+< ParentesisABRE,  >
+< ID, 1 >
+< MAYOR,  >
+< CteENTERA, 169 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< CteCADENA, "Error" >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< NOT,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< CteCADENA, "Guachi" >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 2 >
+< EOS,  >
+< FUNCTION,  >
+< VOID,  >
+< ID, 3 >
+< ParentesisABRE,  >
+< INTEGER,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 1 >
+< EOS,  >
+< ID, 1 >
+< ASIG,  >
+< CteENTERA, 14 >
+< EOS,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 1 >
+< MAYOR,  >
+< ID, 0 >
+< ParentesisCIERRA,  >
+< INPUT,  >
+< ID, 1 >
+< EOS,  >
+< ID, 1 >
+< ASIG,  >
+< ID, 1 >
+< MULT,  >
+< ID, 0 >
+< EOS,  >
+< OUTPUT,  >
+< ID, 1 >
+< EOS,  >
+< LlaveCIERRA,  >
+< ID, 3 >
+< ParentesisABRE,  >
+< CteENTERA, 15 >
+< ParentesisCIERRA,  >
+< EOS,  >
+< ID, 2 >
+< ASIG,  >
+< CteENTERA, 12 >
+< EOS,  >
+< ID, 3 >
+< ParentesisABRE,  >
+< ID, 2 >
+< ParentesisCIERRA,  >
+< EOS,  >
 < EOF,  >

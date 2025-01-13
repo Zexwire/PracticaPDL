@@ -245,16 +245,16 @@ public class Lexer {
 			for (Pair<Token, Object> tokenPair : tokens) {
 				switch (tokenPair.getKey()) {
 					case CteENTERA:
-						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue())+ " >");
+						writer.println("< " + tokenPair.getKey().getCode() + ", " + ((Integer) tokenPair.getValue())+ " >");
 						break;
 					case CteCADENA:
-						writer.println("< " + tokenPair.getKey() + ", \"" + ((String) tokenPair.getValue()) + "\" >");
+						writer.println("< " + tokenPair.getKey().getCode() + ", \"" + ((String) tokenPair.getValue()) + "\" >");
 						break;
 					case ID:
-						writer.println("< " + tokenPair.getKey() + ", " + ((Integer) tokenPair.getValue()) + " >");
+						writer.println("< " + tokenPair.getKey().getCode() + ", " + ((Integer) tokenPair.getValue()) + " >");
 						break;
 					default:
-						writer.println("< " + tokenPair.getKey() + ",  >");
+						writer.println("< " + tokenPair.getKey().getCode() + ",  >");
 						break;
 				}
 			}

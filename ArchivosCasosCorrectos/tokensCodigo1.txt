@@ -1,80 +1,80 @@
-< var,  >
-< integer,  >
-< identificador, 0 >
-< ;,  >
-< var,  >
-< string,  >
-< identificador, 1 >
-< ;,  >
-< output,  >
-< (,  >
-< cadena, "Introduce tu pais de nacimiento" >
-< ),  >
-< ;,  >
-< input,  >
-< identificador, 2 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 3 >
-< ;,  >
-< function,  >
-< integer,  >
-< identificador, 4 >
-< (,  >
-< void,  >
-< ),  >
-< {,  >
-< output,  >
-< (,  >
-< cadena, "Introduce 0 o 1 para hacer 7*4 o 3*9" >
-< ),  >
-< ;,  >
-< input,  >
-< identificador, 3 >
-< ;,  >
-< switch,  >
-< (,  >
-< identificador, 3 >
-< ),  >
-< {,  >
-< case,  >
-< entero, 0 >
-< :,  >
-< input,  >
-< identificador, 3 >
-< ;,  >
-< case,  >
-< entero, 1 >
-< :,  >
-< return,  >
-< entero, 3 >
-< *,  >
-< entero, 9 >
-< ;,  >
-< break,  >
-< ;,  >
-< default,  >
-< :,  >
-< return,  >
-< entero, 0 >
-< ;,  >
-< },  >
-< return,  >
-< entero, 0 >
-< ;,  >
-< },  >
-< if,  >
-< (,  >
-< identificador, 4 >
-< (,  >
-< ),  >
-< >,  >
-< entero, 28 >
-< ),  >
-< output,  >
-< (,  >
-< cadena, "yeah" >
-< ),  >
-< ;,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 0 >
+< EOS,  >
+< VAR,  >
+< STRING,  >
+< ID, 1 >
+< EOS,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Introduce tu pais de nacimiento" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< INPUT,  >
+< ID, 2 >
+< EOS,  >
+< VAR,  >
+< INTEGER,  >
+< ID, 3 >
+< EOS,  >
+< FUNCTION,  >
+< INTEGER,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< VOID,  >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "Introduce 0 o 1 para hacer 7*4 o 3*9" >
+< ParentesisCIERRA,  >
+< EOS,  >
+< INPUT,  >
+< ID, 3 >
+< EOS,  >
+< SWITCH,  >
+< ParentesisABRE,  >
+< ID, 3 >
+< ParentesisCIERRA,  >
+< LlaveABRE,  >
+< CASE,  >
+< CteENTERA, 0 >
+< DosPUNTOS,  >
+< INPUT,  >
+< ID, 3 >
+< EOS,  >
+< CASE,  >
+< CteENTERA, 1 >
+< DosPUNTOS,  >
+< RETURN,  >
+< CteENTERA, 3 >
+< MULT,  >
+< CteENTERA, 9 >
+< EOS,  >
+< BREAK,  >
+< EOS,  >
+< DEFAULT,  >
+< DosPUNTOS,  >
+< RETURN,  >
+< CteENTERA, 0 >
+< EOS,  >
+< LlaveCIERRA,  >
+< RETURN,  >
+< CteENTERA, 0 >
+< EOS,  >
+< LlaveCIERRA,  >
+< IF,  >
+< ParentesisABRE,  >
+< ID, 4 >
+< ParentesisABRE,  >
+< ParentesisCIERRA,  >
+< MAYOR,  >
+< CteENTERA, 28 >
+< ParentesisCIERRA,  >
+< OUTPUT,  >
+< ParentesisABRE,  >
+< CteCADENA, "yeah" >
+< ParentesisCIERRA,  >
+< EOS,  >
 < EOF,  >
