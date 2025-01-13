@@ -1,18 +1,16 @@
-## Getting Started
+## Para poder ejecutar el programa
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Añadir el código a analizar al archivo de la carpeta principal PIdG54.txt
+o cambiar en src/Main.java el nombre del archivo a analizar por el deseado debajo del comentario TODO
 
-## Estructura de carpetas
+Si se usa un IDE orientado a Java o VSCode simplemente ejecutar el código desde src/Main.java
 
-The workspace contains two folders by default, where:
+## Una vez ejecutado el programa
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+Al ejecutarse correctamente se crean 3 archivos en la carpeta principal:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+- `tokens.txt`: Archivo con los tokens leídos
+- `tabla_simbolos.txt`: Archivo con la tabla de símbolos
+- `parse.txt`: Archivo con el parse realizado en formato entendible por VASt
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Si ha ocurrido un error se especifíca por terminal a traves de las Exceptions explicadas en la memoria
