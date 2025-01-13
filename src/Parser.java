@@ -3,6 +3,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.LinkedList;
+
+import enums.Action;
+import enums.Atribute;
+import enums.Token;
+import exceptions.LexerException;
+import exceptions.ParserException;
+import exceptions.TSException;
+
 import java.util.ArrayList;
 
 public class Parser {

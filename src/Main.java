@@ -1,6 +1,10 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import exceptions.LexerException;
+import exceptions.ParserException;
+import exceptions.TSException;
+
 public class Main {
 	public static void main(String[] args) {
 		TSHandler tsHandler = new TSHandler();

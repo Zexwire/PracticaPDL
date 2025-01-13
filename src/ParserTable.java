@@ -3,6 +3,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
+import enums.Action;
+import enums.Token;
+
 public class ParserTable {
 	private Hashtable<Integer, Hashtable<Token, Action>> action;
 	private Hashtable<Integer, Hashtable<Token, Integer>> goTo;

@@ -1,23 +1,33 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'mult'
+	* LEXEMA : 'error'
 		+ tipo : 'funcion'
-		+ numParam : 0
-		+ tipoRetorno : 'entero'
-		+ etiqFuncion : 'Etmult4'
-	* LEXEMA : 'n'
-		+ tipo : 'entero'
-		+ despl : 132
-	* LEXEMA : 'pais'
-		+ tipo : 'entero'
-		+ despl : 130
-	* LEXEMA : 'cadMaxLen'
-		+ tipo : 'cadena'
+		+ numParam : 1
+			+ tipoParam1 : 'entero'
+		+ tipoRetorno : 'cadena'
+		+ etiqFuncion : 'Eterror3'
+	* LEXEMA : 'fin'
+		+ tipo : 'logico'
 		+ despl : 2
-	* LEXEMA : 'maxInteger'
+	* LEXEMA : 'sumar1'
+		+ tipo : 'funcion'
+		+ numParam : 1
+			+ tipoParam1 : 'entero'
+		+ tipoRetorno : 'entero'
+		+ etiqFuncion : 'Etsumar11'
+	* LEXEMA : 'i'
 		+ tipo : 'entero'
 		+ despl : 0
 
 CONTENIDOS DE LA TABLA #1:
 
+	* LEXEMA : 'n'
+		+ tipo : 'entero'
+		+ despl : 0
+
+CONTENIDOS DE LA TABLA #2:
+
+	* LEXEMA : 'b'
+		+ tipo : 'entero'
+		+ despl : 0
 

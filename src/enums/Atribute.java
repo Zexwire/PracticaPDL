@@ -1,3 +1,4 @@
+package enums;
 public enum Atribute {
 	ENT,
 	CAD,

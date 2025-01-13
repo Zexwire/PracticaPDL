@@ -1,6 +1,6 @@
+package enums;
+
 public enum Action {
-	//FIXME: Hay que reducir en 1 todas las reglas ya que no se cuenta el 
-	//axioma inducido como regla
 	ACEPTAR,
 	DESPLAZAR,
 	REDUCIR_2,

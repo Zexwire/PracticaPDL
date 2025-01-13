@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import enums.Token;
+import exceptions.LexerException;
+import exceptions.TSException;
+
 public class Lexer {
 	private ArrayList<Pair<Token, Object>> tokens;
 	private BufferedReader reader;

@@ -1,5 +1,10 @@
 import java.util.Hashtable;
 import java.util.Map.Entry;
+
+import enums.Atribute;
+import enums.Token;
+import exceptions.TSException;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
