@@ -17,22 +17,3 @@ function int mult(void){
 	return 0;
 }
 if(mult() > 28) output("yeah");
-function void signo(int a, boolean b, string c){
-	if(a>0) output("Positivo");
-	if(!(a>0)) output("Negativo");
-}
-var boolean b;
-var int c;
-
-signo(c, e, 7 * 54);
-
-switch (a) {}
-
-function void nada(void) {}
-
-b = a > 10;
-
-c = !c * ++b > (mult() * true);
-if(b) output("Preincremento");
-var int prueba /*Aquí cabe un comentario*/;
-var int prueba3;
