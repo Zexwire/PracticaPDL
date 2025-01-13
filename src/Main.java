@@ -6,7 +6,8 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Parser parser = new Parser("CodigoFalloSemantico.txt", tsHandler);
+			// TODO: Cambiar el nombre del archivo a leer aquí
+			Parser parser = new Parser("PIdG54.txt", tsHandler);
 			parser.parse();
 			tsHandler.toFile("tabla_simbolos.txt");
 		} catch (FileNotFoundException e ) {
