@@ -6,7 +6,7 @@ public class Main {
 		TSHandler tsHandler = new TSHandler();
 
 		try {
-			Parser parser = new Parser("CodigoCorrecto5.txt", tsHandler);
+			Parser parser = new Parser("CodigoFalloLexer.txt", tsHandler);
 			parser.parse();
 			tsHandler.toFile("tabla_simbolos.txt");
 		} catch (FileNotFoundException e ) {
