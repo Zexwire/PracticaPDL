@@ -156,10 +156,15 @@ public class TSHandler {
 		return (String) ((activeTS.getValue() != null) ? activeTS.getValue().get(pos).get(0) : activeTS.getKey().get(pos).get(0));
 	}
 
-	//FIXME: queremos comprobar los parametros con los que se llama a la funcion
-	public Atribute getReturnType(Integer integer) {
+	public Atribute getReturnType(Integer integer, ArrayList<Object> aux) {
 		Hashtable<Integer, ArrayList<Object>> globalTS = activeTS.getKey();
 		ArrayList<Object> atributes = globalTS.get(integer);
+		if ((Integer) atributes.get(2) != ((Integer) aux.get(0)) - 1)
+			return null;
+		for (int i = 1; i < (Integer) atributes.get(2); i++) {
+			if ((Atribute) atributes.get(i + 2) != (Atribute) aux.get(i))
+				return null;
+		}
 		return (Atribute) atributes.get(atributes.size() - 2);
 	}
 

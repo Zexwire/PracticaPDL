@@ -326,7 +326,7 @@ public class Parser {
 				else if (!type.equals(Atribute.FUN) && (Integer) aux.get(0) != -1)
 					throw new ParserException("Error en la linea " + lexer.getLineCount() + " se ha intentado llamar a '" + tsHandler.getLex((Integer) atributes.get(0)) + "' como si fuera una función");
 				if (type.equals(Atribute.FUN)) {
-					type = tsHandler.getReturnType((Integer) atributes.get(0));
+					type = tsHandler.getReturnType((Integer) atributes.get(0), aux);
 					if (type == null)
 						throw new ParserException("Error en la linea " + lexer.getLineCount() + " la función '" + tsHandler.getLex((Integer) atributes.get(0)) + "' se ha llamado a la función con parámetros incorrectos");
 				} else if (!type.equals((Atribute) aux.get(1)))
@@ -466,7 +466,7 @@ public class Parser {
 				else if (((Integer) aux.get(0)) >=0  && !type.equals(Atribute.FUN))
 					throw new ParserException("Error en la linea " + lexer.getLineCount() + " se ha intentado llamar a '" + tsHandler.getLex((Integer) atributes.get(0)) + "' como si fuera una función");
 				if (type.equals(Atribute.FUN))
-					type = tsHandler.getReturnType((Integer) aux.get(0));
+					type = tsHandler.getReturnType((Integer) atributes.get(0), aux);
 				if (type == null)
 					throw new ParserException("Error en la linea " + lexer.getLineCount() + " la función '" + tsHandler.getLex((Integer) atributes.get(0)) + "' se ha llamado a la función con parámetros incorrectos");
 				atributes.clear();

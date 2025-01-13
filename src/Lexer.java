@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class Lexer {
-	//FIXME: guardar los tokens pasados en esta lista para poder hacer el toFile
 	private ArrayList<Pair<Token, Object>> tokens;
 	private BufferedReader reader;
 	private TSHandler tsHandler;

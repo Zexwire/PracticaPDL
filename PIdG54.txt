@@ -1,53 +1,37 @@
-var string s ;	/** variable global cadena **/
-var int    uno;
-var int    UNO;
-var 
-boolean 
-booleano
-;function int Factorial  (int n)	
-{
-	switch (n)
-	{
-		case 0: return 1; break;
-		case 1: if (n > 0) return uno;
+/* Este fichero se usará como prueba para intentar comprobar el máximo número de casos límites que se pueda ***
+**  *		*/
+var int maxInteger; /* Esta variable sirve para el Entero más grande que debe caber */
+var string cadMaxLen; /*64*/
+
+output("Introduce tu pais de nacimiento");
+input pais;
+var int n;
+function int mult(void){
+	output("Introduce 0 o 1 para hacer 7*4 o 3*9");
+	input n;
+	switch(n){
+		case 0: input n;
+		case 1: return 3*9; break;
+		default: return 0;
 	}
-	return n * Factorial (n *2);	
 }
-
-/* 2 funciones raras */
-
-function int fF  (int Ff)
-{
-	output Ff*2;
+if(mult() > 28) output("yeah");
+function void signo(int a, boolean b, string c){
+	if(a>0) output("Positivo");
+	if(!(a>0)) output("Negativo");
 }
+var boolean b;
+var int c;
 
-function int Ff  (int FF)
-{
-	var boolean  pp_A4A;
-	if (pp_A4A)
-	return (fF(Ff(FF)));
-}
+signo(c, b, "true");
 
-output Ff(fF(fF(Ff(0))));var int  For;
-var int  functional;
-var int  While;	
+switch (a) {}
 
-function void print (string s, string msg, int f_f_)	
-{
-	output (s); output msg; output(f_f_);
-	return;	
-}
-function string cadena  (boolean log)
-{
-switch (UNO)
-  {
-	case 99:	if (uno > UNO)	return s;
-	case 88: return ("entero");
-	case 33: uno=100; break;
-	case 0:  print (s, "Bye", UNO); uno=2;
+function void nada(void) {}
 
-  }
-}
-uno=1;UNO=uno;
-if (num > 0)		output ("No existe el factorial de un negativo!");
-print (cadena (booleano), "recursivo es: ", Factorial (num));
+b = a > 10;
+
+c = !c * ++b > (mult() * true);
+if(b) output("Preincremento");
+var int prueba /*Aquí cabe un comentario*/;
+var int prueba3;
