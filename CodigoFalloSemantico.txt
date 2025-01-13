@@ -4,11 +4,13 @@ a = 15;
 b = a *6;
 
 return b;
-/* Un error ya que no se puede poner un return fuera de una funcion */
+/* Un error ya que no se puede llamar a una variable como una función */
 
-var boolean c;
-c = false;
+break;
 
-c = !a;
-b = ++c;
-/* Estas dos lineas dan fallo ya que no se puede negar un entero ni autoincrementar un booleano */
+var int i;
+i = 9;
+function int sumar1(int n){
+    n = ++n;
+    return n;
+}

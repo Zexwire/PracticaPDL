@@ -64,7 +64,7 @@ public enum Token {
 			case FUNCTION: return "function";
 			case IF: return "if";
 			case INPUT: return "input";
-			case INTEGER: return "integer";
+			case INTEGER: return "int";
 			case OUTPUT: return "output";
 			case RETURN: return "return";
 			case STRING: return "string";

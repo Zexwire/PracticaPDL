@@ -1,0 +1,16 @@
+var int a;
+var boolean b;
+a = 1;
+
+switch(a) {
+	
+    case 1: input 12; break;
+    /* Esto da un fallo ya que el input debe ir acompañado de un id como por ejemplo es a */
+}
+
+*********************************************************************************************
+
+ParserException: Error en la línea 7: No se esperaba un entero después de un input, solo identificadores.
+        at Parser.parserError(Parser.java:600)
+        at Parser.parse(Parser.java:30)
+        at Main.main(Main.java:10)

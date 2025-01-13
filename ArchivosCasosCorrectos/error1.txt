@@ -1,0 +1,16 @@
+var int max;
+var string cad;
+
+var int n;
+n = 32768; /* El valor entero máximo es el 32767 */
+
+var string str;
+
+
+*************************************************************************************************************************
+
+LexerException: Error en la linea 5: El numero entero 32768 es mayor que el entero maximo, 32767
+        at Lexer.cteEntera(Lexer.java:183)
+        at Lexer.scan(Lexer.java:32)
+        at Parser.parse(Parser.java:55)
+        at Main.main(Main.java:10)

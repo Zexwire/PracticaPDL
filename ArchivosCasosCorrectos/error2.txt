@@ -1,0 +1,14 @@
+var int c;
+var boolean b;
+e = 1;
+
+switch(int a){
+    /* Este switch produce un error debido al int */
+}
+
+**************************************************************************
+
+ParserException: Error en la línea 5: No se esperaba un int dentro del paréntesis, solamente expresiones.
+        at Parser.parserError(Parser.java:610)
+        at Parser.parse(Parser.java:30)
+        at Main.main(Main.java:10)

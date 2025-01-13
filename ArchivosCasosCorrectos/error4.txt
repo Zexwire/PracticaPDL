@@ -1,0 +1,16 @@
+var int a;
+a = 15;
+
+
+var boolean c;
+c = false;
+
+c = !a;
+/* No se puede negar un entero ni autoincrementar un booleano */
+
+************************************************************************
+
+ParserException: Error en la linea 8 no se puede negar un entero
+        at Parser.reduce(Parser.java:455)
+        at Parser.parse(Parser.java:58)
+        at Main.main(Main.java:10)

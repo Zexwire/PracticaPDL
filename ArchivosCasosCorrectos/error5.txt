@@ -1,0 +1,14 @@
+var int a;
+var int b;
+a = 15;
+b = a *6;
+
+b();
+/* Un error ya que no se puede llamar a una variable como una función */
+
+********************************************************************************
+
+ParserException: Error en la linea 6 se ha intentado llamar a 'b' como si fuera una función
+        at Parser.reduce(Parser.java:349)
+        at Parser.parse(Parser.java:58)
+        at Main.main(Main.java:10)

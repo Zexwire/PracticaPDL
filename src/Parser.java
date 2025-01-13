@@ -33,7 +33,7 @@ public class Parser {
 			// por ejemplo si declarasemos var int s; y luego s = 5; se detectaría como error de que s esta doblemente declarado
 			if (token.getKey() == Token.VAR || token.getKey() == Token.FUNCTION)
 				tsHandler.setDeclarationZone(true);
-			if (token.getKey() == Token.EOS)
+			else if (token.getKey() == Token.EOS)
 				tsHandler.setDeclarationZone(false);
 			switch (action) {
 				case ACEPTAR:
@@ -83,9 +83,9 @@ public class Parser {
 					stack.pop();
 				atributes = stack.pop().getValue();
 				if (atributes.get(1) != Atribute.EMPTY)
-					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un return fuera de una función");
+					throw new ParserException("Error en la linea " + (Integer) atributes.get(3) + " hay un return fuera de una función");
 				else if ((Boolean) atributes.get(2))
-					throw new ParserException("Error en la linea " + lexer.getLineCount() + " hay un break fuera de un switch");
+					throw new ParserException("Error en la linea " + (Integer) atributes.get(3) + " hay un break fuera de un switch");
 				insertNonTerminal(Token.P, atributes);
 				break;
 			case REDUCIR_3: // P -> FP
@@ -325,15 +325,16 @@ public class Parser {
 				atributes.add(stack.pop().getValue().get(0));
 				atributes.add(false);
 				stack.pop();
-				stack.pop();
+				atributes.add(stack.pop().getValue().get(0));
 				insertNonTerminal(Token.S, atributes);
 				break;
 			case REDUCIR_30: // S -> break ;
-				for (int i = 0; i < 4; i++)
+				for (int i = 0; i < 3; i++)
 					stack.pop();
 				atributes.add(Atribute.TYPE_OK);
 				atributes.add(Atribute.EMPTY);
 				atributes.add(true);
+				atributes.add(stack.pop().getValue().get(0));
 				insertNonTerminal(Token.S, atributes);
 				break;
 			case REDUCIR_31: // S -> id S1

@@ -1,16 +1,7 @@
-/* Este codigo tiene todos los tipos de fallos del 
-Analizador Lexico arreglarlos hará que salte el siguiente error*/
+var int max;
+var string cad;
 
 var int n;
 n = 32768; /* El valor entero máximo es el 32767, simplemente habría que cambiar el ultimo digito */
 
 var string str;
-str = "ñ"; /* Esta cadena contiene un caracter no valido */
-
-str = "abcdefghabcdefghabcdefghabcdefghabcdefghabcdefghabcdefghabcdefgha"; /* Esta cadena contiene mas de 64 caracteres 
-que son el maximo permitido */
-
-/* Esta cadena está sin cerrar iguañl que el comentario,
-solo ponle unas comillas a la cadena o una / al comentario para terminarlo */
-/* Comentario que no se ha cerrado todavía ****
-str = "
