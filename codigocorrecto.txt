@@ -14,6 +14,7 @@ function int mult(void){
 		case 1: return 3*9; break;
 		default: return 0;
 	}
+	return 0;
 }
 if(mult() > 28) output("yeah");
 function void signo(int a, boolean b, string c){
