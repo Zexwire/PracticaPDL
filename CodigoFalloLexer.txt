@@ -3,6 +3,4 @@ var int b;
 
 a = 10;
 
-b = a;
-
-var int b;
+b = a + 5;
