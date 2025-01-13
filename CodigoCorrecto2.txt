@@ -1,0 +1,17 @@
+/* Esto es un comentario
+
+ **  **  ****/
+var int i;
+i = 15;
+
+function void escribir(int a)
+{
+    switch(a){
+        case 1: output("Hola ");
+        case 2: output("Mundo"); break;
+        default: output("Adios"); break;
+    }
+}
+
+escribir(i);
+escribir(1);
