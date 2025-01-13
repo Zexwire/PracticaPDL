@@ -42,8 +42,10 @@ public class Parser {
 					return;
 				case DESPLAZAR:
 					ArrayList<Object> aux = new ArrayList<Object>();
+					// Guardamos la posición del identificador en la tabla de símbolos para futuras comprobaciones
 					if (token.getKey() == Token.ID)
 						aux.add(token.getValue());
+					// Guardamos la línea en la que se ha leído el token para poder mostrarla en caso de error del parser
 					aux.add(lexer.getLineCount());
 					stack.push(new Pair<Object,ArrayList<Object>>(token.getKey(), aux));
 					stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, token.getKey()), null));
@@ -57,9 +59,18 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Función usada para reducir la pila según la regla que se haya obtenido de la tabla de análisis
+	 * 
+	 * @param action Regla que se va a aplicar
+	 * @throws ParserException Error semántico en el código
+	 * @throws TSException Error en la tabla de símbolos que se propaga desde TSHandler
+	 */
 	private void reduce(Action action) throws ParserException, TSException {
+		// Listas de atributos auxiliares que se usan tanto para comprobaciones como para guardar los atributos de los no terminales
 		ArrayList<Object> atributes = new ArrayList<Object>();
 		ArrayList<Object> aux;
+		// Variable que se usa para guardar la línea en la que se ha leído el token para mostrarla en caso de error
 		Integer actualLineCount;
 		Atribute type;
 
@@ -298,7 +309,7 @@ public class Parser {
 				atributes.add(false);
 				stack.pop();
 				actualLineCount = (Integer) stack.pop().getValue().get(0);
-				type = tsHandler.getAtribute((Integer) atributes.get(0));
+				type = tsHandler.getType((Integer) atributes.get(0));
 				if (type != Atribute.ENT && type != Atribute.CAD)
 					throw new ParserException("Error en la linea " + actualLineCount + " no se puede aplicar input a un " + type.toString());
 				atributes.set(0, Atribute.TYPE_OK);
@@ -328,7 +339,7 @@ public class Parser {
 				stack.pop();
 				atributes = stack.pop().getValue();
 				actualLineCount = (Integer) atributes.get(1);
-				type = tsHandler.getAtribute((Integer) atributes.get(0));
+				type = tsHandler.getType((Integer) atributes.get(0));
 				if (type.equals(Atribute.FUN) && (Integer) aux.get(0) == -1)
 					throw new ParserException("Error en la linea " + actualLineCount + " se ha intentado asignar un valor a la función '" + tsHandler.getLex((Integer) atributes.get(0)));
 				else if (!type.equals(Atribute.FUN) && (Integer) aux.get(0) != -1)
@@ -446,7 +457,7 @@ public class Parser {
 				atributes = stack.pop().getValue();
 				stack.pop();
 				actualLineCount = (Integer) stack.pop().getValue().get(0);
-				type = tsHandler.getAtribute((Integer) atributes.get(0));
+				type = tsHandler.getType((Integer) atributes.get(0));
 				if (type != Atribute.ENT)
 					throw new ParserException("Error en la linea " + actualLineCount + " no se puede incrementar un " + type.toString());
 				atributes.set(0, Atribute.ENT);
@@ -471,7 +482,7 @@ public class Parser {
 				stack.pop();
 				atributes = stack.pop().getValue();
 				actualLineCount = (Integer) atributes.get(1);
-				type = tsHandler.getAtribute((Integer) atributes.get(0));
+				type = tsHandler.getType((Integer) atributes.get(0));
 				if (((Integer) aux.get(0)) == -1  && type.equals(Atribute.FUN))
 					throw new ParserException("Error en la linea " + actualLineCount + " se ha intentado llamar a la función '" + tsHandler.getLex((Integer) atributes.get(0)) + "' sin parámetros");
 				else if (((Integer) aux.get(0)) >=0  && !type.equals(Atribute.FUN))
@@ -522,12 +533,28 @@ public class Parser {
 		}
 	}
 
+	/**
+	 * Función auxiliar para insertar un no terminal en la pila
+	 * 
+	 * @param token No terminal que se va a insertar
+	 * @param atributes Atributos del no terminal
+	 */
 	private void insertNonTerminal(Token token, ArrayList<Object> atributes) {
 		Integer state = (Integer) stack.peek().getKey();
 		stack.push(new Pair<Object,ArrayList<Object>>(token, atributes));
 		stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, token), null));
 	}
 
+	/**
+	 * Función auxiliar para reconocer que error sintáctico ha ocurrido.
+	 * Como se trabaja con un analizador ascendente se puede saber en que estado se ha producido el error
+	 * y que token ha causado el error. Con esta información se puede mostrar un mensaje de error más detallado según el autómata.
+	 * 
+	 * @param lineCount Línea en la que se ha producido el error
+	 * @param token Token que ha causado el error
+	 * @param state Estado en el que se ha producido el error
+	 * @throws ParserException Error sintáctico en el código
+	 */
 	private void parserError(int lineCount, Token token, Integer state) throws ParserException {
 		switch (state) {
 			case 0:
