@@ -1,0 +1,10 @@
+/* Vamos a generar unos cuantos errores del sintactico sin hacer que salten del lexico */
+var int a;
+var boolean b;
+a = 1;
+switch(int a){
+    /* Este switch produce un error debido al int */
+    case 1: input 12; break;
+    /* Esto da un fallo ya que el input debe ir acompañado de un id como por ejemplo es a */
+}
+

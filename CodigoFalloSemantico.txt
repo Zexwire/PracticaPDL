@@ -1,0 +1,14 @@
+var int a;
+var int b;
+a = 15;
+b = a *6;
+
+return b;
+/* Un error ya que no se puede poner un return fuera de una funcion */
+
+var boolean c;
+c = false;
+
+c = !a;
+b = ++c;
+/* Estas dos lineas dan fallo ya que no se puede negar un entero ni autoincrementar un booleano */
