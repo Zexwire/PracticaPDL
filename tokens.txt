@@ -1,255 +1,109 @@
 < var,  >
-< string,  >
+< boolean,  >
 < identificador, 0 >
+< ;,  >
+< identificador, 0 >
+< =,  >
+< true,  >
 < ;,  >
 < var,  >
 < integer,  >
 < identificador, 1 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< entero, 0 >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 0 >
+< ),  >
+< identificador, 1 >
+< =,  >
+< entero, 10 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< ++,  >
+< identificador, 1 >
+< *,  >
+< entero, 17 >
+< ;,  >
+< identificador, 0 >
+< =,  >
+< !,  >
+< (,  >
+< identificador, 1 >
+< >,  >
+< entero, 169 >
+< ),  >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 0 >
+< ),  >
+< output,  >
+< cadena, "Error" >
+< ;,  >
+< if,  >
+< (,  >
+< !,  >
+< identificador, 0 >
+< ),  >
+< output,  >
+< cadena, "Guachi" >
 < ;,  >
 < var,  >
 < integer,  >
 < identificador, 2 >
-< ;,  >
-< var,  >
-< boolean,  >
-< identificador, 3 >
-< ;,  >
-< function,  >
-< integer,  >
-< identificador, 4 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< switch,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< case,  >
-< entero, 0 >
-< :,  >
-< return,  >
-< entero, 1 >
-< ;,  >
-< break,  >
-< ;,  >
-< case,  >
-< entero, 1 >
-< :,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< >,  >
-< entero, 0 >
-< ),  >
-< return,  >
-< identificador, 1 >
-< ;,  >
-< },  >
-< return,  >
-< identificador, 0 >
-< *,  >
-< identificador, 4 >
-< (,  >
-< identificador, 0 >
-< *,  >
-< entero, 2 >
-< ),  >
-< ;,  >
-< },  >
-< function,  >
-< integer,  >
-< identificador, 5 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< output,  >
-< identificador, 0 >
-< *,  >
-< entero, 2 >
-< ;,  >
-< },  >
-< function,  >
-< integer,  >
-< identificador, 6 >
-< (,  >
-< integer,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< var,  >
-< boolean,  >
-< identificador, 1 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 1 >
-< ),  >
-< return,  >
-< (,  >
-< identificador, 5 >
-< (,  >
-< identificador, 6 >
-< (,  >
-< identificador, 0 >
-< ),  >
-< ),  >
-< ),  >
-< ;,  >
-< },  >
-< output,  >
-< identificador, 6 >
-< (,  >
-< identificador, 5 >
-< (,  >
-< identificador, 5 >
-< (,  >
-< identificador, 6 >
-< (,  >
-< entero, 0 >
-< ),  >
-< ),  >
-< ),  >
-< ),  >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 7 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 8 >
-< ;,  >
-< var,  >
-< integer,  >
-< identificador, 9 >
 < ;,  >
 < function,  >
 < void,  >
-< identificador, 10 >
-< (,  >
-< string,  >
-< identificador, 0 >
-< ,,  >
-< string,  >
-< identificador, 1 >
-< ,,  >
-< integer,  >
-< identificador, 2 >
-< ),  >
-< {,  >
-< output,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< ;,  >
-< output,  >
-< identificador, 1 >
-< ;,  >
-< output,  >
-< (,  >
-< identificador, 2 >
-< ),  >
-< ;,  >
-< return,  >
-< ;,  >
-< },  >
-< function,  >
-< string,  >
-< identificador, 11 >
-< (,  >
-< boolean,  >
-< identificador, 0 >
-< ),  >
-< {,  >
-< switch,  >
-< (,  >
-< identificador, 2 >
-< ),  >
-< {,  >
-< case,  >
-< entero, 99 >
-< :,  >
-< if,  >
-< (,  >
-< identificador, 1 >
-< >,  >
-< identificador, 2 >
-< ),  >
-< return,  >
-< identificador, 0 >
-< ;,  >
-< case,  >
-< entero, 88 >
-< :,  >
-< return,  >
-< (,  >
-< cadena, "entero" >
-< ),  >
-< ;,  >
-< case,  >
-< entero, 33 >
-< :,  >
-< identificador, 1 >
-< =,  >
-< entero, 100 >
-< ;,  >
-< break,  >
-< ;,  >
-< case,  >
-< entero, 0 >
-< :,  >
-< identificador, 10 >
-< (,  >
-< identificador, 0 >
-< ,,  >
-< cadena, "Bye" >
-< ,,  >
-< identificador, 2 >
-< ),  >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< entero, 2 >
-< ;,  >
-< },  >
-< },  >
-< identificador, 1 >
-< =,  >
-< entero, 1 >
-< ;,  >
-< identificador, 2 >
-< =,  >
-< identificador, 1 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 12 >
-< >,  >
-< entero, 0 >
-< ),  >
-< output,  >
-< (,  >
-< cadena, "No existe el factorial de un negativo!" >
-< ),  >
-< ;,  >
-< identificador, 10 >
-< (,  >
-< identificador, 11 >
-< (,  >
 < identificador, 3 >
-< ),  >
-< ,,  >
-< cadena, "recursivo es: " >
-< ,,  >
-< identificador, 4 >
 < (,  >
-< identificador, 12 >
+< integer,  >
+< identificador, 0 >
 < ),  >
+< {,  >
+< var,  >
+< integer,  >
+< identificador, 1 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< entero, 14 >
+< ;,  >
+< if,  >
+< (,  >
+< identificador, 1 >
+< >,  >
+< identificador, 0 >
+< ),  >
+< input,  >
+< identificador, 1 >
+< ;,  >
+< identificador, 1 >
+< =,  >
+< identificador, 1 >
+< *,  >
+< identificador, 0 >
+< ;,  >
+< output,  >
+< identificador, 1 >
+< ;,  >
+< },  >
+< identificador, 3 >
+< (,  >
+< entero, 15 >
+< ),  >
+< ;,  >
+< identificador, 2 >
+< =,  >
+< entero, 12 >
+< ;,  >
+< identificador, 3 >
+< (,  >
+< identificador, 2 >
 < ),  >
 < ;,  >
 < EOF,  >

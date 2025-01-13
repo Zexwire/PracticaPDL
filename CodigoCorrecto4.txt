@@ -1,0 +1,19 @@
+function void signo(int a, boolean b, string c){
+	if(a>0) output("Positivo");
+	if(!(a>0)) output("Negativo");
+}
+var boolean b;
+var int a;
+var string c;
+
+signo(a,b,c);
+
+switch (a) {}
+
+function void nada(void) {}
+
+b = a > 10;
+
+c = "Prueba de texto";
+var int prueba /*Aquí cabe un comentario*/;
+var int prueba3;

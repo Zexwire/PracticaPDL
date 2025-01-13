@@ -1,0 +1,23 @@
+var boolean b;
+b = true;
+var int a;
+a = 0;
+if(b) a = 10;
+a = ++a * 17;
+b = !(a > 169);
+if(b) output "Error";
+if(!b) output "Guachi";
+
+
+var int f;
+function void test(int f){
+    var int n;
+    n = 14;
+    if(n>f) input n;
+    n = n*f;
+    output n;
+}
+
+test(15);
+f = 12;
+test(f);

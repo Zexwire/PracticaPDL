@@ -1,20 +1,19 @@
 var int i;
 i = 9;
-
-function int sumar10(int n){
-    n++;
-    return n + 9;
+function int sumar1(int n){
+    n = ++n;
+    return n;
 }
 var boolean fin;
 fin = false;
 
 i = i * 10;
-
+i = ++i;
 fin = i > 100;
 
-if(!fin)  i = -1;
+if(!fin)  i = 0;
 
 function string error(int b){
-    if(b > -1) return "Correcto";
+    if(b > 0) return "Correcto";
     return "Error";
 }

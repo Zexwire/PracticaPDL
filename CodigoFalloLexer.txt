@@ -1,2 +1,8 @@
 var int a;
 var int b;
+
+a = 10;
+
+b = a;
+
+var int b;

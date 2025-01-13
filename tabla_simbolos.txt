@@ -1,98 +1,27 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'num'
-		+ tipo : 'entero'
-		+ despl : 140
-	* LEXEMA : 'cadena'
+	* LEXEMA : 'test'
 		+ tipo : 'funcion'
 		+ numParam : 1
-			+ tipoParam1 : 'logico'
-		+ tipoRetorno : 'cadena'
-		+ etiqFuncion : 'Etcadena11'
-	* LEXEMA : 'print'
-		+ tipo : 'funcion'
-		+ numParam : 3
-			+ tipoParam1 : 'cadena'
-			+ tipoParam2 : 'cadena'
-			+ tipoParam3 : 'entero'
+			+ tipoParam1 : 'entero'
 		+ tipoRetorno : 'vacio'
-		+ etiqFuncion : 'Etprint10'
-	* LEXEMA : 'While'
+		+ etiqFuncion : 'Ettest3'
+	* LEXEMA : 'f'
 		+ tipo : 'entero'
-		+ despl : 138
-	* LEXEMA : 'functional'
+		+ despl : 4
+	* LEXEMA : 'a'
 		+ tipo : 'entero'
-		+ despl : 136
-	* LEXEMA : 'For'
-		+ tipo : 'entero'
-		+ despl : 134
-	* LEXEMA : 'Ff'
-		+ tipo : 'funcion'
-		+ numParam : 1
-			+ tipoParam1 : 'entero'
-		+ tipoRetorno : 'entero'
-		+ etiqFuncion : 'EtFf6'
-	* LEXEMA : 'fF'
-		+ tipo : 'funcion'
-		+ numParam : 1
-			+ tipoParam1 : 'entero'
-		+ tipoRetorno : 'entero'
-		+ etiqFuncion : 'EtfF5'
-	* LEXEMA : 'Factorial'
-		+ tipo : 'funcion'
-		+ numParam : 1
-			+ tipoParam1 : 'entero'
-		+ tipoRetorno : 'entero'
-		+ etiqFuncion : 'EtFactorial4'
-	* LEXEMA : 'booleano'
+		+ despl : 2
+	* LEXEMA : 'b'
 		+ tipo : 'logico'
-		+ despl : 132
-	* LEXEMA : 'UNO'
-		+ tipo : 'entero'
-		+ despl : 130
-	* LEXEMA : 'uno'
-		+ tipo : 'entero'
-		+ despl : 128
-	* LEXEMA : 's'
-		+ tipo : 'cadena'
 		+ despl : 0
 
 CONTENIDOS DE LA TABLA #1:
 
 	* LEXEMA : 'n'
 		+ tipo : 'entero'
-		+ despl : 0
-
-CONTENIDOS DE LA TABLA #2:
-
-	* LEXEMA : 'Ff'
-		+ tipo : 'entero'
-		+ despl : 0
-
-CONTENIDOS DE LA TABLA #3:
-
-	* LEXEMA : 'pp_A4A'
-		+ tipo : 'logico'
 		+ despl : 2
-	* LEXEMA : 'FF'
+	* LEXEMA : 'f'
 		+ tipo : 'entero'
-		+ despl : 0
-
-CONTENIDOS DE LA TABLA #4:
-
-	* LEXEMA : 'f_f_'
-		+ tipo : 'entero'
-		+ despl : 256
-	* LEXEMA : 'msg'
-		+ tipo : 'cadena'
-		+ despl : 128
-	* LEXEMA : 's'
-		+ tipo : 'cadena'
-		+ despl : 0
-
-CONTENIDOS DE LA TABLA #5:
-
-	* LEXEMA : 'log'
-		+ tipo : 'logico'
 		+ despl : 0
 
