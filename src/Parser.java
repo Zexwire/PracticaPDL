@@ -49,7 +49,10 @@ public class Parser {
 					aux.add(lexer.getLineCount());
 					stack.push(new Pair<Object,ArrayList<Object>>(token.getKey(), aux));
 					stack.push(new Pair<Object,ArrayList<Object>>(tables.getGoTo(state, token.getKey()), null));
-					token = lexer.scan();
+					// Como eof es un token en nuestra gramática en el automata se consider aque hay que desplazar pero 
+					// si ya se ha leido no hay que volver a leerlo
+					if (token.getKey() != Token.EOF)
+						token = lexer.scan();
 					break;
 				default:
 					reduce(action);

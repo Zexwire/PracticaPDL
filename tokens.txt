@@ -1,110 +1,80 @@
 < var,  >
-< boolean,  >
+< integer,  >
 < identificador, 0 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< true,  >
 < ;,  >
 < var,  >
-< integer,  >
+< string,  >
 < identificador, 1 >
 < ;,  >
-< identificador, 1 >
-< =,  >
-< entero, 0 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< ),  >
-< identificador, 1 >
-< =,  >
-< entero, 10 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< ++,  >
-< identificador, 1 >
-< *,  >
-< entero, 17 >
-< ;,  >
-< identificador, 0 >
-< =,  >
-< !,  >
-< (,  >
-< identificador, 1 >
-< >,  >
-< entero, 169 >
-< ),  >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 0 >
-< ),  >
 < output,  >
-< cadena, "Error" >
-< ;,  >
-< if,  >
 < (,  >
-< !,  >
-< identificador, 0 >
+< cadena, "Introduce tu pais de nacimiento" >
 < ),  >
-< output,  >
-< cadena, "Guachi" >
 < ;,  >
-< var,  >
-< integer,  >
+< input,  >
 < identificador, 2 >
+< ;,  >
+< var,  >
+< integer,  >
+< identificador, 3 >
 < ;,  >
 < function,  >
-< void,  >
-< identificador, 3 >
-< (,  >
 < integer,  >
-< identificador, 0 >
+< identificador, 4 >
+< (,  >
+< void,  >
 < ),  >
 < {,  >
-< var,  >
-< integer,  >
-< identificador, 1 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< entero, 14 >
-< ;,  >
-< if,  >
-< (,  >
-< identificador, 1 >
-< >,  >
-< identificador, 0 >
-< ),  >
-< input,  >
-< identificador, 1 >
-< ;,  >
-< identificador, 1 >
-< =,  >
-< identificador, 1 >
-< *,  >
-< identificador, 0 >
-< ;,  >
 < output,  >
-< identificador, 1 >
+< (,  >
+< cadena, "Introduce 0 o 1 para hacer 7*4 o 3*9" >
+< ),  >
+< ;,  >
+< input,  >
+< identificador, 3 >
+< ;,  >
+< switch,  >
+< (,  >
+< identificador, 3 >
+< ),  >
+< {,  >
+< case,  >
+< entero, 0 >
+< :,  >
+< input,  >
+< identificador, 3 >
+< ;,  >
+< case,  >
+< entero, 1 >
+< :,  >
+< return,  >
+< entero, 3 >
+< *,  >
+< entero, 9 >
+< ;,  >
+< break,  >
+< ;,  >
+< default,  >
+< :,  >
+< return,  >
+< entero, 0 >
 < ;,  >
 < },  >
-< identificador, 3 >
+< return,  >
+< entero, 0 >
+< ;,  >
+< },  >
+< if,  >
 < (,  >
-< entero, 15 >
+< identificador, 4 >
+< (,  >
+< ),  >
+< >,  >
+< entero, 28 >
+< ),  >
+< output,  >
+< (,  >
+< cadena, "yeah" >
 < ),  >
 < ;,  >
-< identificador, 2 >
-< =,  >
-< entero, 12 >
-< ;,  >
-< identificador, 3 >
-< (,  >
-< identificador, 2 >
-< ),  >
-< ;,  >
-< EOF,  >
 < EOF,  >

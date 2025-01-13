@@ -1,27 +1,23 @@
 CONTENIDOS DE LA TABLA #0:
 
-	* LEXEMA : 'test'
+	* LEXEMA : 'mult'
 		+ tipo : 'funcion'
-		+ numParam : 1
-			+ tipoParam1 : 'entero'
-		+ tipoRetorno : 'vacio'
-		+ etiqFuncion : 'Ettest3'
-	* LEXEMA : 'f'
+		+ numParam : 0
+		+ tipoRetorno : 'entero'
+		+ etiqFuncion : 'Etmult4'
+	* LEXEMA : 'n'
 		+ tipo : 'entero'
-		+ despl : 4
-	* LEXEMA : 'a'
+		+ despl : 132
+	* LEXEMA : 'pais'
 		+ tipo : 'entero'
+		+ despl : 130
+	* LEXEMA : 'cadMaxLen'
+		+ tipo : 'cadena'
 		+ despl : 2
-	* LEXEMA : 'b'
-		+ tipo : 'logico'
+	* LEXEMA : 'maxInteger'
+		+ tipo : 'entero'
 		+ despl : 0
 
 CONTENIDOS DE LA TABLA #1:
 
-	* LEXEMA : 'n'
-		+ tipo : 'entero'
-		+ despl : 2
-	* LEXEMA : 'f'
-		+ tipo : 'entero'
-		+ despl : 0
 
