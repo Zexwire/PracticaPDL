@@ -21,7 +21,7 @@ public class TSHandler {
 		Hashtable<Integer, ArrayList<Object>> globalTS = new Hashtable<Integer, ArrayList<Object>>();
 		activeTS = new Pair<Hashtable<Integer, ArrayList<Object>>,Hashtable<Integer, ArrayList<Object>>>(globalTS, null);
 		displacement = new Pair<Integer, Integer>(0, 0);
-		lastPosTS = new Pair<Integer, Integer>(0, 0);
+		lastPosTS = new Pair<Integer, Integer>(0, -1);
 		tsList = new ArrayList<Hashtable<Integer, ArrayList<Object>>>();
 		tsList.add(globalTS);
 		declarationZone = false;
@@ -36,7 +36,7 @@ public class TSHandler {
 	public void closeScope() {
 		activeTS.setValue(null);
 		displacement.setValue(0);
-		lastPosTS.setValue(0);
+		lastPosTS.setValue(-1);
 	}
 
 	public void setDeclarationZone(boolean declarationZone) {
@@ -64,8 +64,8 @@ public class TSHandler {
 						throw new TSException("Error en la linea " + line + " el identificador '" + id + "' ya ha sido declarado en la función");
 				}
 				localTS.put(lastPosTS.getValue(), atributes);
-				lastPosTS.setValue(lastPosTS.getValue() + 1);
-				return new Pair<Token, Object>(Token.ID, lastPosTS.getValue() - 1);
+				lastPosTS.setValue(lastPosTS.getValue() - 1);
+				return new Pair<Token, Object>(Token.ID, lastPosTS.getValue() + 1);
 			}
 			for (Entry<Integer, ArrayList<Object>> entry : globalTS.entrySet()) {
 				if (entry.getValue().get(0).equals(id))
@@ -181,7 +181,7 @@ public class TSHandler {
 	 * @return Tipo del identificador
 	 */
 	public Atribute getType(Integer pos) {
-		ArrayList<Object> atributes = (activeTS.getValue() != null) ? activeTS.getValue().get(pos) : activeTS.getKey().get(pos);
+		ArrayList<Object> atributes = (pos < 0) ? activeTS.getValue().get(pos) : activeTS.getKey().get(pos);
 		
 		// Si estamos en una función pero no se ha encontrado el identificador en la tabla local, lo buscamos en la global
 		if (atributes == null)
@@ -195,7 +195,7 @@ public class TSHandler {
 	 * @return Lexema del identificador
 	 */
 	public String getLex(Integer pos) {
-		ArrayList<Object> atributes = (activeTS.getValue() != null) ? activeTS.getValue().get(pos) : activeTS.getKey().get(pos);
+		ArrayList<Object> atributes = (pos < 0) ? activeTS.getValue().get(pos) : activeTS.getKey().get(pos);
 		
 		// Si estamos en una función pero no se ha encontrado el identificador en la tabla local, lo buscamos en la global
 		if (atributes == null)
